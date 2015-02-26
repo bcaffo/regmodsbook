@@ -33,6 +33,8 @@ Try it out, it's probably the most effective way to learn.
 
 # Introduction
 
+[Watch this video before beginning FIX LINK]()
+
 ## Regression models
 Regression models are the workhorse of data science. They the most
 well described, practical and theoretically understood models in statistics.
@@ -82,9 +84,6 @@ players. (By the way, your author has played basketball with Rafael, who
   is quite good by the way, but certainly doesn't pass up shots; glass
   houses and whatnot.)
 
-<img class=center src=http://simplystatistics.org/wp-content/uploads/2013/01/kobelakers1-1024x1024.png height=250></img>
-</a>
-
 Here's some key sentences:
 
 - "Data supports claim that if Kobe stops ball hogging the Lakers will win more"
@@ -96,16 +95,13 @@ regression model building. Note the nice interpretability
 
 ## Questions for this book
 * Consider trying to answer the following kinds of questions:
-  * To use the parents' heights to predict childrens' heights.
-  * To try to find a parsimonious, easily described mean
+  * **Prediction** Eg: to use the parents' heights to predict childrens' heights.
+  * **Modeling** Eg: to try to find a parsimonious, easily described mean
     relationship between parent and children's heights.
-  * To investigate the variation in childrens' heights that appears
-  unrelated to parents' heights (residual variation).
-  * To quantify what impact genotype information has beyond parental height in explaining child height.
-  * To figure out how/whether and what assumptions are needed to
+  * **Covariation** Eg: to investigate the variation in childrens' heights that appears
+  unrelated to parents' heights (residual variation) and to quantify what impact genotype information has beyond parental height in explaining child height.
+  * **Modeling assumptions** Eg: to figure out how/whether and what assumptions are needed to
     generalize findings beyond the data in question.  
-  * Why do children of very tall parents tend to be
-    tall, but a little shorter than their parents and why children of very short parents tend to be short, but a little taller than their parents? (This is a famous question called 'Regression to the mean'.)
 
 ## Exploratory analysis of Galton's Data
 
