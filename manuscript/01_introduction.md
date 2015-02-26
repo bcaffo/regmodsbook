@@ -1,3 +1,36 @@
+## Before beginning
+This book is designed as a companion to the [Regression Models](https://www.coursera.org/course/regmods)
+Coursera class as part of the [Data Science Specialization](https://www.coursera.org/specialization/jhudatascience/1?utm_medium=courseDescripTop), a
+ten course program offered by three faculty, Jeff Leek, Roger Peng and Brian Caffo,
+at the Johns Hopkins University Department of Biostatistics.
+
+The videos associated with this book
+[can be watched in full here FIX LINK](),
+though the relevant links to specific videos are placed at the appropriate
+locations throughout.
+
+
+Before beginning, we assume that you have a working knowledge
+of the R programming language. If not, there is a wonderful Coursera class
+by Roger Peng, [that can be found here](https://www.coursera.org/course/rprog).
+In addition, students should know the basics of frequentist statistical
+inference. There is a Coursera class [here](https://www.coursera.org/course/statinference)
+and a [LeanPub book here](https://leanpub.com/LittleInferenceBook).
+
+The entirety of the book is on GitHub [here](https://github.com/bcaffo/regmodsbook).
+Please submit pull requests if you find errata! In addition the course notes can be found
+also on GitHub [here](https://github.com/bcaffo/courses/tree/master/07_RegressionModels).
+While most code is in the book, *all* of the code for every figure and analysis in the
+book is in the R markdown files files (.Rmd) for the respective lectures.
+
+Finally, we should mention `swirl` (statistics with interactive R programming).
+`swirl` is an intelligent tutoring system developed by Nick Carchedi, with contributions
+by Sean Kross and Bill and Gina Croft. It offers a way to learn R in R.
+Download `swirl` [here](http://swirlstats.com). There's a swirl
+[module for this course!](https://github.com/swirldev/swirl_courses#swirl-courses).
+Try it out, it's probably the most effective way to learn.
+
+
 # Introduction
 
 ## Regression models
@@ -16,32 +49,52 @@ simplicity, parsimony and intrepretability offered by regression models
 problem.
 
 
-## A famous motivating example
+## Motivating examples
 
-<img class=center src=fig/galton.jpg height=150>
+### Francis Galton's height data
 
-### (Perhaps surprisingly, this example is still relevant)
+Francis Galton, the 19th century polymath, can be credited with discovering
+regression. In his landmark paper [*Regression Toward Mediocrity in
+Hereditary Stature](http://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf)
+he compared the heights of parents and their children. He was particularly
+interested in the idea that the children of tall parents tended to be tall also,
+but a little shorter than their parents, and children of short parents tended
+to be short, but not quite as short as their parents. He referred to this
+as "regression to mediocrity" (or regression to the mean). In quantifying
+regression to the mean, he invented what we would call regression.
 
-<img class=center src=fig/height.png height=150>
+It is perhaps surprising that Galton's specific work on height is still relevant
+today. In fact [this European Journal of Human Genetics manuscript](http://www.nature.com/ejhg/journal/v17/n8/full/ejhg20095a.html) compares
+Galton's prediction models versus those using modern high throughput genomic
+technology (spoiler alert, Galton wins).
 
-[http://www.nature.com/ejhg/journal/v17/n8/full/ejhg20095a.html](http://www.nature.com/ejhg/journal/v17/n8/full/ejhg20095a.html)
+Some questions from Galton's data come to mind. How would one fit a model that relates
+parent and child heights? How would one predict a childs height based on their
+parents? How would we quantify regression to the mean? In this class, we'll
+answer all of these questions.
 
-[Predicting height: the Victorian approach beats modern genomics](http://www.wired.com/wiredscience/2009/03/predicting-height-the-victorian-approach-beats-modern-genomics/)
+### Simply Statistics versus Kobe Bryant
+[Simply Statistics](http://simplystatistics.org/) is a blog by Jeff Leek,
+Roger Peng and Rafael Irizarry. It is one of the most widely read statistics
+blogs, written by three of the top statisticians in academics. Rafa wrote
+a (somewhat tongue in cheek) [post regarding ball hogging](http://simplystatistics.org/2013/01/28/data-supports-claim-that-if-kobe-stops-ball-hogging-the-lakers-will-win-more/) among NBA basketball
+players. (By the way, your author has played basketball with Rafael, who
+  is quite good by the way, but certainly doesn't pass up shots; glass
+  houses and whatnot.)
 
-## Recent simply statistics post
-(Simply Statistics is a blog by Jeff Leek, Roger Peng and
-Rafael Irizarry, who wrote this post, link on the image)
-
-<a href="http://simplystatistics.org/2013/01/28/data-supports-claim-that-if-kobe-stops-ball-hogging-the-lakers-will-win-more/">
 <img class=center src=http://simplystatistics.org/wp-content/uploads/2013/01/kobelakers1-1024x1024.png height=250></img>
 </a>
 
+Here's some key sentences:
+
 - "Data supports claim that if Kobe stops ball hogging the Lakers will win more"
 - "Linear regression suggests that an increase of 1% in % of shots taken by Kobe results in a drop of 1.16 points (+/- 0.22)  in score differential."
-- How was it done? Do you agree with the analysis?
+
+In this book we will cover how to create summary statements like this using
+regression model building. Note the nice interpretability
 
 
-## Questions for this class
+## Questions for this book
 * Consider trying to answer the following kinds of questions:
   * To use the parents' heights to predict childrens' heights.
   * To try to find a parsimonious, easily described mean
@@ -54,7 +107,7 @@ Rafael Irizarry, who wrote this post, link on the image)
   * Why do children of very tall parents tend to be
     tall, but a little shorter than their parents and why children of very short parents tend to be short, but a little taller than their parents? (This is a famous question called 'Regression to the mean'.)
 
-## Galton's Data
+## Exploratory analysis of Galton's Data
 
 * Let's look at the data first, used by Francis Galton in 1885.
 * Galton was a statistician who invented the term and concepts
@@ -101,7 +154,6 @@ myHist <- function(mu){
 manipulate(myHist(mu), mu = slider(62, 74, step = 0.5))
 ```
 
----
 ## The least squares est. is the empirical mean
 
 ```r
