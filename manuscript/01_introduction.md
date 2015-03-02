@@ -173,7 +173,6 @@ use rStudio's manipulate to see what value of
 allows you to create a slider to investigate estimates and their
 mean squared error.
 
-<!--
 
 {lang=r,title="Using manipulate to find the least squares estimate."}
 ~~~
@@ -189,6 +188,8 @@ manipulate(myHist(mu), mu = slider(62, 74, step = 0.5))
 ~~~
 
 The least squares est. is the empirical mean.
+
+<!--
 
 {lang=r,line-numbers=off}
 ~~~
