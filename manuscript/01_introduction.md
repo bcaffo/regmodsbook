@@ -164,6 +164,7 @@ mean (this leads to the median as the estimate instead of the mean).
 However, minimizing the squared error has many nice properties, so we'll stick
 with that for this class.
 
+<!--
 ### Experiment
 Let's
 use rStudio's manipulate to see what value of
@@ -308,3 +309,4 @@ about creating, interpreting and performing inference on such mode fits.
 ![Data with the best fitting line overlaid.](images/galton3.png)
 
 ## Exercises
+-->
