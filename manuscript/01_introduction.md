@@ -141,6 +141,8 @@ g
 
 ![Plotting the `galton` dataset](images/galton.png)
 
+<!--
+
 ### Finding the middle via least squares
 Consider only the children's heights. How could one describe the "middle"?
 One definition, let {$$}Y_i{/$$} be the height of child {$$}i{/$$} for
@@ -164,7 +166,6 @@ mean (this leads to the median as the estimate instead of the mean).
 However, minimizing the squared error has many nice properties, so we'll stick
 with that for this class.
 
-<!--
 ### Experiment
 Let's
 use rStudio's manipulate to see what value of
