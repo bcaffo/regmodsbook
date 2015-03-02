@@ -57,7 +57,7 @@ problem.
 
 Francis Galton, the 19th century polymath, can be credited with discovering
 regression. In his landmark paper [*Regression Toward Mediocrity in
-Hereditary Stature](http://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf)
+Hereditary Stature*](http://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf)
 he compared the heights of parents and their children. He was particularly
 interested in the idea that the children of tall parents tended to be tall also,
 but a little shorter than their parents, and children of short parents tended
@@ -76,6 +76,7 @@ parents? How would we quantify regression to the mean? In this class, we'll
 answer all of these questions.
 
 ### Simply Statistics versus Kobe Bryant
+
 [Simply Statistics](http://simplystatistics.org/) is a blog by Jeff Leek,
 Roger Peng and Rafael Irizarry. It is one of the most widely read statistics
 blogs, written by three of the top statisticians in academics. Rafa wrote
@@ -93,40 +94,53 @@ In this book we will cover how to create summary statements like this using
 regression model building. Note the nice interpretability
 
 
-## Questions for this book
-* Consider trying to answer the following kinds of questions:
-  * **Prediction** Eg: to use the parents' heights to predict childrens' heights.
-  * **Modeling** Eg: to try to find a parsimonious, easily described mean
+## Summary notes: questions for this book
+Regression models are incredibly handy statistical tools. One can use
+them to answer all sorts of question.
+Consider three of the most common tasks for regression models:
+1. **Prediction** Eg: to use the parent's heights to predict children's heights.
+2. **Modeling** Eg: to try to find a parsimonious, easily described mean
     relationship between parent and children's heights.
-  * **Covariation** Eg: to investigate the variation in childrens' heights that appears
-  unrelated to parents' heights (residual variation) and to quantify what impact genotype information has beyond parental height in explaining child height.
-  * **Modeling assumptions** Eg: to figure out how/whether and what assumptions are needed to
-    generalize findings beyond the data in question.  
+3. **Covariation** Eg: to investigate the variation in children's heights that appears
+  unrelated to parent's heights (residual variation) and to quantify what impact genotype information has beyond parental height in explaining child height.
+
+An important aspect, especially in questions 2 and 3 is assessing
+modeling assumptions. For example, it is important to figure out how/whether
+and what assumptions are needed to generalize findings beyond the data in question.
+Presumably, if we find a relationship between parent and children's  heights,
+we'd like to extend that knowledge beyond the data used to build the model.
+This requires assumptions. In this book, we'll cover the main assumptions
+necessary.
 
 ## Exploratory analysis of Galton's Data
 
-* Let's look at the data first, used by Francis Galton in 1885.
-* Galton was a statistician who invented the term and concepts
-  of regression and correlation, founded the journal Biometrika,
-  and was the cousin of Charles Darwin.
-* You may need to run `install.packages("UsingR")` if the `UsingR` library is not installed.
-* Let's look at the marginal (parents disregarding children and children disregarding parents) distributions first.
-  * Parent distribution is all heterosexual couples.
-  * Correction for gender via multiplying female heights by 1.08.
-  * Overplotting is an issue from discretization.
+Let's look at the data first. This data was created by Francis Galton in 1885.
+Galton was a statistician who invented the term and concepts
+of regression and correlation, founded the journal Biometrika, and
+was the cousin of Charles Darwin.
+
+You may need to run `install.packages("UsingR")` if the `UsingR` library is
+not installed. Let's look at the marginal (parents disregarding children and
+children disregarding parents) distributions first.
+Parent distribution is all heterosexual couples. The parental average corrected
+for gender via multiplying female heights by 1.08. Remember, Galton didn't have
+regression to help figure out a betetr way to do this correction!
+It's also worth noting that overplotting is an issue from discretization
+of the heights.
 
 
-```r
+{lang=r,title="Loading and plotting Galton's data",line-numbers=off}
+~~~
 library(UsingR); data(galton); library(reshape); long <- melt(galton)
 g <- ggplot(long, aes(x = value, fill = variable))
 g <- g + geom_histogram(colour = "black", binwidth=1)
 g <- g + facet_grid(. ~ variable)
 g
-```
+~~~
 
-<div class="rimage center"><img src="fig/galton.png" title="plot of chunk galton" alt="plot of chunk galton" class="plot" /></div>
+![Plotting the `galton` dataset](images/galton.png)
 
-## Finding the middle via least squares
+### Finding the middle via least squares
 * Consider only the children's heights.
   * How could one describe the "middle"?
   * One definition, let $Y_i$ be the height of child $i$ for $i = 1, \ldots, n = 928$, then define the middle as the value of $\mu$
