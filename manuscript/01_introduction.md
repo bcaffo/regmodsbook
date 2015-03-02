@@ -199,7 +199,6 @@ g
 
 ![The best mean is the vertical line.](images/lms.png)
 
-<!--
 
 ## The math (not required)
 
@@ -224,6 +223,8 @@ these results can be extended.
 & \geq \sum_{i=1}^n (Y_i - \bar Y)^2 \
 \end{align}
 {/$$}
+
+<!--
 
 ## Comparing children's heights and their parent's heights
 
