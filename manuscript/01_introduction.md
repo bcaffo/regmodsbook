@@ -98,6 +98,7 @@ regression model building. Note the nice interpretability
 Regression models are incredibly handy statistical tools. One can use
 them to answer all sorts of question.
 Consider three of the most common tasks for regression models:
+
 1. **Prediction** Eg: to use the parent's heights to predict children's heights.
 2. **Modeling** Eg: to try to find a parsimonious, easily described mean
     relationship between parent and children's heights.
@@ -150,14 +151,28 @@ of {$$}\mu{/$$} that minimizes
 
 This is physical center of mass of the histrogram.
 You might have guessed that the answer {$$}\mu = \bar Y{/$$}. This is called
-the **least squares** estimate for {$$}\mu{\$$}. It is the point that minimizes
+the **least squares** estimate for {$$}\mu{/$$}. It is the point that minimizes
 the sum of the squared distances between the observed data and itself.
 
+Note, if there was no variation in the data, every value of {$$}Y_i{/$$} was
+the same, then there would be no error around the mean. Otherwise, our estimate
+has to balance the fact that our estimate of {$$}\mu{/$$} isn't going to
+predict every observation perfectly. Minimizing the average (or sum of the)
+squared errors seems like a reasonable strategy, though of course there are others.
+We could minimize the average absolute deviation between the data and estimated
+mean (this leads to the median as the estimate instead of the mean).
+However, minimizing the squared error has many nice properties, so we'll stick
+with that for this class.
 
-## Experiment
-### Use R studio's manipulate to see what value of $\mu$ minimizes the sum of the squared deviations.
+### Experiment
+Let's
+use rStudio's manipulate to see what value of
+{$$}\mu{/$$} minimizes the sum of the squared deviations. The code below
+allows you to create a slider to investigate estimates and their
+mean squared error.
 
-```
+{lang=r,title="Using manipulate to find the least squares estimate."}
+~~~
 library(manipulate)
 myHist <- function(mu){
     mse <- mean((galton$child - mu)^2)
@@ -167,22 +182,26 @@ myHist <- function(mu){
     g
 }
 manipulate(myHist(mu), mu = slider(62, 74, step = 0.5))
-```
+~~~
 
-## The least squares est. is the empirical mean
+The least squares est. is the empirical mean.
 
-```r
+{lang=r,line-numbers=off}
+~~~
 g <- ggplot(galton, aes(x = child)) + geom_histogram(fill = "salmon", colour = "black", binwidth=1)
 g <- g + geom_vline(xintercept = mean(galton$child), size = 3)
 g
-```
+~~~
 
-<div class="rimage center"><img src="fig/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div>
+![The best mean is the vertical line.](images/lms.png)
 
+## The math (not required)
 
----
-### The math (not required for the class) follows as:
-$$
+Why is the sample average the least squares estimate for {$$}\mu{/$$}?
+It's surprisingly easy to show. Perhaps more surprising is how generally
+these results can be extended.
+
+{$$}
 \begin{align}
 \sum_{i=1}^n (Y_i - \mu)^2 & = \
 \sum_{i=1}^n (Y_i - \bar Y + \bar Y - \mu)^2 \\
@@ -198,38 +217,54 @@ $$
 & = \sum_{i=1}^n (Y_i - \bar Y)^2 + \sum_{i=1}^n (\bar Y - \mu)^2\\
 & \geq \sum_{i=1}^n (Y_i - \bar Y)^2 \
 \end{align}
-$$
+{/$$}
 
----
-## Comparing childrens' heights and their parents' heights
+## Comparing children's heights and their parent's heights
 
+Looking at either the parents or children on their own isn't interesting.
+We're interested in how the relate to each other. Let's plot the parent
+and child heights.
 
-```r
+{lang=r,line-numbers=off}
+~~~
 ggplot(galton, aes(x = parent, y = child)) + geom_point()
-```
+~~~
 
-<div class="rimage center"><img src="fig/unnamed-chunk-2.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div>
+![Plot of parent and child heights.](images/galton2.png)
 
+The overplotting is clearly hiding some data. [Here you can get the code
+](https://github.com/bcaffo/courses/blob/master/07_RegressionModels/01_01_introduction/index.Rmd)
+to make the size of the point be the frequency.
 
----
-Size of point represents number of points at that (X, Y) combination (See the Rmd file for the code).
+![Re plot of the data](images/freqGalton.png)
 
-<div class="rimage center"><img src="fig/freqGalton.png" title="plot of chunk freqGalton" alt="plot of chunk freqGalton" class="plot" /></div>
-
-
----
 ## Regression through the origin
-* Suppose that $X_i$ are the parents' heights.
-* Consider picking the slope $\beta$ that minimizes $$\sum_{i=1}^n (Y_i - X_i \beta)^2$$
-* This is exactly using the origin as a pivot point picking the
+A line requires two parameters to be specified, the intercept and the slope.
+Let's first focus on the slope. We want to find the slope of the line that
+best fits the data. However, we have to pick a good intercept. Let's subtract
+the mean from bot the parent and child heights so that their means are 0.
+Now let's find the line that goes through the origin (has intercept 0) by
+picking the best slope.
+
+Suppose that {$$}X_i{/$$} are the parent heights with the mean subtracted.
+Consider picking the slope {$$}\beta{/$$} that minimizes
+
+{$$}\sum_{i=1}^n (Y_i - X_i \beta)^2{/$$}
+
+Each {$$}X \beta_i {\$$} is the vertical height of
+a line through the origin at point {$$}X{/$$}. Thus,
+{$$}Y_i - \X_i \beta{/$$} is the vertical distance between the line
+at each observed {$$}X_i{/$$} point (parental height) and the
+{$$}Y_i{/$$} (child height).
+
+Our goal is exactly to use the origin as a pivot point and pick the
 line that minimizes the sum of the squared vertical distances
-of the points to the line
-* Use R studio's  manipulate function to experiment
-* Subtract the means so that the origin is the mean of the parent
-and children's heights
+of the points to the line. Use R studio's  manipulate function to experiment
+Subtract the means so that the origin is the mean of the parent
+and children heights.
 
-
-```r
+{title="Code for plotting the data.", lang=r, line-numbers=off}
+~~~
 y <- galton$child - mean(galton$child)
 x <- galton$parent - mean(galton$parent)
 freqData <- as.data.frame(table(x, y))
@@ -248,19 +283,16 @@ myPlot <- function(beta){
     g
 }
 manipulate(myPlot(beta), beta = slider(0.6, 1.2, step = 0.02))
-```
+~~~
 
 
----
-## The solution
-### In the next few lectures we'll talk about why this is the solution
+### The solution
+In the next few lectures we'll talk about why this is the solution. But,
+rather than leave you hanging, there it is:
 
-```r
-lm(I(child - mean(child))~ I(parent - mean(parent)) - 1, data = galton)
-```
-
-```
-
+{lang=r,line-numbers=off}
+~~~
+> lm(I(child - mean(child))~ I(parent - mean(parent)) - 1, data = galton)
 Call:
 lm(formula = I(child - mean(child)) ~ I(parent - mean(parent)) -
     1, data = galton)
@@ -268,8 +300,11 @@ lm(formula = I(child - mean(child)) ~ I(parent - mean(parent)) -
 Coefficients:
 I(parent - mean(parent))  
                    0.646  
-```
+~~~
 
+Let's plot the best fitting line. In the subsequent chapter we will learn all
+about creating, interpreting and performing inference on such mode fits.
 
----
-<div class="rimage center"><img src="fig/unnamed-chunk-5.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div>
+![Data with the best fitting line overlaid.](images/galton3.png)
+
+## Exercises
