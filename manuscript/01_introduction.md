@@ -207,19 +207,18 @@ It's surprisingly easy to show. Perhaps more surprising is how generally
 these results can be extended.
 
 {$$}
-\begin{eqnarray}
+\begin{eqnarray*}
 \sum_{i=1}^n (Y_i - \mu)^2 & = & \sum_{i=1}^n (Y_i - \bar Y + \bar Y - \mu)^2 \\
                            & = & \sum_{i=1}^n (Y_i - \bar Y)^2 + 2 \sum_{i=1}^n (Y_i - \bar Y)  (\bar Y - \mu) + \sum_{i=1}^n (\bar Y - \mu)^2 \\
                            & = & \sum_{i=1}^n (Y_i - \bar Y)^2 + 2 (\bar Y - \mu) \sum_{i=1}^n (Y_i - \bar Y)  + \sum_{i=1}^n (\bar Y - \mu)^2 \\
                            & = & \sum_{i=1}^n (Y_i - \bar Y)^2 + 2 (\bar Y - \mu)  (\sum_{i=1}^n Y_i - n \bar Y) + \sum_{i=1}^n (\bar Y - \mu)^2 \\
                            & = & \sum_{i=1}^n (Y_i - \bar Y)^2 + \sum_{i=1}^n (\bar Y - \mu)^2\\
                            & \geq & \sum_{i=1}^n (Y_i - \bar Y)^2 \
-\end{eqnarray}
+\end{eqnarray*}
 {/$$}
 
-test
 
-<!--
+
 
 ## Comparing children's heights and their parent's heights
 
@@ -239,6 +238,8 @@ The overplotting is clearly hiding some data. [Here you can get the code
 to make the size of the point be the frequency.
 
 ![Re plot of the data](images/freqGalton.png)
+
+<!--
 
 ## Regression through the origin
 A line requires two parameters to be specified, the intercept and the slope.
