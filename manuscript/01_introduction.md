@@ -130,7 +130,7 @@ It's also worth noting that overplotting is an issue from discretization
 of the heights.
 
 
-{lang=r,title="Loading and plotting Galton's data",line-numbers=off}
+{lang=r,title="Loading and plotting Galton's data.",line-numbers=off}
 ~~~
 library(UsingR); data(galton); library(reshape); long <- melt(galton)
 g <- ggplot(long, aes(x = value, fill = variable))
@@ -174,7 +174,7 @@ allows you to create a slider to investigate estimates and their
 mean squared error.
 
 
-{lang=r,title="Using manipulate to find the least squares estimate."}
+{lang=r,title="Using manipulate to find the least squares estimate.",line-numbers=off}
 ~~~
 library(manipulate)
 myHist <- function(mu){
@@ -187,9 +187,8 @@ myHist <- function(mu){
 manipulate(myHist(mu), mu = slider(62, 74, step = 0.5))
 ~~~
 
-The least squares est. is the empirical mean.
+The least squares estimate is the empirical mean.
 
-<!--
 
 {lang=r,line-numbers=off}
 ~~~
@@ -199,6 +198,8 @@ g
 ~~~
 
 ![The best mean is the vertical line.](images/lms.png)
+
+<!--
 
 ## The math (not required)
 
