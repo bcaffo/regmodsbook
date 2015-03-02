@@ -197,7 +197,7 @@ g <- g + geom_vline(xintercept = mean(galton$child), size = 3)
 g
 ~~~
 
-![The best mean is the vertical line.](images/lms.png)
+![The best mean is the vertical line.](images/lsm.png)
 
 
 ## The math (not required)
@@ -207,22 +207,17 @@ It's surprisingly easy to show. Perhaps more surprising is how generally
 these results can be extended.
 
 {$$}
-\begin{align}
-\sum_{i=1}^n (Y_i - \mu)^2 & = \
-\sum_{i=1}^n (Y_i - \bar Y + \bar Y - \mu)^2 \\
-& = \sum_{i=1}^n (Y_i - \bar Y)^2 + \
-2 \sum_{i=1}^n (Y_i - \bar Y)  (\bar Y - \mu) +\
-\sum_{i=1}^n (\bar Y - \mu)^2 \\
-& = \sum_{i=1}^n (Y_i - \bar Y)^2 + \
-2 (\bar Y - \mu) \sum_{i=1}^n (Y_i - \bar Y)  +\
-\sum_{i=1}^n (\bar Y - \mu)^2 \\
-& = \sum_{i=1}^n (Y_i - \bar Y)^2 + \
-2 (\bar Y - \mu)  (\sum_{i=1}^n Y_i - n \bar Y) +\
-\sum_{i=1}^n (\bar Y - \mu)^2 \\
-& = \sum_{i=1}^n (Y_i - \bar Y)^2 + \sum_{i=1}^n (\bar Y - \mu)^2\\
-& \geq \sum_{i=1}^n (Y_i - \bar Y)^2 \
-\end{align}
+\begin{eqnarray}
+\sum_{i=1}^n (Y_i - \mu)^2 & = & \sum_{i=1}^n (Y_i - \bar Y + \bar Y - \mu)^2 \\
+                           & = & \sum_{i=1}^n (Y_i - \bar Y)^2 + 2 \sum_{i=1}^n (Y_i - \bar Y)  (\bar Y - \mu) + \sum_{i=1}^n (\bar Y - \mu)^2 \\
+                           & = & \sum_{i=1}^n (Y_i - \bar Y)^2 + 2 (\bar Y - \mu) \sum_{i=1}^n (Y_i - \bar Y)  + \sum_{i=1}^n (\bar Y - \mu)^2 \\
+                           & = & \sum_{i=1}^n (Y_i - \bar Y)^2 + 2 (\bar Y - \mu)  (\sum_{i=1}^n Y_i - n \bar Y) + \sum_{i=1}^n (\bar Y - \mu)^2 \\
+                           & = & \sum_{i=1}^n (Y_i - \bar Y)^2 + \sum_{i=1}^n (\bar Y - \mu)^2\\
+                           & \geq & \sum_{i=1}^n (Y_i - \bar Y)^2 \
+\end{eqnarray}
 {/$$}
+
+test
 
 <!--
 
