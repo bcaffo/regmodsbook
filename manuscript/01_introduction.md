@@ -141,12 +141,17 @@ g
 ![Plotting the `galton` dataset](images/galton.png)
 
 ### Finding the middle via least squares
-* Consider only the children's heights.
-  * How could one describe the "middle"?
-  * One definition, let $Y_i$ be the height of child $i$ for $i = 1, \ldots, n = 928$, then define the middle as the value of $\mu$
-  that minimizes $$\sum_{i=1}^n (Y_i - \mu)^2$$
-* This is physical center of mass of the histrogram.
-* You might have guessed that the answer $\mu = \bar Y$.
+Consider only the children's heights. How could one describe the "middle"?
+One definition, let {$$}Y_i{/$$} be the height of child {$$}i{/$$} for
+{$$}i = 1, \ldots, n = 928{/$$}, then define the middle as the value
+of {$$}\mu{/$$} that minimizes
+
+{$$}\sum_{i=1}^n (Y_i - \mu)^2.{/$$}
+
+This is physical center of mass of the histrogram.
+You might have guessed that the answer {$$}\mu = \bar Y{/$$}. This is called
+the **least squares** estimate for {$$}\mu{\$$}. It is the point that minimizes
+the sum of the squared distances between the observed data and itself.
 
 
 ## Experiment
