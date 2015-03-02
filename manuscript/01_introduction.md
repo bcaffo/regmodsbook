@@ -154,7 +154,6 @@ You might have guessed that the answer {$$}\mu = \bar Y{/$$}. This is called
 the **least squares** estimate for {$$}\mu{/$$}. It is the point that minimizes
 the sum of the squared distances between the observed data and itself.
 
-<!--
 
 
 Note, if there was no variation in the data, every value of {$$}Y_i{/$$} was
@@ -173,6 +172,8 @@ use rStudio's manipulate to see what value of
 {$$}\mu{/$$} minimizes the sum of the squared deviations. The code below
 allows you to create a slider to investigate estimates and their
 mean squared error.
+
+<!--
 
 {lang=r,title="Using manipulate to find the least squares estimate."}
 ~~~
