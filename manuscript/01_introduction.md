@@ -235,17 +235,17 @@ ggplot(galton, aes(x = parent, y = child)) + geom_point()
 
 The overplotting is clearly hiding some data. [Here you can get the code
 ](https://github.com/bcaffo/courses/blob/master/07_RegressionModels/01_01_introduction/index.Rmd)
-to make the size of the point be the frequency.
+to make the size and color of the points be the frequency.
 
 ![Re plot of the data](images/freqGalton.png)
 
-<!--
 
 ## Regression through the origin
 A line requires two parameters to be specified, the intercept and the slope.
 Let's first focus on the slope. We want to find the slope of the line that
 best fits the data. However, we have to pick a good intercept. Let's subtract
-the mean from bot the parent and child heights so that their means are 0.
+the mean from bot the parent and child heights so that their subsequent
+means are 0.
 Now let's find the line that goes through the origin (has intercept 0) by
 picking the best slope.
 
@@ -291,7 +291,7 @@ manipulate(myPlot(beta), beta = slider(0.6, 1.2, step = 0.02))
 
 ### The solution
 In the next few lectures we'll talk about why this is the solution. But,
-rather than leave you hanging, there it is:
+rather than leave you hanging, here it is:
 
 {lang=r,line-numbers=off}
 ~~~
@@ -311,4 +311,3 @@ about creating, interpreting and performing inference on such mode fits.
 ![Data with the best fitting line overlaid.](images/galton3.png)
 
 ## Exercises
--->
