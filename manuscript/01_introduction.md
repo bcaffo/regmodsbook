@@ -256,12 +256,13 @@ Consider picking the slope {$$}\beta{/$$} that minimizes
 {$$}\sum_{i=1}^n (Y_i - X_i \beta)^2{/$$}
 
 <!--
-Each {$$}X_i \beta{/$$} is the vertical height of-->
+Each {$$}X_i \beta{/$$} is the vertical height of
 a line through the origin at point {$$}X_i{/$$}. Thus,
-{$$}Y_i - \X_i \beta{/$$} is the vertical distance between the line
+{$$}Y_i - \X_i \beta{/$$} -->
+is the vertical distance between the line
 at each observed {$$}X_i{/$$} point (parental height) and the
 {$$}Y_i{/$$} (child height).
-<!--
+
 Our goal is exactly to use the origin as a pivot point and pick the
 line that minimizes the sum of the squared vertical distances
 of the points to the line. Use R studio's  manipulate function to experiment
