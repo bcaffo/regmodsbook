@@ -266,6 +266,7 @@ of the points to the line. Use R studio's  manipulate function to experiment
 Subtract the means so that the origin is the mean of the parent
 and children heights.
 
+<!--
 {title="Code for plotting the data.", lang=r, line-numbers=off}
 ~~~
 y <- galton$child - mean(galton$child)
@@ -311,3 +312,4 @@ about creating, interpreting and performing inference on such mode fits.
 ![Data with the best fitting line overlaid.](images/galton3.png)
 
 ## Exercises
+-->
