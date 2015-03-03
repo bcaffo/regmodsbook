@@ -249,6 +249,8 @@ means are 0.
 Now let's find the line that goes through the origin (has intercept 0) by
 picking the best slope.
 
+
+<!--
 Suppose that {$$}X_i{/$$} are the parent heights with the mean subtracted.
 Consider picking the slope {$$}\beta{/$$} that minimizes
 
@@ -266,7 +268,6 @@ of the points to the line. Use R studio's  manipulate function to experiment
 Subtract the means so that the origin is the mean of the parent
 and children heights.
 
-<!--
 {title="Code for plotting the data.", lang=r, line-numbers=off}
 ~~~
 y <- galton$child - mean(galton$child)
