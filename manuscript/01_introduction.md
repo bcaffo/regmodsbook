@@ -250,11 +250,12 @@ Now let's find the line that goes through the origin (has intercept 0) by
 picking the best slope.
 
 
-<!--
 Suppose that {$$}X_i{/$$} are the parent heights with the mean subtracted.
 Consider picking the slope {$$}\beta{/$$} that minimizes
 
 {$$}\sum_{i=1}^n (Y_i - X_i \beta)^2{/$$}
+
+<!--
 
 Each {$$}X_i \beta{/$$} is the vertical height of
 a line through the origin at point {$$}X_i{/$$}. Thus,
