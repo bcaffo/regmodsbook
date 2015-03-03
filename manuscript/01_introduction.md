@@ -308,7 +308,10 @@ I(parent - mean(parent))
 ~~~
 
 Let's plot the best fitting line. In the subsequent chapter we will learn all
-about creating, interpreting and performing inference on such mode fits.
+about creating, interpreting and performing inference on such mode fits. (Note
+that I shifted the origin back to the means of the original data.) The
+results suggest that to every every 1 inch increase in the parents height,
+we estimate a 0.646 inch increase in the child's height. 
 
 ![Data with the best fitting line overlaid.](images/galton3.png)
 
