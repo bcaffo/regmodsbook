@@ -1,4 +1,5 @@
 # Notation  
+
 ## Some basic definitions
 
 In this chapter, we'll cover some basic definitions and notation used throughout the
