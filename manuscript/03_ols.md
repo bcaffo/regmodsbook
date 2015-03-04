@@ -17,7 +17,8 @@ Consider finding the best line of the form
 
 {$$} \mbox{Child Height} = \beta_0 + \mbox{Parent Height} \beta_1, {/$$}
 
-Let's try using least squares:
+Let's try using least squares by minimizing the following equation
+over {$$}\beta_0{/$$} and {$$}\beta_1{/$$}:
 
 {$$}
 \sum_{i=1}^n \{Y_i - (\beta_0 + \beta_1 X_i)\}^2,
@@ -27,11 +28,18 @@ Minimizing this equation will minimize the sum of the squared distances
 between the fitted line at the parents heights ({$$} \beta_1 X_i{/$$})
 and the observed child heights ({$$}Y_i{/$$}).
 
-<!--
-### Results
-* The least squares model fit to the line $Y = \beta_0 + \beta_1 X$ through the data pairs $(X_i, Y_i)$ with $Y_i$ as the outcome obtains the line $Y = \hat \beta_0 + \hat \beta_1 X$ where
-  $$\hat \beta_1 = Cor(Y, X) \frac{Sd(Y)}{Sd(X)} ~~~ \hat \beta_0 = \bar Y - \hat \beta_1 \bar X$$
-* $\hat \beta_1$ has the units of $Y / X$, $\hat \beta_0$ has the units of $Y$.
+The result actually has a closed form. Specifically, the least squares
+of the line:
+
+{$$}Y = \beta_0 + \beta_1 X,{/$$}
+
+through the data pairs {$$}(X_i, Y_i){/$$} with {$$}Y_i{/$$} as the outcome obtains
+the line {$$}Y = \hat \beta_0 + \hat \beta_1 X{/$$}
+where:
+
+{$$}\hat \beta_1 = Cor(Y, X) \frac{Sd(Y)}{Sd(X)} ~~~ \hat \beta_0 = \bar Y - \hat \beta_1 \bar X{/$$}
+
+$\hat \beta_1$ has the units of $Y / X$, $\hat \beta_0$ has the units of $Y$.
 * The line passes through the point $(\bar X, \bar Y$)
 * The slope of the regression line with $X$ as the outcome and $Y$ as the predictor is $Cor(Y, X) Sd(X)/ Sd(Y)$.
 * The slope is the same one you would get if you centered the data,
@@ -39,7 +47,6 @@ $(X_i - \bar X, Y_i - \bar Y)$, and did regression through the origin.
 * If you normalized the data, $\{ \frac{X_i - \bar X}{Sd(X)}, \frac{Y_i - \bar Y}{Sd(Y)}\}$, the slope is $Cor(Y, X)$.
 
 
----
 ## Revisiting Galton's data
 ### Double check our calculations using R
 
