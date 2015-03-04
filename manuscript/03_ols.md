@@ -5,26 +5,30 @@ a way of taking complicated outcomes and explaining behavior (such as trends)
 using linearity. The simplest application of OLS is fitting a line.
 
 
-<!--
 ## General least squares for linear equations
-Consider again the parent and child height data from Galton
+Consider again the parent and child height data from Galton.
 
-<div class="rimage center"><img src="fig/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div>
+![Plot of parent and child heights.](images/freqGalton.png)
 
+Let's try fitting the best line.
+Let {$$}Y_i{/$$} be the {$$}i^{th}{/$$} child's height and
+{$$}X_i{/$$} be the {$$}i^{th}{/$$} (average over the pair of) parental heights.
+Consider finding the best line of the form
 
----
-## Fitting the best line
-* Let $Y_i$ be the $i^{th}$ child's height and $X_i$ be the
-$i^{th}$ (average over the pair of) parents' heights.
-* Consider finding the best line
-  * Child's Height = $\beta_0$ + Parent's Height $\beta_1$
-* Use least squares
-  $$
-  \sum_{i=1}^n \{Y_i - (\beta_0 + \beta_1 X_i)\}^2
-  $$
+{$$} \mbox{Child Height} = \beta_0 + \mbox{Parent Height} \beta_1, {/$$}
 
----
-## Results
+Let's try using least squares:
+
+{$$}
+\sum_{i=1}^n \{Y_i - (\beta_0 + \beta_1 X_i)\}^2,
+{/$$}
+
+Minimizing this equation will minimize the sum of the squared distances
+between the fitted line at the parents heights ({$$} \beta_1 X_i{/$$})
+and the observed child heights ({$$}Y_i{/$$}).
+
+<!--
+### Results
 * The least squares model fit to the line $Y = \beta_0 + \beta_1 X$ through the data pairs $(X_i, Y_i)$ with $Y_i$ as the outcome obtains the line $Y = \hat \beta_0 + \hat \beta_1 X$ where
   $$\hat \beta_1 = Cor(Y, X) \frac{Sd(Y)}{Sd(X)} ~~~ \hat \beta_0 = \bar Y - \hat \beta_1 \bar X$$
 * $\hat \beta_1$ has the units of $Y / X$, $\hat \beta_0$ has the units of $Y$.
