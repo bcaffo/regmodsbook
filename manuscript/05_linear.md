@@ -47,9 +47,8 @@ them to investigate our model assumption.
 Remember that our least squares estimates of
 {$$}\beta_0{/$$} and {$$}\beta_1{/$$} are:
 
-{$$}\hat \beta_1 = Cor(Y, X) \frac{Sd(Y)}{Sd(X)} ~~~ \hat \beta_0 = \bar Y - \hat \beta_1 \bar X.{/$$}
+{$$}\hat \beta_1 = Cor(Y, X) \frac{Sd(Y)}{Sd(X)} ~~~\mbox{and}~~~ \hat \beta_0 = \bar Y - \hat \beta_1 \bar X.{/$$}
 
-<!--
 
 It is convenient that under our Gaussian additive error model
 that the maximum likelihood estimates of
@@ -71,7 +70,7 @@ when {$$}X=0{/$$} is impossible or far outside of the range of data.
 Take as a specific instance, when X is blood pressure, no one is interested
 in studying blood pressure's impact on anything for values near 0.
 
-There is a way to make your intercept more interprettable.
+There is a way to make your intercept more interpretable.
 Consider that:
 
 {$$}
@@ -113,6 +112,8 @@ is weight in kilograms (kg). Then {$$}\beta_1{/$$} is kg/m.
 Converting {$$}X{$$} to centimeters implies multiplying {$$}X{/$$} by 100 cm/m.
 To get {$$}\beta_1{/$$} in the right units if we had fit the model in meters,
 we have to divide by 100 cm/m. Or, we can write out the notation as:
+
+<!--
 
 {$$}
 X m \times \frac{100cm}{m} = (100 X) cm
