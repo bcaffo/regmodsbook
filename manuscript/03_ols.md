@@ -25,7 +25,7 @@ over {$$}\beta_0{/$$} and {$$}\beta_1{/$$}:
 {/$$}
 
 Minimizing this equation will minimize the sum of the squared distances
-between the fitted line at the parents heights ({$$} \beta_1 X_i{/$$})
+between the fitted line at the pareNnts heights ({$$} \beta_1 X_i{/$$})
 and the observed child heights ({$$}Y_i{/$$}).
 
 The result actually has a closed form. Specifically, the least squares
@@ -39,83 +39,96 @@ where:
 
 {$$}\hat \beta_1 = Cor(Y, X) \frac{Sd(Y)}{Sd(X)} ~~~ \hat \beta_0 = \bar Y - \hat \beta_1 \bar X{/$$}
 
-$\hat \beta_1$ has the units of $Y / X$, $\hat \beta_0$ has the units of $Y$.
-* The line passes through the point $(\bar X, \bar Y$)
-* The slope of the regression line with $X$ as the outcome and $Y$ as the predictor is $Cor(Y, X) Sd(X)/ Sd(Y)$.
-* The slope is the same one you would get if you centered the data,
-$(X_i - \bar X, Y_i - \bar Y)$, and did regression through the origin.
-* If you normalized the data, $\{ \frac{X_i - \bar X}{Sd(X)}, \frac{Y_i - \bar Y}{Sd(Y)}\}$, the slope is $Cor(Y, X)$.
+At this point, a couple of notes are in order.
+First, the slope, {$$}\hat \beta_1{/$$}, has the units of {$$}Y / X{/$$}. Secondly,
+the intercept, {$$}\hat \beta_0{/$$}, has the units of {$$}Y{/$$}.
+
+The line passes through the point {$$}(\bar X, \bar Y){/$$}. If you center your
+Xs and Ys first, then the line will pass through the origin. Moreover,
+the slope is the same one you would get if you centered the data,
+{$$}(X_i - \bar X, Y_i - \bar Y){/$$}, and either fit a linear regression
+or regression through the origin.
+
+To elaborate, regression through the origin, assuming that {$$}\beta_0 = 0{/$$},
+yields the following solution to the least squares criteria:
+
+{$$}
+\hat \beta_1 = \frac{\sum_{i=1}^n X_i Y_i}{\sum_{i=1}^n X_i^2},
+{/$$}
+
+This is exactly the correlation time the
+ratio in the standard deviations if
+the both the Xs and Ys have been centered first. (Try it out using R to
+verify this!)
+
+It is interesting to think about what happens when you reverse the role of {$$}X{/$$}
+and {$$}Y{/$$}. Specifically, the slope of the regression line with {$$}X{/$$}
+as the outcome and {$$}Y{/$$} as the predictor is {$$}Cor(Y, X) Sd(X)/ Sd(Y){/$$}.
+
+If you normalized the data,
+{$$}\{ \frac{X_i - \bar X}{Sd(X)}, \frac{Y_i - \bar Y}{Sd(Y)}\}{/$$},
+the slope is simply the correlation, {$$}Cor(Y, X){/$$}, regardless of which variable
+is treated as the outcome.
 
 
 ## Revisiting Galton's data
-### Double check our calculations using R
+Let's double check our calculations using R
 
-```r
-y <- galton$child
-x <- galton$parent
-beta1 <- cor(y, x) *  sd(y) / sd(x)
-beta0 <- mean(y) - beta1 * mean(x)
-rbind(c(beta0, beta1), coef(lm(y ~ x)))
-```
-
-```
+{title="Fitting Galton's data using linear regression.", line-numbers=off,lang=r}
+~~~
+> y <- galton$child
+> x <- galton$parent
+> beta1 <- cor(y, x) *  sd(y) / sd(x)
+> beta0 <- mean(y) - beta1 * mean(x)
+> rbind(c(beta0, beta1), coef(lm(y ~ x)))
      (Intercept)      x
 [1,]       23.94 0.6463
 [2,]       23.94 0.6463
-```
+~~~
 
+We can see that the result of `lm` is identical to hard coding the fit ourselves.
+Let's Reversing the outcome/predictor relationship.
 
----
-## Revisiting Galton's data
-### Reversing the outcome/predictor relationship
-
-```r
-beta1 <- cor(y, x) *  sd(x) / sd(y)
-beta0 <- mean(x) - beta1 * mean(y)
-rbind(c(beta0, beta1), coef(lm(x ~ y)))
-```
-
-```
+{line-numbers=off,lang=r}
+~~~
+> beta1 <- cor(y, x) *  sd(x) / sd(y)
+> beta0 <- mean(x) - beta1 * mean(y)
+> rbind(c(beta0, beta1), coef(lm(x ~ y)))
      (Intercept)      y
 [1,]       46.14 0.3256
 [2,]       46.14 0.3256
-```
+~~~
 
+Now let's show that
+regression through the origin yields an equivalent slope if you center the data first
 
----
-## Revisiting Galton's data
-### Regression through the origin yields an equivalent slope if you center the data first
-
-```r
-yc <- y - mean(y)
-xc <- x - mean(x)
-beta1 <- sum(yc * xc) / sum(xc ^ 2)
+{line-numbers=off,lang=r}
+~~~
+> yc <- y - mean(y)
+> xc <- x - mean(x)
+> beta1 <- sum(yc * xc) / sum(xc ^ 2)
 c(beta1, coef(lm(y ~ x))[2])
-```
-
-```
             x
 0.6463 0.6463
-```
+~~~
 
+Now let's show that normalizing variables results in the slope being the correlation.
 
----
-## Revisiting Galton's data
-### Normalizing variables results in the slope being the correlation
-
-```r
-yn <- (y - mean(y))/sd(y)
-xn <- (x - mean(x))/sd(x)
-c(cor(y, x), cor(yn, xn), coef(lm(yn ~ xn))[2])
-```
-
-```
+{line-numbers=off,lang=r}
+~~~
+> yn <- (y - mean(y))/sd(y)
+> xn <- (x - mean(x))/sd(x)
+> c(cor(y, x), cor(yn, xn), coef(lm(yn ~ xn))[2])
                   xn
 0.4588 0.4588 0.4588
-```
+~~~
+
+The image below plots the data again, the best fitting line and standard
+error bars for the fit. We'll work up to that point later. But, understanding
+that our fitted line is estimated with error is an important concept.
+You can find the code for the plot [here](https://github.com/bcaffo/courses/blob/master/07_RegressionModels/01_03_ols/index.Rmd).
+
+![Image of the data, the fitted line and error bars.](images/galton4.png)
 
 
----
-<div class="rimage center"><img src="fig/unnamed-chunk-6.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" class="plot" /></div>
-
--->
+## Exercises
