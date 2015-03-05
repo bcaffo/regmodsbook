@@ -3,3 +3,4 @@ preface.md
 02_notation.md
 03_ols.md
 04_rttm.md
+05_linear.md
