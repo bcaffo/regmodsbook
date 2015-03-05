@@ -98,7 +98,6 @@ E[Y ~|~ X = x+1] - E[Y ~|~ X = x] =
 Notice that the interpretation of {$$}\beta_1{/$$} is tied to the
 units of the X variable. Let's consider the impact of changing the units.
 
-<!--
 
 
 {$$}
@@ -106,6 +105,8 @@ Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
 = \beta_0 + \frac{\beta_1}{a} (X_i a) + \epsilon_i
 = \beta_0 + \tilde \beta_1 (X_i a) + \epsilon_i
 {/$$}
+
+<!--
 
 Therefore, multiplication of {$$}X{/$$} by a factor {$$}a{/$$}
 results in dividing the coefficient by a factor of {$$}a{/$$}.
