@@ -106,6 +106,7 @@ Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
 = \beta_0 + \tilde \beta_1 (X_i a) + \epsilon_i
 {/$$}
 
+<!--
 
 Therefore, multiplication of {$$}X{/$$} by a factor {$$}a{/$$}
 results in dividing the coefficient by a factor of {$$}a{/$$}.
@@ -115,7 +116,6 @@ is weight in kilograms (kg). Then {$$}\beta_1{/$$} is kg/m.
 Converting {$$}X{$$} to centimeters implies multiplying {$$}X{/$$} by 100 cm/m.
 To get {$$}\beta_1{/$$} in the right units if we had fit the model in meters,
 we have to divide by 100 cm/m. Or, we can write out the notation as:
-<!--
 
 
 {$$}
