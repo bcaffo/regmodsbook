@@ -35,7 +35,6 @@ distributed with means {$$}\beta_0 + \beta_1 x_i{/$$} and variance
 Y_i ~|~ X_i = x_i \sim N(\beta_0 + \beta_1 x_i, \sigma^2).
 {/$$}
 
-<!--
 
 While this specification of the model is a perhaps better for advanced
 purposes, specifying the model as linear with additive error terms is
@@ -47,6 +46,8 @@ Remember that our least squares estimates of
 {$$}\beta_0{/$$} and {$$}\beta_1{/$$} are:
 
 {$$}\hat \beta_1 = Cor(Y, X) \frac{Sd(Y)}{Sd(X)} ~~~ \hat \beta_0 = \bar Y - \hat \beta_1 \bar X.{/$$}
+
+<!--
 
 It is convenient that under our Gaussian additive error model
 that the maximum likelihood estimates of
