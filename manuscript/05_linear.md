@@ -122,106 +122,134 @@ X m \times \frac{100cm}{m} = (100 X) cm
 \left(\frac{\beta_1}{100}\right)\frac{kg}{cm}
 {/$$}
 
-## Using regression coefficients for prediction
-* If we would like to guess the outcome at a particular
-  value of the predictor, say $X$, the regression model guesses
-  $$
-  \hat \beta_0 + \hat \beta_1 X
-  $$
+
+## Using regression for prediction
+
+Regression is quite useful for prediction.
+If we would like to guess the outcome at a particular
+value of the predictor, say {$$}X{/$$}, the regression model guesses:
+
+{$$}
+\hat \beta_0 + \hat \beta_1 X
+{/$$}
+
+In other words, just find the Y value on the line with the corresponding X
+value. Regression, especially linear regression, often doesn't produce
+the best prediction algorithms. However, it produces parsimonious and
+interpretable models along with the predictions. Also, as we'll see later
+we'll be able to get easily described estimates of uncertainty associated
+with our predictions.
 
 
-  <!--
-
----
 ## Example
-### `diamond` data set from `UsingR`
-Data is diamond prices (Singapore dollars) and diamond weight
-in carats (standard measure of diamond mass, 0.2 $g$). To get the data use `library(UsingR); data(diamond)`
 
+Let's analyze the `diamond` data set from the `UsingR` package.
+The data is diamond prices (in Singapore dollars) and diamond weight
+in carats. Carats are a standard measure of diamond mass, 0.2 grams.
+To get the data use `library(UsingR); data(diamond)`
 
----
-## Plot of the data
-<div class="rimage center"><img src="fig/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div>
+First let's plot the data. Here's the code I used
 
+{lang=r,line-numbers=off}
+~~~
+library(UsingR)
+data(diamond)
+library(ggplot2)
+g = ggplot(diamond, aes(x = carat, y = price))
+g = g + xlab("Mass (carats)")
+g = g + ylab("Price (SIN $)")
+g = g + geom_point(size = 7, colour = "black", alpha=0.5)
+g = g + geom_point(size = 5, colour = "blue", alpha=0.2)
+g = g + geom_smooth(method = "lm", colour = "black")
+g
+~~~
 
----
-## Fitting the linear regression model
+and here's the plot.
 
-```r
-fit <- lm(price ~ carat, data = diamond)
-coef(fit)
-```
+![Plot of the diamond data with mass by carats](images/diamond1.png)
 
-```
+First, let's fit the linear regression model. This is done
+with the `lm` function in R (`lm` stands for linear model). The
+syntax is `lm(Y ~ X)` where `Y` is the response and `X` is the
+predictor.
+
+{lang=r,line-numbers=off}
+~~~
+> fit <- lm(price ~ carat, data = diamond)
+> coef(fit)
 (Intercept)       carat
      -259.6      3721.0
-```
+~~~
 
+The function `coef` grabs the fitted coefficients and conveniently names them
+for you. Therefore, we estimate an expected 3721.02 (SIN) dollar increase in price
+for every carat increase in mass of diamond.
+The intercept -259.63 is the expected price of a 0 carat diamond.
 
-* We estimate an expected 3721.02 (SIN) dollar increase in price for every carat increase in mass of diamond.
-* The intercept -259.63 is the expected price
-  of a 0 carat diamond.
+We're not interested in 0 carat diamonds (it's hard to get a good
+price for them ;-). Let's fit the model with a more interpretable intercept
+by centering our X variable.
 
----
-## Getting a more interpretable intercept
-
-```r
-fit2 <- lm(price ~ I(carat - mean(carat)), data = diamond)
+{lang=r,line-numbers=off}
+~~~
+> fit2 <- lm(price ~ I(carat - mean(carat)), data = diamond)
 coef(fit2)
-```
-
-```
            (Intercept) I(carat - mean(carat))
                  500.1                 3721.0
-```
+~~~
 
+Thus the new intercept, 500.1, is the expected price for
+the average sized diamond of the data (0.2042 carats). Notice
+the estimated slope didn't change at all.
 
-Thus $500.1 is the expected price for
-the average sized diamond of the data (0.2042 carats).
+Now let's try changing the scale.
+This is useful since a one carat increase in a diamond is pretty big.
+What about changing units to 1/10th of a carat?
+We can just do this by just dividing the coefficient by 10, no need to
+refit the model.
 
----
-## Changing scale
-* A one carat increase in a diamond is pretty big, what about
-  changing units to 1/10th of a carat?
-* We can just do this by just dividing the coeficient by 10.
-  * We expect  a 372.102 (SIN) dollar   change in price for every 1/10th of a carat increase in mass of diamond.
-* Showing that it's the same if we rescale the Xs and refit
+Thus, we expect  a 372.102 (SIN) dollar change in price for every
+1/10th of a carat increase in mass of diamond.
 
-```r
-fit3 <- lm(price ~ I(carat * 10), data = diamond)
-coef(fit3)
-```
+Let's show via R that this is the same as rescaling our X variable
+and refitting. To go from 1 carat to 1/10 of a carat units, we need
+to multiply our data by 10.
 
-```
+{lang=r,line-numbers=off}
+~~~
+> fit3 <- lm(price ~ I(carat * 10), data = diamond)
+> coef(fit3)
   (Intercept) I(carat * 10)
        -259.6         372.1
-```
+~~~
 
+Now, let's predicting the price of a diamond. This should be as
+easy as just evaluating the fitted line at the price we want to
 
----
-## Predicting the price of a diamond
-
-```r
-newx <- c(0.16, 0.27, 0.34)
-coef(fit)[1] + coef(fit)[2] * newx
-```
-
-```
+{lang=r,line-numbers=off}
+~~~
+> newx <- c(0.16, 0.27, 0.34)
+> coef(fit)[1] + coef(fit)[2] * newx
 [1]  335.7  745.1 1005.5
-```
+~~~
 
-```r
-predict(fit, newdata = data.frame(carat = newx))
-```
+Therefore, we predict the price to be 335.7, 745.1 and 1005.5 for
+a 0.16, 0.26 and 0.34 carat diamonds. Of course, our prediction models
+will get more elaborate and R has a generic function, `predict`,
+to put our X values into the model for us. This is generally preferable
+and less The data has to go into
+the model as a data frame with the same named X variables.
 
-```
+{lang=r,line-numbers=off}
+~~~
+> predict(fit, newdata = data.frame(carat = newx))
      1      2      3
  335.7  745.1 1005.5
-```
+~~~
 
+Let's visualize our prediction. In the following plot, the
+predicted values at the observed Xs are the red points on the fitted
+line. The new X values are the at vertical lines, which are connected to
+the predicted values via the connected horizontal lines.
 
----
-Predicted values at the observed Xs (red)
-and at the new Xs (lines)
-<div class="rimage center"><img src="fig/unnamed-chunk-6.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" class="plot" /></div>
--->
+![Illustrating prediction with regression.](images/diamond2.png)
