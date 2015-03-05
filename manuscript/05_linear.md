@@ -26,7 +26,9 @@ identically distributed as
 
 and
 
-{$$}Var(Y_i ~|~ X_i = x_i) = \sigma^2.{/$$} This model implies
+{$$}Var(Y_i ~|~ X_i = x_i) = \sigma^2.{/$$}
+
+This model implies
  that the {$$}Y_i{/$$} are independent and normally
 distributed with means {$$}\beta_0 + \beta_1 x_i{/$$} and variance
 {$$}\sigma^2{/$$}. We could write this more compactly as
