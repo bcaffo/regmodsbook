@@ -106,10 +106,10 @@ Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
 = \beta_0 + \tilde \beta_1 (X_i a) + \epsilon_i
 {/$$}
 
-<!--
 
 Therefore, multiplication of {$$}X{/$$} by a factor {$$}a{/$$}
 results in dividing the coefficient by a factor of {$$}a{/$$}.
+<!--
 
 As an example, suppose that {$$}X{/$$} is height in meters (m) and {$$}Y{/$$}
 is weight in kilograms (kg). Then {$$}\beta_1{/$$} is kg/m.
