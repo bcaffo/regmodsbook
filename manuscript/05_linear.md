@@ -84,8 +84,6 @@ changes the intercept, but not the slope.
 Often {$$}a{/$$} is set to {$$}\bar X{/$$}, so that the intercept is
 interpreted as the expected response at the average {$$}X{/$$} value.
 
-<!--
-
 ## Interpreting regression coefficients, the slope
 Now that we understand how to interpret the intercept, let's try interpreting
 the slope. Our slope, {$$}\beta_1{/$$},
@@ -99,6 +97,9 @@ E[Y ~|~ X = x+1] - E[Y ~|~ X = x] =
 
 Notice that the interpretation of {$$}\beta_1{/$$} is tied to the
 units of the X variable. Let's consider the impact of changing the units.
+
+<!--
+
 
 {$$}
 Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
