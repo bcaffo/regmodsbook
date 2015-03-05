@@ -14,12 +14,12 @@ starting point will assume a systematic component via a line and then
 independent and identically distributed Gaussian errors. We can write
 the model out as:
 
-<!--
 {$$}
 Y_i = \beta_0 + \beta_1 X_i + \epsilon_{i}
 {/$$}
 
-Here the {$$}\epsilon_{i}{/$$} are assumed iid
+Here the {$$}\epsilon_{i}{/$$} are assumed to be independent and
+identically distributed as
 {$$}N(0, \sigma^2){/$$}. Under this model,
 
 {$$}E[Y_i ~|~ X_i = x_i] = \mu_i = \beta_0 + \beta_1 x_i{/$$}
@@ -34,6 +34,8 @@ distributed with means {$$}\beta_0 + \beta_1 x_i{/$$} and variance
 {$$}
 Y_i ~|~ X_i = x_i \sim N(\beta_0 + \beta_1 x_i, \sigma^2).
 {/$$}
+
+<!--
 
 While this specification of the model is a perhaps better for advanced
 purposes, specifying the model as linear with additive error terms is
