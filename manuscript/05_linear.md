@@ -122,7 +122,6 @@ X m \times \frac{100cm}{m} = (100 X) cm
 \left(\frac{\beta_1}{100}\right)\frac{kg}{cm}
 {/$$}
 
-<!--
 ## Using regression coefficients for prediction
 * If we would like to guess the outcome at a particular
   value of the predictor, say $X$, the regression model guesses
@@ -130,6 +129,8 @@ X m \times \frac{100cm}{m} = (100 X) cm
   \hat \beta_0 + \hat \beta_1 X
   $$
 
+
+  <!--
 
 ---
 ## Example
