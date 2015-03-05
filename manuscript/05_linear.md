@@ -84,6 +84,8 @@ changes the intercept, but not the slope.
 Often {$$}a{/$$} is set to {$$}\bar X{/$$}, so that the intercept is
 interpreted as the expected response at the average {$$}X{/$$} value.
 
+<!--
+
 ## Interpreting regression coefficients, the slope
 Now that we understand how to interpret the intercept, let's try interpreting
 the slope. Our slope, {$$}\beta_1{/$$},
@@ -113,7 +115,6 @@ Converting {$$}X{$$} to centimeters implies multiplying {$$}X{/$$} by 100 cm/m.
 To get {$$}\beta_1{/$$} in the right units if we had fit the model in meters,
 we have to divide by 100 cm/m. Or, we can write out the notation as:
 
-<!--
 
 {$$}
 X m \times \frac{100cm}{m} = (100 X) cm
