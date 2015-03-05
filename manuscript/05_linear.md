@@ -14,6 +14,7 @@ starting point will assume a systematic component via a line and then
 independent and identically distributed Gaussian errors. We can write
 the model out as:
 
+<!--
 {$$}
 Y_i = \beta_0 + \beta_1 X_i + \epsilon_{i}
 {/$$}
