@@ -1,1 +1,1 @@
-05_linear.md
+06_residuals.md
