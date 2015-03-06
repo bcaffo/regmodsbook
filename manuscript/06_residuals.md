@@ -128,11 +128,11 @@ is not at all apparent in the scatterplot.
 
 Now look at the consequences of focusing in on the residuals.
 
-![Residuals versus X.](images/resid5.png)
+![Residuals versus X.](images/resid6.png)
 
 If we look at the residual plot for the diamond data, things don't look so bad.
 
-![Residuals versus X.](images/resid6.png)
+![Residuals versus X.](images/resid7.png)
 
 
 ## Estimating residual variation
@@ -209,6 +209,30 @@ total variability:
 Thus, we can think of regression as explaining away variability. The fact
 that all of the quantities are positive and that they add up this way allows
 us to define the proportion of the total variability explained by the model.
+
+Consider our diamond example again. The plot below shows the variation
+explained by a model with an intercept only (representing
+  total variation) and that when the mass is included as a linear predictor.
+Notice how much the variation decreases when including the diamond mass.
+
+Here's the code:
+
+{lang=r,line-numbers=off}
+~~~
+e = c(resid(lm(price ~ 1, data = diamond)),
+      resid(lm(price ~ carat, data = diamond)))
+fit = factor(c(rep("Itc", nrow(diamond)),
+               rep("Itc, slope", nrow(diamond))))
+g = ggplot(data.frame(e = e, fit = fit), aes(y = e, x = fit, fill = fit))
+g = g + geom_dotplot(binaxis = "y", size = 2, stackdir = "center", binwidth = 20)
+g = g + xlab("Fitting approach")
+g = g + ylab("Residual price")
+g
+~~~
+
+![Residuals for intercept only and linear regression for the diamond
+example.](images/resid8.png)
+
 
 ## R squared
 **R squared** is the percentage of the total variability that is explained

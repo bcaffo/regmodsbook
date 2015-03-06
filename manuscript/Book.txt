@@ -5,3 +5,4 @@ preface.md
 04_rttm.md
 05_linear.md
 06_residuals.md
+07_inference.md
