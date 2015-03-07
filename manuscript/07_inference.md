@@ -243,9 +243,9 @@ g
   * Least width at the mean of the Xs.
 * We are quite confident in the regression line, so that
   interval is very narrow.
-  * If we knew $\beta_0$ and $\beta_1$ this interval would have zero width.
+  * If we knew {$$}\beta_0{/$$} and {$$}\beta_1{/$$} this interval would have zero width.
 * The prediction interval must incorporate the variability
   in the data around the line.
-  * Even if we knew $\beta_0$ and $\beta_1$ this interval would still have width.
+  * Even if we knew {$$}\beta_0{/$$} and {$$}\beta_1{/$$} this interval would still have width.
 
 ## Exercises

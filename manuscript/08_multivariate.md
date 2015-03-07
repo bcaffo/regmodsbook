@@ -53,7 +53,7 @@ predictor variables.
 ## Estimation
 Recall, the LS estimate for regression through the origin is,
 
-{$$}E[Y_i]=X_{1i}\beta_1$, was $\sum X_i Y_i / \sum X_i^2.{$$}
+{$$}E[Y_i]=X_{1i}\beta_1$, was $\sum X_i Y_i / \sum X_i^2.{/$$}
 
 Let's consider two regressors, {$$}E[Y_i] = X_{1i}\beta_1 + X_{2i}\beta_2 = \mu_i{/$$}.
 Least squares tries to minimize:
@@ -184,19 +184,39 @@ In the next chapter, we'll do examples and go over context-specific
 interpretations.
 
 ## Fitted values, residuals and residual variation
-All of our SLR quantities can be extended to linear models
-* Model $Y_i = \sum_{k=1}^p X_{ik} \beta_{k} + \epsilon_{i}$ where $\epsilon_i \sim N(0, \sigma^2)$
-* Fitted responses $\hat Y_i = \sum_{k=1}^p X_{ik} \hat \beta_{k}$
-* Residuals $e_i = Y_i - \hat Y_i$
-* Variance estimate $\hat \sigma^2 = \frac{1}{n-p} \sum_{i=1}^n e_i ^2$
-* To get predicted responses at new values, $x_1, \ldots, x_p$, simply plug them into the linear model $\sum_{k=1}^p x_{k} \hat \beta_{k}$
-* Coefficients have standard errors, $\hat \sigma_{\hat \beta_k}$, and
-$\frac{\hat \beta_k - \beta_k}{\hat \sigma_{\hat \beta_k}}$
-follows a $T$ distribution with $n-p$ degrees of freedom.
-* Predicted responses have standard errors and we can calculate predicted and expected response intervals.
+All of our simple linear regression quantities can be extended to linear models.
+Here we list them out in one place. Our statistical model is:
 
-## Linear models
-* Linear models are the single most important applied statistical and machine learning techniqe, *by far*.
+{$$}Y_i = \sum_{k=1}^p X_{ik} \beta_{k} + \epsilon_{i}{/$$}
+
+where {$$}\epsilon_i \sim N(0, \sigma^2){/$$}.
+Our fitted responses are:
+
+{$$}\hat Y_i = \sum_{k=1}^p X_{ik} \hat \beta_{k}.{/$$}
+
+We can define our residuals exactly as in linear regression:
+
+{$$}e_i = Y_i - \hat Y_i{/$$}
+
+Our variance estimate is.
+
+{$$}\hat \sigma^2 = \frac{1}{n-p} \sum_{i=1}^n e_i ^2{/$$}
+
+To get predicted responses at new values, {$$}x_1, \ldots, x_p{/$$},
+simply plug them into the linear model {$$}\sum_{k=1}^p x_{k} \hat \beta_{k}{/$$}.
+
+Coefficients have standard errors, we can label them as
+{$$}\hat \sigma_{\hat \beta_k}{/$$}, and
+
+{$$}\frac{\hat \beta_k - \beta_k}{\hat \sigma_{\hat \beta_k}}{/$$}
+
+follows a t distribution with {$$}n-p{/$$} degrees of freedom.
+Predicted responses have standard errors and we can calculate predicted
+and expected response intervals.
+
+## Summary notes on linear models
+* Linear models are the single most important applied statistical and machine
+learning technique, *by far*.
 * Some amazing things that you can accomplish with linear models
   * Decompose a signal into its harmonics.
   * Flexibly fit complicated functions.
