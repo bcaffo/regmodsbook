@@ -24,8 +24,9 @@ A data frame with 47 observations on 6 variables, each of which is in percent, i
 All variables but Fertility give proportions of the population.
 ~~~
 
+![Plot of the Swiss data set](images/swiss1.png)
+
 <!--
-<div class="rimage center"><img src="fig/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div>
 
 ## Calling `lm`
 `summary(lm(Fertility ~ . , data = swiss))`
