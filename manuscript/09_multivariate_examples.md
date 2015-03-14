@@ -10,15 +10,17 @@ We'll  start with the Swiss data set. This can be loaded in R with:
 ~~~
 > require(datasets); data(swiss); ?swiss
 
-Standardized fertility measure and socio-economic indicators for each of 47 French-speaking provinces of Switzerland at about 1888.
+Standardized fertility measure and socio-economic indicators for each of 47
+French-speaking provinces of Switzerland at about 1888.
 
-A data frame with 47 observations on 6 variables, each of which is in percent, i.e., in [0, 100].
+A data frame with 47 observations on 6 variables, each of which is in percent,
+i.e., in [0, 100].
 
 [,1]   Fertility          a common standardized fertility measure
-[,2]   Agriculture        % of males involved in agriculture as occupation
-[,3]	 Examination        % draftees receiving highest mark on army examination
-[,4]	 Education          % education beyond primary school for draftees
-[,5]	 Catholic           % catholic (as opposed to protestant)
+[,2]   Agriculture        percent of males involved in agriculture as occupation
+[,3]	 Examination        percent draftees receiving highest mark on army examination
+[,4]	 Education          percent education beyond primary school for draftees
+[,5]	 Catholic           percent catholic (as opposed to protestant)
 [,6]	 Infant.Mortality   live births who live less than 1 year
 
 All variables but Fertility give proportions of the population.
