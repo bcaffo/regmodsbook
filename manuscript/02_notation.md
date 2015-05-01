@@ -1,4 +1,5 @@
 # Notation  
+[Watch this video before beginning](https://www.youtube.com/watch?v=T5UXxVKD0sA&index=5&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
 
 ## Some basic definitions
 
