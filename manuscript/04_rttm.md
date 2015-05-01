@@ -1,4 +1,5 @@
 # Regression to the mean
+[Watch this video before beginning](https://www.youtube.com/watch?v=-I0_4JIeGws&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=9)
 
 ## A historically famous idea, Regression to the Mean
 Here is a fundamental question.
