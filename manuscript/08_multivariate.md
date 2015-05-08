@@ -53,7 +53,7 @@ predictor variables.
 ## Estimation
 Recall, the LS estimate for regression through the origin is,
 
-{$$}E[Y_i]=X_{1i}\beta_1$, was $\sum X_i Y_i / \sum X_i^2.{/$$}
+{$$}E[Y_i]=X_{1i}\beta_1{/$$}, was {$$}\sum X_i Y_i / \sum X_i^2.{/$$}
 
 Let's consider two regressors, {$$}E[Y_i] = X_{1i}\beta_1 + X_{2i}\beta_2 = \mu_i{/$$}.
 Least squares tries to minimize:
