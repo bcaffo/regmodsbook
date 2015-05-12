@@ -5,7 +5,8 @@ to get a hands on sense of the basics.
 
 ## Data set for discussion
 
-We'll  start with the Swiss data set. This can be loaded in R with:
+We'll  start with the `Swiss` dataset that is part of the
+`datasets` package. This can be loaded in R with:
 
 {lang=r,line-numbers=off}
 ~~~
@@ -28,7 +29,7 @@ i.e., in [0, 100].
 [,6]	 Infant.Mortality   live births who live less than 1 year
 ~~~
 
-All variables but Fertility give proportions of the population.
+All variables but Fertility give percentages of the population.
 
 ![Plot of the Swiss data set](images/swiss1.png)
 
@@ -46,22 +47,39 @@ Catholic           0.1041    0.03526   2.953 5.190e-03
 Infant.Mortality   1.0770    0.38172   2.822 7.336e-03
 ~~~
 
-<!--
-* Agriculture is expressed in percentages (0 - 100)
-* Estimate is -0.1721.
-* Our models estimates an expected 0.17 decrease in standardized fertility for every 1% increase in percentage of males involved in agriculture in holding the remaining variables constant.
-* The t-test for $H_0: \beta_{Agri} = 0$ versus $H_a: \beta_{Agri} \neq 0$ is  significant.
-* Interestingly, the unadjusted estimate is
+Agriculture is expressed in percentages (0 - 100), representing the percentage
+of the male population involved in agriculture.  
+The regression slope estimate for this variable is `-0.1721`. We interpret
+this coefficients as follows:
 
-```r
+Our models estimates an expected 0.17 decrease in standardized fertility for every 1% increase in percentage of males involved in agriculture in holding the remaining variables constant.
+
+Note that the the t-test for $H_0: \beta_{Agri} = 0$ versus
+$H_a: \beta_{Agri} \neq 0$ is  significant since `0.0187` is less
+that typical benchmarks (0.05, for exaple). Note that, by default, R is
+reporting the P-value for the two sided test. If you want the one sided test,
+calculate it directly using the T-statistic and the degrees of freedom.
+(You can figure it out from the two sided P-value, but it's easy to get tripped
+up with signs.)
+
+Interestingly, the unadjusted estimate is
+
+{lang=r,line-numbers=off}
+~~~
 summary(lm(Fertility ~ Agriculture, data = swiss))$coefficients
-```
-
-```
             Estimate Std. Error t value  Pr(>|t|)
 (Intercept)  60.3044    4.25126  14.185 3.216e-18
 Agriculture   0.1942    0.07671   2.532 1.492e-02
-```
+~~~
+
+Notice that the sign of the slope estimate actually reversed? This is an
+example of so-called "Simpson's Paradox". This purported paradox (which is actually not
+a paradox at all) simply points out that unadjusted and adjusted effects can
+be reversed. Or in other words, the apparent relationship between X and Y may
+change if we account for Z.  Let's explore multivariate adjustment and
+sign reversals with simulation.
+
+<!--
 
 
 ---
