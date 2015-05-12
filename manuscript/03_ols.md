@@ -1,4 +1,5 @@
 # Ordinary least squares
+[Watch this video before beginning](https://www.youtube.com/watch?v=LapyH7MG3Q4&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=6)
 
 **Ordinary least squares** (OLS) is the workhorse of statistics. It gives
 a way of taking complicated outcomes and explaining behavior (such as trends)
@@ -72,6 +73,8 @@ is treated as the outcome.
 
 
 ## Revisiting Galton's data
+[Watch this video before beginning](https://www.youtube.com/watch?v=O7cDyrjWBBc&index=7&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
+
 Let's double check our calculations using R
 
 {title="Fitting Galton's data using linear regression.", line-numbers=off,lang=r}
@@ -129,6 +132,10 @@ that our fitted line is estimated with error is an important concept.
 You can find the code for the plot [here](https://github.com/bcaffo/courses/blob/master/07_RegressionModels/01_03_ols/index.Rmd).
 
 ![Image of the data, the fitted line and error bars.](images/galton4.png)
+
+## Showing the OLS result
+If you would like to see a proof of why the ordinary least squares result works out to be the way that it is: 
+[watch this video](https://www.youtube.com/watch?v=COVQX8WZVA8&index=8&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC).
 
 
 ## Exercises

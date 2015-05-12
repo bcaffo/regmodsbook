@@ -1,5 +1,7 @@
 # Statistical linear regression models
 
+[Watch this video before beginning](https://www.youtube.com/watch?v=ewS1Kkzl8mw&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=10)
+
 Up to this point, we've only considered estimation. Estimation is useful,
 but we also need to know how to extend our estimates to a population.
 This is the process of statistical inference. Our approach to statistical
@@ -55,6 +57,8 @@ that the maximum likelihood estimates of
 {$$}\beta_0{/$$} and {$$}\beta_1{/$$} are the least squares estimates.
 
 ## Interpreting regression coefficients, the intercept
+
+[Watch this video before beginning](https://www.youtube.com/watch?v=71dDzKPYEdU&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=11)
 
 Our model allows us to attach statistical interpretations to our parameters.
 Let's start with the intercept; {$$}\beta_0{/$$} represents
@@ -124,6 +128,8 @@ X m \times \frac{100cm}{m} = (100 X) cm
 
 
 ## Using regression for prediction
+
+[Watch this video before beginning](https://www.youtube.com/watch?v=5isJA7T5_VE&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=12)
 
 Regression is quite useful for prediction.
 If we would like to guess the outcome at a particular

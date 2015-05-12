@@ -1,6 +1,7 @@
 # Multivariate
 
-In this chapter we cover a few examples of multivariate regression.
+In this chapter we cover a few examples of multivariate regression in order
+to get a hands on sense of the basics.
 
 ## Data set for discussion
 
@@ -279,8 +280,8 @@ spray2F       14.583      1.601  9.1083 2.794e-13
 ## Summary
 * If we treat Spray as a factor, R includes an intercept and omits the alphabetically first level of the factor.
   * All t-tests are for comparisons of Sprays versus Spray A.
-  * Emprirical mean for A is the intercept.
-  * Other group means are the itc plus their coefficient.
+  * Empirical mean for A is the intercept.
+  * Other group means are the intercept plus their coefficient.
 * If we omit an intercept, then it includes terms for all levels of the factor.
   * Group means are the coefficients.
   * Tests are tests of whether the groups are different than zero. (Are the expected counts zero for that spray.)
@@ -296,7 +297,7 @@ spray2F       14.583      1.601  9.1083 2.794e-13
   * There are 0 counts, so maybe log(Count + 1)
 * Also, we'll cover Poisson GLMs for fitting count data.
 
----
+
 
 ## Recall the `swiss` data set
 

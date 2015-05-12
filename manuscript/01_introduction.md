@@ -33,7 +33,7 @@ Try it out, it's probably the most effective way to learn.
 
 # Introduction
 
-[Watch this video before beginning FIX LINK]()
+[Watch this video before beginning](https://www.youtube.com/watch?v=58ZPhK32sU8&index=1&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
 
 ## Regression models
 Regression models are the workhorse of data science. They the most
@@ -114,6 +114,7 @@ This requires assumptions. In this book, we'll cover the main assumptions
 necessary.
 
 ## Exploratory analysis of Galton's Data
+[Watch this video before beginning](https://www.youtube.com/watch?v=1akVPR0LDsg&index=2&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
 
 Let's look at the data first. This data was created by Francis Galton in 1885.
 Galton was a statistician who invented the term and concepts
@@ -201,6 +202,7 @@ g
 
 
 ## The math (not required)
+[Watch this video before beginning](https://www.youtube.com/watch?v=FV8D_fI5SRk&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=3)
 
 Why is the sample average the least squares estimate for {$$}\mu{/$$}?
 It's surprisingly easy to show. Perhaps more surprising is how generally
@@ -221,6 +223,7 @@ these results can be extended.
 
 
 ## Comparing children's heights and their parent's heights
+[Watch this video before beginning](https://www.youtube.com/watch?v=b34mXkyCH0I&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=4)
 
 Looking at either the parents or children on their own isn't interesting.
 We're interested in how the relate to each other. Let's plot the parent

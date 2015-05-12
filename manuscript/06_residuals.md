@@ -1,5 +1,6 @@
 # Residuals
 
+[Watch this video before beginning](https://www.youtube.com/watch?v=5vu-rW_FI0E&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=13)
 
 ## Residual variation
 Residuals represent variation left unexplained by our model. We emphasize the
@@ -78,6 +79,9 @@ the predictor) from systematic variation (variation explained by the regression 
 These two kinds of variation add up to the total variation, which we'll see later.
 
 ## Example
+
+[Watch this video before beginning](https://www.youtube.com/watch?v=DSsSwKJ9frg&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=14)
+
 The code below shows how to obtain the residuals.
 
 {lang=r,line-numbers=off}
@@ -136,6 +140,8 @@ If we look at the residual plot for the diamond data, things don't look so bad.
 
 
 ## Estimating residual variation
+[Watch this before beginning](https://www.youtube.com/watch?v=ZE3a4OZFWPA&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=15)
+
 We've talked at length about how to estimate {$$}\beta_0{/$$} and {$$}\beta_1{/$$}.
 However, there's another parameter in our model, {$$}\sigma{/$$}.
 Recall that our model is {$$}Y_i = \beta_0 + \beta_1 X_i + \epsilon_i{/$$},
