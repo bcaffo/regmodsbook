@@ -9,6 +9,7 @@ We'll  start with the Swiss data set. This can be loaded in R with:
 {lang=r,line-numbers=off}
 ~~~
 > require(datasets); data(swiss); ?swiss
+~~~
 
 Standardized fertility measure and socio-economic indicators for each of 47
 French-speaking provinces of Switzerland at about 1888.
@@ -16,24 +17,25 @@ French-speaking provinces of Switzerland at about 1888.
 A data frame with 47 observations on 6 variables, each of which is in percent,
 i.e., in [0, 100].
 
+{lang=r,line-numbers=off}
+~~~
 [,1]   Fertility          a common standardized fertility measure
 [,2]   Agriculture        percent of males involved in agriculture as occupation
 [,3]	 Examination        percent draftees receiving highest mark on army examination
 [,4]	 Education          percent education beyond primary school for draftees
 [,5]	 Catholic           percent catholic (as opposed to protestant)
 [,6]	 Infant.Mortality   live births who live less than 1 year
+~~~
 
 All variables but Fertility give proportions of the population.
-~~~
 
 ![Plot of the Swiss data set](images/swiss1.png)
 
-<!--
+Let's see the result of calling `lm` on this data set.
 
-## Calling `lm`
-`summary(lm(Fertility ~ . , data = swiss))`
-
-```
+{lang=r,line-numbers=off}
+~~~
+> summary(lm(Fertility ~ . , data = swiss))
                  Estimate Std. Error t value  Pr(>|t|)
 (Intercept)       66.9152   10.70604   6.250 1.906e-07
 Agriculture       -0.1721    0.07030  -2.448 1.873e-02
@@ -41,11 +43,9 @@ Examination       -0.2580    0.25388  -1.016 3.155e-01
 Education         -0.8709    0.18303  -4.758 2.431e-05
 Catholic           0.1041    0.03526   2.953 5.190e-03
 Infant.Mortality   1.0770    0.38172   2.822 7.336e-03
-```
+~~~
 
-
----
-## Example interpretation
+<!--
 * Agriculture is expressed in percentages (0 - 100)
 * Estimate is -0.1721.
 * Our models estimates an expected 0.17 decrease in standardized fertility for every 1% increase in percentage of males involved in agriculture in holding the remaining variables constant.
