@@ -1,4 +1,6 @@
 # Multivariable regression analysis
+[Watch this before beginning.](https://www.youtube.com/watch?v=qsXtdSNbg5E&index=19&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
+
 In this chapter we extend linear regression so that our models
 can contain more variables. A natural first approach is to assume
 additive effects, basically extending our linear model to a plane
@@ -51,6 +53,9 @@ is still a linear model. We've just squared the elements of the
 predictor variables.
 
 ## Estimation
+
+[Watch this before beginning](https://www.youtube.com/watch?v=BbsDGRLhluA&index=20&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
+
 Recall, the LS estimate for regression through the origin is,
 
 {$$}E[Y_i]=X_{1i}\beta_1{/$$}, was {$$}\sum X_i Y_i / \sum X_i^2.{/$$}
@@ -126,6 +131,8 @@ programs that fit multivariate regression don't do it this way either. However,
 thinking in the terms of residuals is the most conceptually useful way to think about what multivariate regression is accomplishing.
 
 ## Simulation demonstrations
+
+[Watch this video demonstration.](https://www.youtube.com/watch?v=XJJxyJ6PC6I&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=21)
 
 Let's do some simulation exercises to convince ourselves how multivariable
 regression works.
@@ -223,9 +230,3 @@ learning technique, *by far*.
   * Fit factor variables as predictors.
   * Uncover complex multivariate relationships with the response.
   * Build accurate prediction models.
-
-
-
-
-
-  

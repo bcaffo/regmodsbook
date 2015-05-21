@@ -1,4 +1,6 @@
 # Regression inference
+[Watch this before beginning.](https://www.youtube.com/watch?v=vSdws014e4k&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=16)
+
 In this chapter, we'll consider statistical inference for regression models.
 
 ## Reminder of the model
@@ -74,6 +76,8 @@ follows a t distribution with n-2 degrees of freedom and a normal distribution f
 This can be used to create confidence intervals and perform hypothesis tests.
 
 ## Example diamond data set
+
+[Watch this before beginning](https://www.youtube.com/watch?v=V4Y7MHbn3lw&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=17)
 
 Let's go through a didactic example using our diamond pricing data.
 First, let's define our outcome, predictor and estimate all of the parameters.
@@ -173,8 +177,11 @@ So, we would interpret this as: "with 95% confidence, we estimate that a 0.1 car
 diamond size results in a 355.6 to 388.6 increase in price in (Singapore) dollars".
 
 ## Prediction of outcomes
+
+[Watch this before beginning](https://www.youtube.com/watch?v=aMirqYW6VrY&index=18&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
+
 Finally, let's consider prediction again.
-Consider the probelm of predicting Y at a value of X. In our example, this is
+Consider the problem of predicting Y at a value of X. In our example, this is
 predicting the price of a diamond given the carat.
 
 We've already covered that the estimate for prediction at point {$$}x_0{/$$} is:
