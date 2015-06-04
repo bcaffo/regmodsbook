@@ -72,71 +72,79 @@ summary(lm(Fertility ~ Agriculture, data = swiss))$coefficients
 Agriculture   0.1942    0.07671   2.532 1.492e-02
 ~~~
 
-Notice that the sign of the slope estimate actually reversed? This is an
+Notice that the sign of the slope estimate reversed! This is an
 example of so-called "Simpson's Paradox". This purported paradox (which is actually not
 a paradox at all) simply points out that unadjusted and adjusted effects can
-be reversed. Or in other words, the apparent relationship between X and Y may
+be the reverse of each other. Or in other words, the apparent relationship between X and Y may
 change if we account for Z.  Let's explore multivariate adjustment and
 sign reversals with simulation.
 
-<!--
+## Simulation study
 
+Below we simulate 100 random variables with a linear relationship between X1, X2 and Y.
+Notably, we generate X1 as a linear function of X2. In this simulation, X1 has a negative
+adjusted effect on Y while X2 has a positive adjusted effect (adjusted referring to the effect
+including both variables). However, X1 is related to X2. Notice our unadjusted effect of
+X1 is of the opposite sign (and way off), while the adjusted one is about right. What's happening?
+Our unadjusted model is picking up the effect X2 as as it's represented in X1. Play around
+with the generating coefficients to see how you can make the estimated relationships very
+different than the generating ones. More than anything, this illustrates that multivariate
+modeling is hard stuff.
 
----
-How can adjustment reverse the sign of an effect? Let's try a simulation.
+{lang=r,line-numbers=off}
+~~~
+> n = 100; x2 <- 1 : n; x1 = .01 * x2 + runif(n, -.1, .1); y = -x1 + x2 + rnorm(n, sd = .01)
+> summary(lm(y ~ x1))$coef
 
-```r
-n <- 100; x2 <- 1 : n; x1 <- .01 * x2 + runif(n, -.1, .1); y = -x1 + x2 + rnorm(n, sd = .01)
-summary(lm(y ~ x1))$coef
-```
-
-```
             Estimate Std. Error t value  Pr(>|t|)
 (Intercept)    1.454      1.079   1.348 1.807e-01
 x1            96.793      1.862  51.985 3.707e-73
-```
-
-```r
-summary(lm(y ~ x1 + x2))$coef
-```
-
-```
+>summary(lm(y ~ x1 + x2))$coef
              Estimate Std. Error  t value   Pr(>|t|)
 (Intercept)  0.001933  0.0017709    1.092  2.777e-01
 x1          -1.020506  0.0163560  -62.393  4.211e-80
 x2           1.000133  0.0001643 6085.554 1.544e-272
-```
+~~~
+
+To confirm what's going on, let's look at some plots. In the left
+panel, we plot Y versus X1. Notice the positive relationship. However,
+if we look at X2 (the color) notice that it clearly goes up with Y
+as well. If we adjust both the X1 and Y variable by taking the
+residual after having regressed X2, we get the actual correct
+relationship between X1 and Y.
+
+![Plot of the simulated data](images/multivariateSimulation1.png)
 
 
----
-<div class="rimage center"><img src="fig/unnamed-chunk-5.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div>
-
-
----
-<div class="rimage center"><img src="fig/unnamed-chunk-6.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" class="plot" /></div>
-
-
----
 ## Back to this data set
-* The sign reverses itself with the inclusion of Examination and Education.
-* The percent of males in the province working in agriculture is negatively related to educational attainment (correlation of -0.6395) and Education and Examination (correlation of 0.6984) are obviously measuring similar things.
-  * Is the positive marginal an artifact for not having accounted for, say, Education level? (Education does have a stronger effect, by the way.)
-* At the minimum, anyone claiming that provinces that are more agricultural have higher fertility rates would immediately be open to criticism.
+In our data set, the sign reverses itself with the inclusion of Examination and Education. However, the percent of males in the province working in agriculture is negatively related to educational attainment (correlation of -0.6395) and Education and Examination (correlation of 0.6984) are obviously measuring similar things.
 
----
-## What if we include an unnecessary variable?
+So, given now that we know including correlated variables with our variable
+of interest into our regression relationship can drastically change things
+we have to ask: "Is the positive marginal an artifact for not having accounted for, say, Education level? (Education does have a stronger effect, by the way.)" At the minimum, anyone claiming that provinces that are more agricultural have higher fertility rates would immediately be open to criticism that the real effect is due to Education levels.
+
+You might think then, why don't I just always include all variables
+that I have into my regression model to avoid incorrectly adjusted effects?
+Of course, it's not this easy and there's negative consequences to
+including variables unnecessarily. We'll talk more about model building
+and the process of choosing which variables to include or not in the
+next chapter.
+
+## What if we include a completely unnecessary variable?
+Next chapter we'll discuss working with a collection of
+correlated predictors. But you might wonder, what happens
+if you include a predictor that's completely unnecessary.
+Let's try some computer experiments with our fertility data.
+In the code below,
 z adds no new linear information, since it's a linear
 combination of variables already included. R just drops
 terms that are linear combinations of other terms.
 
-```r
-z <- swiss$Agriculture + swiss$Education
-lm(Fertility ~ . + z, data = swiss)
-```
-
-```
-
-Call:
+{lang=r,line-numbers=off}
+~~~
+> z <- swiss$Agriculture + swiss$Education
+lm(Fertility ~ . + z, data = swiss)\
+> Call:
 lm(formula = Fertility ~ . + z, data = swiss)
 
 Coefficients:
@@ -144,11 +152,11 @@ Coefficients:
           66.915            -0.172            -0.258            -0.871             0.104  
 Infant.Mortality                 z  
            1.077                NA  
-```
+~~~
 
+This is a fundamental point of multivariate regression:
+le
 
-
----
 ## Dummy variables are smart
 * Consider the linear model
 $$
