@@ -402,7 +402,8 @@ Also, we'll cover Poisson GLMs for fitting count data.
 ## Further analysis of the `swiss` dataset
 
 Let's create some dummy variables in the `swiss` dataset to illustrate them in a more
-multivariable context.
+multivariable context. Just to remind ourselves of the dataset, here's the first few
+rows.
 
 {lang=r,line-numbers=off}
 > spray2 <- relevel(InsectSprays$spray, "C")
@@ -418,35 +419,50 @@ Moutier           85.8        36.5          12         7    33.77             20
 Neuveville        76.9        43.5          17        15     5.16             20.6
 Porrentruy        76.1        35.3           9         7    90.57             26.6
 ~~~
--->
 
----
-## Create a binary variable
+Let's create a  binary variable out of the variable Catholic to illustrate dummy
+variables in multivariable models. However, it should be noted that this isn't
+patently absurd, since the variable is highly bimodal anyway. Let's just split
+at majority Catholic or not:
 
-```r
+{lang=r,line-numbers=off}
+> spray2 <- relevel(InsectSprays$spray, "C")
+~~~
 library(dplyr);
 swiss = mutate(swiss, CatholicBin = 1 * (Catholic > 50))
-```
+~~~
 
+Since we're interested in Agriculture as a variable and Fertility as an outcome, let's plot
+those two color coded by the binary Catholic variable:
 
----
-## Plot the data
-<div class="rimage center"><img src="fig/unnamed-chunk-16.png" title="plot of chunk unnamed-chunk-16" alt="plot of chunk unnamed-chunk-16" class="plot" /></div>
+{lang=r,line-numbers=off}
+~~~
+g = ggplot(swiss, aes(x = Agriculture, y = Fertility, colour = factor(CatholicBin)))
+g = g + geom_point(size = 6, colour = "black") + geom_point(size = 4)
+g = g + xlab("% in Agriculture") + ylab("Fertility")
+g
+~~~
 
+![Plot of the Swiss dataset color coded by majority catholic.](images/swiss2.png)
 
----
-## No effect of religion
+Our model is:
 
-```r
-summary(lm(Fertility ~ Agriculture, data = swiss))$coef
-```
+{$$}Y_i = \beta_0 + X_{i1} \beta_1 + X_{i2} \beta_2 + \epsilon_i{/$$}
 
-```
+where {$$}Y_i{/$$} is `Fertility`, {$$}X_{i1}{/$$} is '`Agriculture` and
+{$$}X_{i2}{/$$} is `CatholicBin`. Let's first fit the model with {$$}X_{i2}{/$$}
+removed:
+
+{lang=r,line-numbers=off}
+~~~
+> summary(lm(Fertility ~ Agriculture, data = swiss))$coef
+
             Estimate Std. Error t value  Pr(>|t|)
 (Intercept)  60.3044    4.25126  14.185 3.216e-18
 Agriculture   0.1942    0.07671   2.532 1.492e-02
-```
+~~~
 
+<!--
 
 ---
 ## Parallel lines
