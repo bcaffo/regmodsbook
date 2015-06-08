@@ -154,48 +154,102 @@ Infant.Mortality                 z
            1.077                NA  
 ~~~
 
-This is a fundamental point of multivariate regression:
-le
+This is a fundamental point of multivariate regression: regression
+models fit the linear space of the regressors. Therefore, any linear
+reorganization of the regressors will result in an equivalent fit,
+with different covariates of course. However, the percentage of
+the variance explained in the response will be constant. It is only
+through adding variables that are not perfectly explained by the
+existing ones that one can explain more variation in the response.
+So, for example, models with covariates i) X and Z, ii) X+Z and X-Z and
+iii) 2X and 4Z will
+all explain the same amount of variation in Y. A third variable, W say,
+will only explain more variation in Y if it's not perfectly explained
+by X and Z. R lets you know when you've done this by putting redundant
+variables as having NA coefficients.
 
 ## Dummy variables are smart
-* Consider the linear model
-$$
+It is interesting to note that models with
+factor variables as predictors are simply special cases of regression
+models.  As an example, consider the linear model:
+
+{$$}
 Y_i = \beta_0 + X_{i1} \beta_1 + \epsilon_{i}
-$$
-where each $X_{i1}$ is binary so that it is a 1 if measurement $i$ is in a group and 0 otherwise. (Treated versus not in a clinical trial, for example.)
-* Then for people in the group $E[Y_i] = \beta_0 + \beta_1$
-* And for people not in the group $E[Y_i] = \beta_0$
-* The LS fits work out to be $\hat \beta_0 + \hat \beta_1$ is the mean for those in the group and $\hat \beta_0$ is the mean for those not in the group.
-* $\beta_1$ is interpretted as the increase or decrease in the mean comparing those in the group to those not.
-* Note including a binary variable that is 1 for those not in the group would be redundant. It would create three parameters to describe two means.
+{/$$}
 
----
+where each {$$}X_{i1}{/$$} is binary so that it is a 1 if measurement
+{$$}i{/$$} is in a group and 0 otherwise. As an example, consider
+a variable as treated versus not in a clinical trial. Or, in a more
+data science context, consider an A/B test comparing two ad campaigns
+where Y is the click through rate.
+
+Refer back to our model. For people in the group {$$}E[Y_i] = \beta_0 + \beta_1{/$$}
+and for people not in the group {$$}E[Y_i] = \beta_0{/$$}.
+The least squares fits work out to be
+{$$}\hat \beta_0 + \hat \beta_1{/$$} is the mean for those in the group and {$$}\hat \beta_0{/$$}
+is the mean for those not in the group.
+The variable {$$}\beta_1{/$$} is interpreted as the increase or decrease in the mean comparing those in the group to those not.
+The T-test for that coefficient is exactly the two group T test with a common variance.
+
+Finally, note including a binary variable that is 1 for those not in the group would be redundant,
+it would create three parameters to describe two means. Moreover, we know from the last section that
+including redundant variables will result in R just setting one of them to NA. We know that the intercept
+column is a column of ones, the group variable is one for those in the group while a variable for
+those not in the group would just be the subtraction of these two. Thus, it's linearly redundant and unnecessary.
+
 ## More than 2 levels
-* Consider a multilevel factor level. For didactic reasons, let's say a three level factor (example, US political party affiliation: Republican, Democrat, Independent)
-* $Y_i = \beta_0 + X_{i1} \beta_1 + X_{i2} \beta_2 + \epsilon_i$.
-* $X_{i1}$ is 1 for Republicans and 0 otherwise.
-* $X_{i2}$ is 1 for Democrats and 0 otherwise.
-* If $i$ is Republican $E[Y_i] = \beta_0 +\beta_1$
-* If $i$ is Democrat $E[Y_i] = \beta_0 + \beta_2$.
-* If $i$ is Independent $E[Y_i] = \beta_0$.
-* $\beta_1$ compares Republicans to Independents.
-* $\beta_2$ compares Democrats to Independents.
-* $\beta_1 - \beta_2$ compares Republicans to Democrats.
-* (Choice of reference category changes the interpretation.)
+Consider a multilevel factor level. For didactic reasons, let's say a three level factor. As an example
+consider a variable for US political party affiliation: Republican, Democrat, Independent/other. Let's use the model:
 
----
+{$$}Y_i = \beta_0 + X_{i1} \beta_1 + X_{i2} \beta_2 + \epsilon_i.{/$$}
+
+Here the variable {$$}X_{i1}{/$$} is 1 for Republicans and 0 otherwise,
+the variab1e {$$}X_{i2}{/$$} is 1 for Democrats and 0 otherwise. As before, we don't
+need an {$$}X_{i3}{/$$} for Independent/Other, since it would be redundant.
+
+So now consider the implications of more model. If person
+{$$}i{/$$} is Republican then {$$}E[Y_i] = \beta_0 +\beta_1{/$$}. On the other hand,
+If person {$$}i{/$$} is Democrat then {$$}E[Y_i] = \beta_0 + \beta_2{/$$}.
+Finally, If $i$ is Independent/Other {$$}E[Y_i] = \beta_0{/$$}.
+
+So, we can interpret our coefficients as follows.
+{$$}\beta_1{/$$} compares the mean for Republicans to that of Independents/Others.
+{$$}\beta_2{/$$} compares the mean for Democrats to that of Independents/Others.
+{$$}\beta_1 - \beta_2{/$$} compares the mean for Republicans to that of Democrats.
+Notice the coefficients are all comparisons to the category that we left out, Independents/Others.
+If one category is an obvious reference category, chose that one to leave our.
+In R, if our variable is a factor variable, it will create the dummy variables for us and pick one of the
+levels to be the reference level. Let's go through an example to see.
+
+
 ## Insect Sprays
-<div class="rimage center"><img src="fig/unnamed-chunk-8.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" class="plot" /></div>
+
+Let's consider a model with factors. Consider the `InsectSprays` dataset in R. The data
+models the number of dead insects from different pesticides. Since it's not clear from the documentation,
+let's assume (probably accurately)
+that these were annoying bad insects, like fleas, mosquitoes or cockroaches, and not good ones like butterflies
+or ladybugs. After getting over that mental hurdle, let's plot the data.
+
+require(datasets);data(InsectSprays); require(stats); require(ggplot2)
+{lang=r,line-numbers=off}
+~~~
+g = ggplot(data = InsectSprays, aes(y = count, x = spray, fill  = spray))
+g = g + geom_violin(colour = "black", size = 2)
+g = g + xlab("Type of spray") + ylab("Insect count")
+g
+~~~
+
+Here's the plot. There's probably better ways to model this data, but let's use a
+linear model just to illustrate factor variables.
+
+![Insect spray dataset](images/insectSprays.png)
 
 
----
-## Linear model fit, group A is the reference
+First, let's set Spray A as the reference (the default, since it has the lowest alphanumeric factor level).
 
-```r
-summary(lm(count ~ spray, data = InsectSprays))$coef
-```
-
-```
+{lang=r,line-numbers=off}
+~~~
+> summary(lm(count ~ spray, data = InsectSprays))$coef
             Estimate Std. Error t value  Pr(>|t|)
 (Intercept)  14.5000      1.132 12.8074 1.471e-19
 sprayB        0.8333      1.601  0.5205 6.045e-01
@@ -203,21 +257,27 @@ sprayC      -12.4167      1.601 -7.7550 7.267e-11
 sprayD       -9.5833      1.601 -5.9854 9.817e-08
 sprayE      -11.0000      1.601 -6.8702 2.754e-09
 sprayF        2.1667      1.601  1.3532 1.806e-01
-```
+~~~
 
+Therefore, 0.8333 is the estimated mean comparing Spray B to Spray A (as B - A),
+-12.4167 compares Spray C to Spray A (as C - A) and so on. The inferencial statistics: standard
+errors, t value and P-value all correspond to those comparisons. The intercept, 14.5, is the
+mean for Spray A. So, its inferential statistics are testing whether or not the mean for
+Spray A is zero. As is often the case, this test isn't terribly informative and often yields
+extremely small statistics (since we know the spray kills some bugs). The estimated mean for Spray B
+is its effect plus the intercept (14.5 + 0.8333); the estimated mean for Spray C is 14.5 - 12.4167 (its
+  effect plus the intercept) and so on for the rest of the factor levels.
 
----
-## Hard coding the dummy variables
+Let's hard code the factor levels so we can directly see what's going on. Remember, we simply
+leave out the dummy variable for the reference level.
 
-```r
-summary(lm(count ~
+{lang=r,line-numbers=off}
+~~~
+> summary(lm(count ~
              I(1 * (spray == 'B')) + I(1 * (spray == 'C')) +
              I(1 * (spray == 'D')) + I(1 * (spray == 'E')) +
              I(1 * (spray == 'F'))
            , data = InsectSprays))$coef
-```
-
-```
                       Estimate Std. Error t value  Pr(>|t|)
 (Intercept)            14.5000      1.132 12.8074 1.471e-19
 I(1 * (spray == "B"))   0.8333      1.601  0.5205 6.045e-01
@@ -225,20 +285,20 @@ I(1 * (spray == "C")) -12.4167      1.601 -7.7550 7.267e-11
 I(1 * (spray == "D"))  -9.5833      1.601 -5.9854 9.817e-08
 I(1 * (spray == "E")) -11.0000      1.601 -6.8702 2.754e-09
 I(1 * (spray == "F"))   2.1667      1.601  1.3532 1.806e-01
-```
+~~~
 
+Of course, it's identical.  You might further ask yourself, what would
+happen if I included a dummy variable for Spray A? Would the world implode?
+No, it just realizes that one of the dummy variables is redundant and drops
+it.
 
----
-## What if we include all 6?
-
-```r
-summary(lm(count ~
+{lang=r,line-numbers=off}
+~~~
+> summary(lm(count ~
    I(1 * (spray == 'B')) + I(1 * (spray == 'C')) +  
    I(1 * (spray == 'D')) + I(1 * (spray == 'E')) +
    I(1 * (spray == 'F')) + I(1 * (spray == 'A')), data = InsectSprays))$coef
-```
 
-```
                       Estimate Std. Error t value  Pr(>|t|)
 (Intercept)            14.5000      1.132 12.8074 1.471e-19
 I(1 * (spray == "B"))   0.8333      1.601  0.5205 6.045e-01
@@ -246,32 +306,39 @@ I(1 * (spray == "C")) -12.4167      1.601 -7.7550 7.267e-11
 I(1 * (spray == "D"))  -9.5833      1.601 -5.9854 9.817e-08
 I(1 * (spray == "E")) -11.0000      1.601 -6.8702 2.754e-09
 I(1 * (spray == "F"))   2.1667      1.601  1.3532 1.806e-01
-```
+~~~
 
+However, if we drop the intercept, then the Spray A term is
+no longer redundant. The each coefficient is the mean for
+that Spray.
 
----
-## What if we omit the intercept?
-
-```r
-summary(lm(count ~ spray - 1, data = InsectSprays))$coef
-```
-
-```
+{lang=r,line-numbers=off}
+~~~
+> summary(lm(count ~ spray - 1, data = InsectSprays))$coef
        Estimate Std. Error t value  Pr(>|t|)
+
 sprayA   14.500      1.132  12.807 1.471e-19
 sprayB   15.333      1.132  13.543 1.002e-20
 sprayC    2.083      1.132   1.840 7.024e-02
 sprayD    4.917      1.132   4.343 4.953e-05
 sprayE    3.500      1.132   3.091 2.917e-03
 sprayF   16.667      1.132  14.721 1.573e-22
-```
+~~~
 
-```r
-library(dplyr)
-summarise(group_by(InsectSprays, spray), mn = mean(count))
-```
+So, for example, 14.5 is the mean for Spray A (as we already knew),
+15.33 is the mean for Spray B (14.5 + 0.8333 from our previous model formulation),
+2.083 is the mean for Spray C (14.5 - 12.4167 from our previous model formluation) and so on.
+This is a nice trick if you want your model formulated in the terms of the group means,
+rather than the group comparisons relative to the reference group.
 
-```
+Also, if there's no other covariates, the estimated coefficients for this mode are
+exactly the empirical means of the groups. We can use dplyr to check this really
+easily and grab the mean for each group.
+
+{lang=r,line-numbers=off}
+~~~
+> library(dplyr)
+> summarise(group_by(InsectSprays, spray), mn = mean(count))
 Source: local data frame [6 x 2]
 
   spray     mn
@@ -281,18 +348,18 @@ Source: local data frame [6 x 2]
 4     D  4.917
 5     E  3.500
 6     F 16.667
-```
+~~~
 
+Often your lowest alphanumeric level isn't the level that you're most
+interested in as a reference group. There's an easy fix for that with
+factor variables; use the `relevel` function. Here we give a simple
+example. We created a variable `spray2` that has Spray C as the reference
+level.
 
----
-## Reordering the levels
-
-```r
-spray2 <- relevel(InsectSprays$spray, "C")
-summary(lm(count ~ spray2, data = InsectSprays))$coef
-```
-
-```
+{lang=r,line-numbers=off}
+> spray2 <- relevel(InsectSprays$spray, "C")
+~~~
+> summary(lm(count ~ spray2, data = InsectSprays))$coef
             Estimate Std. Error t value  Pr(>|t|)
 (Intercept)    2.083      1.132  1.8401 7.024e-02
 spray2A       12.417      1.601  7.7550 7.267e-11
@@ -300,40 +367,49 @@ spray2B       13.250      1.601  8.2755 8.510e-12
 spray2D        2.833      1.601  1.7696 8.141e-02
 spray2E        1.417      1.601  0.8848 3.795e-01
 spray2F       14.583      1.601  9.1083 2.794e-13
-```
+~~~
 
----
-## Summary
-* If we treat Spray as a factor, R includes an intercept and omits the alphabetically first level of the factor.
-  * All t-tests are for comparisons of Sprays versus Spray A.
-  * Empirical mean for A is the intercept.
-  * Other group means are the intercept plus their coefficient.
+Now the intercept is the mean for Spray C and all of the coefficients are interpreted
+with respect to Spray C. So, 12.417 is the comparison between Spray A and Spray C (as A - C)
+and so on.
+
+
+### Summary of dummy variables
+If you haven't seen this before, it might seem rather strange. However, it's essential to understand how
+dummy variables are treated, as otherwise huge interpretation errors can be made. Here we give a brief bullet summary
+of dummy variables to help solidify this information.
+
+* If we treat a variable as a factor, R includes an intercept and omits the alphabetically first level of the factor.
+  * The intercept is the estimated mean for the reference level.
+  * The intercept t-test tests for whether or not the mean for the reference level is 0.
+  * All other t-tests are for comparisons of the other levels versus the reference level.
+  * Other group means are obtained the intercept plus their coefficient.
 * If we omit an intercept, then it includes terms for all levels of the factor.
-  * Group means are the coefficients.
-  * Tests are tests of whether the groups are different than zero. (Are the expected counts zero for that spray.)
-* If we want comparisons between, Spray B and C, say we could refit the model with C (or B) as the reference level.
+  * Group means are now the coefficients.
+  * Tests are tests of whether the groups are different than zero.
+* If we want comparisons between two levels, neither of which is the reference level, we could refit the model with one of them as the reference level.
 
-
----
-## Other thoughts on this data
-* Counts are bounded from below by 0, violates the assumption of normality of the errors.
-  * Also there are counts near zero, so both the actual assumption and the intent of the assumption are violated.
-* Variance does not appear to be constant.
-* Perhaps taking logs of the counts would help.
-  * There are 0 counts, so maybe log(Count + 1)
-* Also, we'll cover Poisson GLMs for fitting count data.
+### Other thoughts on this data
+We don't suggest that this is in anyway a thorough analysis of this data. For example,
+the data are counts which are bounded from below by 0. This clearly violates the assumption of normality of the errors.
+Also there are counts near zero, so both the actual assumption and the intent of this assumption are violated.
+Furthermore, the variance does not appear to be constant (look back at the violin plots).
+Perhaps taking logs of the counts would help. But, since there are 0 counts, maybe log(Count + 1).
+Also, we'll cover Poisson GLMs for fitting count data.
 
 
 
-## Recall the `swiss` data set
+## Further analysis of the `swiss` dataset
 
+Let's create some dummy variables in the `swiss` dataset to illustrate them in a more
+multivariable context.
 
-```r
-library(datasets); data(swiss)
-head(swiss)
-```
+{lang=r,line-numbers=off}
+> spray2 <- relevel(InsectSprays$spray, "C")
+~~~
+> library(datasets); data(swiss)
+> head(swiss)
 
-```
              Fertility Agriculture Examination Education Catholic Infant.Mortality
 Courtelary        80.2        17.0          15        12     9.96             22.2
 Delemont          83.1        45.1           6         9    84.84             22.2
@@ -341,8 +417,8 @@ Franches-Mnt      92.5        39.7           5         5    93.40             20
 Moutier           85.8        36.5          12         7    33.77             20.3
 Neuveville        76.9        43.5          17        15     5.16             20.6
 Porrentruy        76.1        35.3           9         7    90.57             26.6
-```
-
+~~~
+-->
 
 ---
 ## Create a binary variable
