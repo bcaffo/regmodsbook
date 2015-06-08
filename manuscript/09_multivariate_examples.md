@@ -1,4 +1,6 @@
-# Multivariate
+# Multivariable examples and tricks
+
+[Watch this video before beginning.](https://youtu.be/z8--IymvW4s?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
 
 In this chapter we cover a few examples of multivariate regression in order
 to get a hands on sense of the basics.
@@ -169,6 +171,9 @@ by X and Z. R lets you know when you've done this by putting redundant
 variables as having NA coefficients.
 
 ## Dummy variables are smart
+
+[Watch this before beginning.](https://youtu.be/fUwkLY-EDRE?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
+
 It is interesting to note that models with
 factor variables as predictors are simply special cases of regression
 models.  As an example, consider the linear model:
@@ -197,7 +202,7 @@ including redundant variables will result in R just setting one of them to NA. W
 column is a column of ones, the group variable is one for those in the group while a variable for
 those not in the group would just be the subtraction of these two. Thus, it's linearly redundant and unnecessary.
 
-## More than 2 levels
+## More than two levels
 Consider a multilevel factor level. For didactic reasons, let's say a three level factor. As an example
 consider a variable for US political party affiliation: Republican, Democrat, Independent/other. Let's use the model:
 
@@ -401,13 +406,17 @@ Also, we'll cover Poisson GLMs for fitting count data.
 
 ## Further analysis of the `swiss` dataset
 
+[Watch this video before beginning.](https://youtu.be/Xjjbv42KCaM?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
+
+[Then watch this video.](https://youtu.be/HB4owlrqvDE?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
+
 Let's create some dummy variables in the `swiss` dataset to illustrate them in a more
 multivariable context. Just to remind ourselves of the dataset, here's the first few
 rows.
 
 {lang=r,line-numbers=off}
-> spray2 <- relevel(InsectSprays$spray, "C")
 ~~~
+> spray2 <- relevel(InsectSprays$spray, "C")
 > library(datasets); data(swiss)
 > head(swiss)
 
@@ -451,7 +460,7 @@ Our model is:
 
 where {$$}Y_i{/$$} is `Fertility`, {$$}X_{i1}{/$$} is '`Agriculture` and
 {$$}X_{i2}{/$$} is `CatholicBin`. Let's first fit the model with {$$}X_{i2}{/$$}
-removed:
+removed.
 
 {lang=r,line-numbers=off}
 ~~~
@@ -462,50 +471,73 @@ removed:
 Agriculture   0.1942    0.07671   2.532 1.492e-02
 ~~~
 
-<!--
+This model just assumes one line through the data (linear regression).
+Now let's add our second variable. Notice that the model is
 
----
+{$$}Y_i = \beta_0 + X_{i1} \beta_1 + \epsilon_{i}{/$$}
+
+when {$$}X_{i2} = 0{/$$} and
+
+{$$}Y_i = (\beta_0 +\beta_2) + X_{i1} \beta_1 + \epsilon_{i}{/$$}
+
+when {$$}X_{i2] = 1{/$$}. Thus, the coefficient in front of the binary
+variable is the change in the intercept between non-Catholic and Catholic
+majority provinces.  In other words, this model fits parallel lines
+for the two levels of the factor variable. If the factor variable had
+4 levels, it would fit 4 parallel lines, where the coefficients for
+the factors are the change in the intercepts to the reference level.
+
+{lang=r,line-numbers=off}
+~~~
 ## Parallel lines
-
-```r
 summary(lm(Fertility ~ Agriculture + factor(CatholicBin), data = swiss))$coef
-```
 
-```
                      Estimate Std. Error t value  Pr(>|t|)
 (Intercept)           60.8322     4.1059  14.816 1.032e-18
 Agriculture            0.1242     0.0811   1.531 1.329e-01
 factor(CatholicBin)1   7.8843     3.7484   2.103 4.118e-02
-```
+~~~
+Thus, 7.8843 is the estimated
+change in the intercept in the expected relationship between Agriculture and
+Fertility going from a non-Catholic majority province to a Catholic majority.
+
+Often, however, we want both a different intercept and slope. This is easily
+obtained with an interaction term
+
+{$$}Y_i = \beta_0 + X_{i1} \beta_1 + X_{i2} \beta_2 +  X_{i1}X_{i2} \beta_3 + \epsilon_i .{/$$}
+
+Now consider with {$$}X_{i2} = 0{/$$}, the model reduces to:
+
+{$$}Y_i = \beta_0 + X_{i1} \beta_1 + \epsilon_{i}.{/$$}
+
+When {$$}X_{i2} = 1{/$$} the model is
 
 
----
-## Lines with different slopes and intercepts
+{$$}Y_i = (\beta_0 + \beta_2) + X_{i1} (\beta_1 + \beta_3) + \epsilon_{i}.{/$$}
 
-```r
-summary(lm(Fertility ~ Agriculture * factor(CatholicBin), data = swiss))$coef
-```
+Thus, the coefficient in front of the main effect {$$}X_{i2}{/$$}, labeled {$$}\beta_2{/$$} in our model, is the
+change in the intercept, while the coefficient in front of
+interaction term {$$}X_{i2}X_{i1}{/$$}, labeled {$$}\beta_3{/$$} in our model, is the
+change in the slope. Let's try it:
 
-```
+{lang=r,line-numbers=off}
+~~~
+> summary(lm(Fertility ~ Agriculture * factor(CatholicBin), data = swiss))$coef
+
                                  Estimate Std. Error t value  Pr(>|t|)
 (Intercept)                      62.04993    4.78916 12.9563 1.919e-16
 Agriculture                       0.09612    0.09881  0.9727 3.361e-01
 factor(CatholicBin)1              2.85770   10.62644  0.2689 7.893e-01
 Agriculture:factor(CatholicBin)1  0.08914    0.17611  0.5061 6.153e-01
-```
+~~~
 
+Thus, 2.8577 is the estimated change in the intercept of the linear relationship between Agriculure and
+Fertility going from non-Catholic majority to
+Catholic majority to Catholic majority provinces. The interaction term 0.9891 is the estimate change in
+the slope. The estimated intercept in non-Catholic provinces is 62.04993 while the estimated intercept in
+Catholic provinces is 62.04993 + 2.85770. The estimated slope in non-Catholic majority provinces is 0.09612
+while it is 0.09612 + 0.08914 for Catholic majority provinces. If the factor has more than two levels, all
+of the main effects are change in the intercepts from the reference level while all of the interaction terms
+are changes in slope (again compared to the reference level).
 
----
-## Just to show you it can be done
-
-```r
-summary(lm(Fertility ~ Agriculture + Agriculture : factor(CatholicBin), data = swiss))$coef
-```
-
-```
-                                 Estimate Std. Error t value  Pr(>|t|)
-(Intercept)                      62.63037    4.22989 14.8066 1.057e-18
-Agriculture                       0.08539    0.08945  0.9546 3.450e-01
-Agriculture:factor(CatholicBin)1  0.13340    0.06199  2.1520 3.693e-02
-```
--->
+Homework exercise, plot both lines on the data to see the fit!
