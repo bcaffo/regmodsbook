@@ -7,6 +7,8 @@ between another two. Since it is often the case that
 a third variable can distort, or confound if you will,
 the relationship between two others.
 
+<!--
+
 As an example, consider looking at lung cancer rates and breath mint
 usage. For the sake of completeness, imagine if you were looking
 at forced expiratory volume (a measure of lung function) and breath
@@ -32,7 +34,6 @@ In this chapter, we'll use simulation to
 investigate how adding a regressor into a model addresses
 the idea of adjustment.
 
-<!--
 
 ## Experiment 1
 
