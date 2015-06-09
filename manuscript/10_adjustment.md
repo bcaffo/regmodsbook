@@ -31,16 +31,17 @@ constant.
 In this chapter, we'll use simulation to
 investigate how adding a regressor into a model addresses
 the idea of adjustment.
-
+<!--
 ## Experiment 1
 
 Let's first generate some data. Consider the model
 
 {$$}Y_i = \beta_0 + \beta_1 X + \tau T  + \epsilon_i{/$$}
 
-We're interested in the relationship between {$$}X{/$$} and
+We're interested in the relationship between our binary treatment,
+{$$}T{/$$}, and
 {$$}Y{/$$}. However, we're concerned that the relationship
-may depend on the binary variable, {$$}T{/$$}.
+may depend on the continuous variable, {$$}X{/$$}.
 
 Let's simulate some data.
 
@@ -69,28 +70,13 @@ points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon
 
 ![Simulation 1.](images/adjustment1.png)
 
-<!--
+Looking at this plot notices that the X variable is
+unrelated to treatment/group status (color). In addition, the X variable
+is clearly linearly related to Y, but the intercept
+of this relationship depends on group status. The treatment variable is also
+related to Y; especially look at the horizontal lines
+which connect the group means onto the Y axis.
 
----
-## Simulation 1
-```{r, fig.height=5, fig.width=5, echo = FALSE, results='hide'}
-n <- 100; t <- rep(c(0, 1), c(n/2, n/2)); x <- c(runif(n/2), runif(n/2));
-beta0 <- 0; beta1 <- 2; tau <- 1; sigma <- .2
-y <- beta0 + x * beta1 + t * tau + rnorm(n, sd = sigma)
-plot(x, y, type = "n", frame = FALSE)
-abline(lm(y ~ x), lwd = 2)
-abline(h = mean(y[1 : (n/2)]), lwd = 3)
-abline(h = mean(y[(n/2 + 1) : n]), lwd = 3)
-fit <- lm(y ~ x + t)
-abline(coef(fit)[1], coef(fit)[2], lwd = 3)
-abline(coef(fit)[1] + coef(fit)[3], coef(fit)[2], lwd = 3)
-points(x[1 : (n/2)], y[1 : (n/2)], pch = 21, col = "black", bg = "lightblue", cex = 2)
-points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon", cex = 2)
-```
-
----
-## Discussion
-### Some things to note in this simulation
 * The X variable is unrelated to group status
 * The X variable is related to Y, but the intercept depends
   on group status.
@@ -98,6 +84,7 @@ points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon
   * The relationship between group status and Y is constant depending on X.
   * The relationship between group and Y disregarding X is about the same as holding X constant
 
+<!--
 ---
 ## Simulation 2
 ```{r, fig.height=5, fig.width=5, echo = FALSE, results='hide'}
