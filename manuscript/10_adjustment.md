@@ -42,7 +42,6 @@ Let's first generate some data. Consider the model
 
 {$$}Y_i = \beta_0 + \beta_1 X + \tau T  + \epsilon_i{/$$}
 
-<!--
 
 We're interested in the relationship between our binary treatment,
 {$$}T{/$$}, and
@@ -58,8 +57,9 @@ beta0 <- 0; beta1 <- 2; tau <- 1; sigma <- .2
 y <- beta0 + x * beta1 + t * tau + rnorm(n, sd = sigma)
 ~~~
 
-Let's plot the data. Below I give the code for the first plot, the rest omitted,
-though you can see the course git repository for the rest of the code.
+Let's plot the data. Below I give the code for the first plot, the rest
+of the code for plots throughout this chapter is omitted. (However,
+you can see the course git repository for the rest of the code.)
 
 {lang=r,line-numbers=off,title="Simulation 1"}
 ~~~
@@ -73,6 +73,8 @@ abline(coef(fit)[1] + coef(fit)[3], coef(fit)[2], lwd = 3)
 points(x[1 : (n/2)], y[1 : (n/2)], pch = 21, col = "black", bg = "lightblue", cex = 2)
 points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon", cex = 2)
 ~~~
+
+<!--
 
 ![Simulation 1.](images/adjustment1.png)
 
