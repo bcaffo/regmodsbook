@@ -52,7 +52,7 @@ y <- beta0 + x * beta1 + t * tau + rnorm(n, sd = sigma)
 ~~~
 
 Let's plot the data. Below I give the code for the first plot, the rest omitted,
-though you can see the course git repo for the rest of the code.
+though you can see the course git repository for the rest of the code.
 
 {lang=r,line-numbers=off,title="Simulation 1"}
 ~~~
