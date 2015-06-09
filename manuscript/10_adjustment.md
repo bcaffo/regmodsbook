@@ -1,12 +1,61 @@
 # Adjustment
 
-## Consider the following simulated data
-Code for the first plot, rest omitted
-(See the git repo for the rest of the code.)
-```
+Adjustment,
+is the idea of putting regressors into a linear model
+to investigate the role of a third variable on the relationship
+between another two. Since it is often the case that
+a third variable can distort, or confound if you will,
+the relationship between two others.
+
+As an example, consider looking at lung cancer rates and breath mint
+usage. For the sake of completeness, imagine if you were looking
+at forced expiratory volume (a measure of lung function) and breath
+mint usage.  If you found a statistically significant regression relationship, it
+wouldn't be wise to rush off to the newspapers with the headline
+"Breath mint usage causes shortness of breath!", for a variety of reasons.
+First off, even if the association is sound, you don't know that it's
+causal. But, more importantly in this case, the likely culprit
+is smoking habits. Smoking rates are likely related to both breath mint
+usage rates and lung function. How would you defend your finding
+against the accusation that it's just variability in smoking habits?
+
+If your finding held up among non-smokers and smokers analyzed
+separately, then you might have something. In other words, people
+wouldn't even begin to believe this finding unless it held up
+while holding smoking status constant. That is the idea of
+adding a regression variable into a model as adjustment. The
+coefficient of interest is interpreted as the effect of the
+predictor on the response, holding the adjustment variable
+constant.
+
+In this chapter, we'll use simulation to
+investigate how adding a regressor into a model addresses
+the idea of adjustment.
+
+## Experiment 1
+
+Let's first generate some data. Consider the model
+
+{$$}Y_i = \beta_0 + \beta_1 X + \tau T  + \epsilon_i
+
+We're interested in the relationship between {$$}X{/$$} and
+{$$}Y{/$$}. However, we're concerned that the relationship
+may depend on the binary variable, {$$}T{/$$}.
+
+Let's simulate some data.
+
+{lang=r,line-numbers=off}
+~~~
 n <- 100; t <- rep(c(0, 1), c(n/2, n/2)); x <- c(runif(n/2), runif(n/2));
 beta0 <- 0; beta1 <- 2; tau <- 1; sigma <- .2
 y <- beta0 + x * beta1 + t * tau + rnorm(n, sd = sigma)
+~~~
+
+Let's plot the data. Below I give the code for the first plot, the rest omitted,
+though you can see the course git repo for the rest of the code.
+
+{lang=r,line-numbers=off,title="Simulation 1"}
+~~~
 plot(x, y, type = "n", frame = FALSE)
 abline(lm(y ~ x), lwd = 2)
 abline(h = mean(y[1 : (n/2)]), lwd = 3)
@@ -16,8 +65,11 @@ abline(coef(fit)[1], coef(fit)[2], lwd = 3)
 abline(coef(fit)[1] + coef(fit)[3], coef(fit)[2], lwd = 3)
 points(x[1 : (n/2)], y[1 : (n/2)], pch = 21, col = "black", bg = "lightblue", cex = 2)
 points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon", cex = 2)
-```
+~~~
 
+![Simulation 1.](images/adjustment1.png)
+
+<!--
 
 ---
 ## Simulation 1
