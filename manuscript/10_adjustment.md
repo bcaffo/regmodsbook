@@ -1,5 +1,7 @@
 # Adjustment
 
+<!--
+
 Adjustment,
 is the idea of putting regressors into a linear model
 to investigate the role of a third variable on the relationship
@@ -7,7 +9,6 @@ between another two. Since it is often the case that
 a third variable can distort, or confound if you will,
 the relationship between two others.
 
-<!--
 
 As an example, consider looking at lung cancer rates and breath mint
 usage. For the sake of completeness, imagine if you were looking
