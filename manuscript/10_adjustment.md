@@ -257,3 +257,5 @@ abline(lm(I(resid(lm(x1 ~ x2))) ~ I(resid(lm(y ~ x2)))), lwd = 2)
 impact of variables on associations.
   * Ascertaining mechanisms or cause are difficult subjects
     to be added on top of difficulty in understanding multivariate associations.
+
+-->
