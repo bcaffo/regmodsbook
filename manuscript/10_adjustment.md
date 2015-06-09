@@ -36,7 +36,7 @@ the idea of adjustment.
 
 Let's first generate some data. Consider the model
 
-{$$}Y_i = \beta_0 + \beta_1 X + \tau T  + \epsilon_i
+{$$}Y_i = \beta_0 + \beta_1 X + \tau T  + \epsilon_i{/$$}
 
 We're interested in the relationship between {$$}X{/$$} and
 {$$}Y{/$$}. However, we're concerned that the relationship
