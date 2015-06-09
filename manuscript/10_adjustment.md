@@ -1,5 +1,6 @@
 # Adjustment
 
+<!--
 Adjustment,
 is the idea of putting regressors into a linear model
 to investigate the role of a third variable on the relationship
@@ -31,7 +32,7 @@ constant.
 In this chapter, we'll use simulation to
 investigate how adding a regressor into a model addresses
 the idea of adjustment.
-<!--
+
 ## Experiment 1
 
 Let's first generate some data. Consider the model
