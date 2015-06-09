@@ -74,9 +74,10 @@ points(x[1 : (n/2)], y[1 : (n/2)], pch = 21, col = "black", bg = "lightblue", ce
 points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon", cex = 2)
 ~~~
 
-<!--
 
 ![Simulation 1.](images/adjustment1.png)
+
+<!--
 
 Looking at this plot notices that the X variable is
 unrelated to treatment/group status (color). In addition, the X variable
