@@ -431,7 +431,7 @@ Moutier           85.8        36.5          12         7    33.77             20
 Neuveville        76.9        43.5          17        15     5.16             20.6
 Porrentruy        76.1        35.3           9         7    90.57             26.6
 ~~~
-
+<!--
 Let's create a  binary variable out of the variable Catholic to illustrate dummy
 variables in multivariable models. However, it should be noted that this isn't
 patently absurd, since the variable is highly bimodal anyway. Let's just split
