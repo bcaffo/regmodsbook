@@ -233,66 +233,16 @@ over time. Of course, most examples seen in practice aren't that
 extreme. Still even with a slight departure in constant slopes,
 the meaning of a main group effect goes away.
 
-<!--
 
-
-
----
-## Discussion
-### Some things to note from this simulation
-* There is no such thing as a group effect here.
-  * The impact of group reverses itself depending on X.
-  * Both intercept and slope depends on group.
-* Group status and X unrelated.
-  * There's lots of information about group effects holding X fixed.
-
----
-### Simulation 6
-```{r, fig.height=5, fig.width=5, echo = FALSE, results='hide'}
-p <- 1
-n <- 100; x2 <- runif(n); x1 <- p * runif(n) - (1 - p) * x2
-beta0 <- 0; beta1 <- 1; tau <- 4 ; sigma <- .01
-y <- beta0 + x1 * beta1 + tau * x2 + rnorm(n, sd = sigma)
-plot(x1, y, type = "n", frame = FALSE)
-abline(lm(y ~ x1), lwd = 2)
-co.pal <- heat.colors(n)
-points(x1, y, pch = 21, col = "black", bg = co.pal[round((n - 1) * x2 + 1)], cex = 2)
-```
-
----
-### Do this to investigate the bivariate relationship
-```
-library(rgl)
-plot3d(x1, x2, y)
-```
-
----
-### Residual relationship
-```{r, fig.height=5, fig.width=5, echo = FALSE, results='hide'}
-plot(resid(lm(x1 ~ x2)), resid(lm(y ~ x2)), frame = FALSE, col = "black", bg = "lightblue", pch = 21, cex = 2)
-abline(lm(I(resid(lm(x1 ~ x2))) ~ I(resid(lm(y ~ x2)))), lwd = 2)
-```
-
-
----
-## Discussion
-### Some things to note from this simulation
-
-* X1 unrelated to X2
-* X2 strongly related to Y
-* Adjusted relationship between X1 and Y largely unchanged
-  by considering X2.
-  * Almost no residual variability after accounting for X2.
-
----
 ## Some final thoughts
-* Modeling multivariate relationships is difficult.
-* Play around with simulations to see how the
-  inclusion or exclustion of another variable can
-  change analyses.
-* The results of these analyses deal with the
-impact of variables on associations.
-  * Ascertaining mechanisms or cause are difficult subjects
-    to be added on top of difficulty in understanding multivariate associations.
 
--->
+Nothing we've discussed is intrinsic to having a discrete
+group and continuous X. One, the other, both or neither
+could be discrete. What this reinforces is that
+modeling multivariable relationships is hard.
+You should continue to play around with simulations to see how theinclusion or exclusion of another variable can
+change apparent relationships.
+
+We should also caution that our discussion only dealt with
+associations. Establishing causal or truly mechanistic
+relationships requires quite a bit more thinking.
