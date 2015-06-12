@@ -75,7 +75,7 @@ points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon
 ~~~
 
 
-![Simulation 1.](images/adjustment1.png)
+![Experiment 1.](images/adjustment1.png)
 
 
 Looking at this plot notices that the X variable is
@@ -100,38 +100,54 @@ of unobserved covariates
 
 Now let's consider less ideal settings.
 
-<!--
-## Simulation 2
-```{r, fig.height=5, fig.width=5, echo = FALSE, results='hide'}
-n <- 100; t <- rep(c(0, 1), c(n/2, n/2)); x <- c(runif(n/2), 1.5 + runif(n/2));
-beta0 <- 0; beta1 <- 2; tau <- 0; sigma <- .2
-y <- beta0 + x * beta1 + t * tau + rnorm(n, sd = sigma)
-plot(x, y, type = "n", frame = FALSE)
-abline(lm(y ~ x), lwd = 2)
-abline(h = mean(y[1 : (n/2)]), lwd = 3)
-abline(h = mean(y[(n/2 + 1) : n]), lwd = 3)
-fit <- lm(y ~ x + t)
-abline(coef(fit)[1], coef(fit)[2], lwd = 3)
-abline(coef(fit)[1] + coef(fit)[3], coef(fit)[2], lwd = 3)
-points(x[1 : (n/2)], y[1 : (n/2)], pch = 21, col = "black", bg = "lightblue", cex = 2)
-points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon", cex = 2)
-```
+
+## Experiment 2
+
+![Experiment 2.](images/adjustment2.png)
+
+In this experiment, the X variable is highly related to group status.
+That is, if you know the X variable, you could very easily predict
+which group they belonged to. If we disregard X, there's an apparent
+strong relationship between the group variable and Y. However, if
+we account for X, there's basically none. In this case, the apparent
+effect of group on Y is entirely explained by X. Our regression
+model would likely have a strong significant effect if group was
+included by itself and this effect would vanish if X was included.
+
+Further notice, there's no data to directly compare the groups
+at any particular value of X. (There's no vertical overlap
+between the blue and red points.) Thus the adjusted effect
+is entirely based on the model.
+
+It's worth noting at this point, that our experiments
+just show how the data can arrive at different effects
+when X is included or not. In a real application,
+t may be the case that X should be
+included and maybe that it shouldn't be.
+
+For example,
+consider an example that I was working on a few years ago. Imagine
+if group was whether or not the subject was
+taking blood pressure medication and X was systolic blood pressure
+(ostensibly, the two variable giving the same information). It may
+not make sense to adjust for blood pressure when looking at blood
+pressure medication on the outcome.
+
+On the other hand consider another setting I ran into. A colleague
+was studying chemical brain measurements
+of patients a severe mental disorder versus controls post mortem.
+However, the time the time since death was highly related
+to the time the brain was stored since death, perhaps due to the differential patient sources of the two groups. The time since death was
+strongly related to the outcome we were studying.
+In this case, it is very hard to study the groups as they were so contaminated by this nuisance covariate.
 
 
----
-## Discussion
-### Some things to note in this simulation
-* The X variable is highly related to group status
-* The X variable is related to Y, the intercept
-  doesn't depend on the group variable.
-  * The X variable remains related to Y holding group status constant
-* The group variable is marginally related to Y disregarding X.
-* The model would estimate no adjusted effect due to group.
-  * There isn't any data to inform the relationship between
-    group and Y.
-  * This conclusion is entirely based on the model.
+Thus we arrive at the conclusion that whether or not to include
+a covariate is a complex process relying on both the statistics and
+a careful investigation into the subject matter being studied. 
 
----
+
+  <!--
 ## Simulation 3
 ```{r, fig.height=5, fig.width=5, echo = FALSE, results='hide'}
 n <- 100; t <- rep(c(0, 1), c(n/2, n/2)); x <- c(runif(n/2), .9 + runif(n/2));
