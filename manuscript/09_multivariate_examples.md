@@ -465,7 +465,7 @@ where {$$}Y_i{/$$} is `Fertility`, {$$}X_{i1}{/$$} is '`Agriculture` and
 {$$}X_{i2}{/$$} is `CatholicBin`. Let's first fit the model with {$$}X_{i2}{/$$}
 removed.
 
-<!--
+
 
 {lang=r,line-numbers=off}
 ~~~
@@ -487,6 +487,7 @@ when {$$}X_{i2} = 0{/$$} and
 
 {$$}Y_i = (\beta_0 +\beta_2) + X_{i1} \beta_1 + \epsilon_{i}{/$$}
 
+<!--
 when {$$}X_{i2] = 1{/$$}. Thus, the coefficient in front of the binary
 variable is the change in the intercept between non-Catholic and Catholic
 majority provinces.  In other words, this model fits parallel lines
@@ -504,6 +505,7 @@ summary(lm(Fertility ~ Agriculture + factor(CatholicBin), data = swiss))$coef
 Agriculture            0.1242     0.0811   1.531 1.329e-01
 factor(CatholicBin)1   7.8843     3.7484   2.103 4.118e-02
 ~~~
+
 Thus, 7.8843 is the estimated
 change in the intercept in the expected relationship between Agriculture and
 Fertility going from a non-Catholic majority province to a Catholic majority.
