@@ -170,7 +170,6 @@ will only explain more variation in Y if it's not perfectly explained
 by X and Z. R lets you know when you've done this by putting redundant
 variables as having NA coefficients.
 
-<!--
 
 ## Dummy variables are smart
 
@@ -203,6 +202,8 @@ it would create three parameters to describe two means. Moreover, we know from t
 including redundant variables will result in R just setting one of them to NA. We know that the intercept
 column is a column of ones, the group variable is one for those in the group while a variable for
 those not in the group would just be the subtraction of these two. Thus, it's linearly redundant and unnecessary.
+
+<!--
 
 ## More than two levels
 Consider a multilevel factor level. For didactic reasons, let's say a three level factor. As an example
