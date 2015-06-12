@@ -229,8 +229,6 @@ In R, if our variable is a factor variable, it will create the dummy variables f
 levels to be the reference level. Let's go through an example to see.
 
 
-<!--
-
 ## Insect Sprays
 
 Let's consider a model with factors. Consider the `InsectSprays` dataset in R. The data
@@ -407,6 +405,8 @@ Perhaps taking logs of the counts would help. But, since there are 0 counts, may
 Also, we'll cover Poisson GLMs for fitting count data.
 
 
+
+<!--
 
 ## Further analysis of the `swiss` dataset
 
