@@ -476,7 +476,6 @@ removed.
 Agriculture   0.1942    0.07671   2.532 1.492e-02
 ~~~
 
-<!--
 
 This model just assumes one line through the data (linear regression).
 Now let's add our second variable. Notice that the model is
@@ -487,8 +486,8 @@ when {$$}X_{i2} = 0{/$$} and
 
 {$$}Y_i = (\beta_0 +\beta_2) + X_{i1} \beta_1 + \epsilon_{i}{/$$}
 
-<!--
-when {$$}X_{i2] = 1{/$$}. Thus, the coefficient in front of the binary
+
+when {$$}X_{i2} = 1{/$$}. Thus, the coefficient in front of the binary
 variable is the change in the intercept between non-Catholic and Catholic
 majority provinces.  In other words, this model fits parallel lines
 for the two levels of the factor variable. If the factor variable had
@@ -550,4 +549,3 @@ of the main effects are change in the intercepts from the reference level while 
 are changes in slope (again compared to the reference level).
 
 Homework exercise, plot both lines on the data to see the fit!
--->

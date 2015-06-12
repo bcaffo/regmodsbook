@@ -83,7 +83,8 @@ unrelated to treatment/group status (color). In addition, the X variable
 is clearly linearly related to Y, but the intercept
 of this relationship depends on group status. The treatment variable is also
 related to Y; especially look at the horizontal lines
-which connect the group means onto the Y axis.
+which connect the group means onto the Y axis. The third line is the
+what you would get if you just fit X and ignored group.
 Furthermore, notice that the relationship between group status and Y is constant depending on X.
 In other words, both the apparent relationship and our estimated model have parallel lines. (Remember, our
   model, by not including an interaction term, did not allow for estimated non parallel lines.)
@@ -171,59 +172,70 @@ significant!
 
 Also in this settings, there isn't a lot of overlap
 between the groups for any given X. That means there
-isn't a lot of
+isn't a lot of direct evidence to compare the groups
+without relying heavily on the model. In other words,
+group status is related to X quite strongly (though not
+  as strongly as in the previous example). The adjusted
+relationship suggest that the blue group is larger
+than the red group. However, the reversal
+of the effect comes as
+bigger X means more likely red and bigger X means
+higher Y.
 
-* Marginal association has red group higher than blue.
-* Adjusted relationship has blue group higher than red.
-* Group status related to X.
-* There is some direct evidence for comparing red and blue
-holding X fixed.
+Let's concoct an example around a way this data could
+have occurred. Suppose
+that you're comparing two ad campaigns (labeled
+blue and red). Y is the sales from the ad (suppose you can measure this)
+and X is time of day that the ad is shown. Ads
+shown later on in the day do better than ads
+shown earlier. However, the blue ad campaign
+tended to get run in the morning while the
+red one tended to get run in the evening. So,
+ignoring time of day leads to the erroneous
+conclusion that the the red ad did better. Again
+randomization of the ads to time slots would
+likely have eliminated this problem.
+
+
+## Experiment 4
+
+![Experiment 4](images/adjustment4.png)
+
+Now that you've gotten the hang of it. You can
+see how marginal and conditional associations
+can differ. Experiment 4 is a case where the marginal association
+is minimal yet the conditional association is large.
+In this case, by adding X to the model, the group
+effect became more statistically significant.
+
+
+## Experiment 5
+
+![Adjustment 5.](images/adjustment5.png)
+
+Let's look at a weird one. In this case,
+the best fitting model has both a group main
+effect and interaction with X. The main point here
+is that there is no meaningful group effect, the
+effect of group depends on what level of X you're
+at. At a small value of X, the red group is here
+and at a large value of X, the blue group is higher;
+at intermediate values, they're the same. Thus, it
+makes no sense to talk about a group effect in this
+example; group and X are intrinsically linked in their
+impact on Y.
+
+As an example, imagine if Y is health outcome, X is time
+and group is two medications. One makes you much better
+right away then much worse as time goes on and the other
+doesn't do much at the start but steadily improves symptoms
+over time. Of course, most examples seen in practice aren't that
+extreme. Still even with a slight departure in constant slopes,
+the meaning of a main group effect goes away.
 
 <!--
 
 
----
-## Simulation 4
-```{r, fig.height=5, fig.width=5, echo = FALSE, results='hide'}
-n <- 100; t <- rep(c(0, 1), c(n/2, n/2)); x <- c(.5 + runif(n/2), runif(n/2));
-beta0 <- 0; beta1 <- 2; tau <- 1; sigma <- .2
-y <- beta0 + x * beta1 + t * tau + rnorm(n, sd = sigma)
-plot(x, y, type = "n", frame = FALSE)
-abline(lm(y ~ x), lwd = 2)
-abline(h = mean(y[1 : (n/2)]), lwd = 3)
-abline(h = mean(y[(n/2 + 1) : n]), lwd = 3)
-fit <- lm(y ~ x + t)
-abline(coef(fit)[1], coef(fit)[2], lwd = 3)
-abline(coef(fit)[1] + coef(fit)[3], coef(fit)[2], lwd = 3)
-points(x[1 : (n/2)], y[1 : (n/2)], pch = 21, col = "black", bg = "lightblue", cex = 2)
-points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon", cex = 2)
-```
-
----
-## Discussion
-### Some things to note in this simulation
-* No marginal association between group status and Y.
-* Strong adjusted relationship.
-* Group status not related to X.
-* There is lots of direct evidence for comparing red and blue
-holding X fixed.
-
----
-## Simulation 5
-```{r, fig.height=5, fig.width=5, echo = FALSE, results='hide'}
-n <- 100; t <- rep(c(0, 1), c(n/2, n/2)); x <- c(runif(n/2, -1, 1), runif(n/2, -1, 1));
-beta0 <- 0; beta1 <- 2; tau <- 0; tau1 <- -4; sigma <- .2
-y <- beta0 + x * beta1 + t * tau + t * x * tau1 + rnorm(n, sd = sigma)
-plot(x, y, type = "n", frame = FALSE)
-abline(lm(y ~ x), lwd = 2)
-abline(h = mean(y[1 : (n/2)]), lwd = 3)
-abline(h = mean(y[(n/2 + 1) : n]), lwd = 3)
-fit <- lm(y ~ x + t + I(x * t))
-abline(coef(fit)[1], coef(fit)[2], lwd = 3)
-abline(coef(fit)[1] + coef(fit)[3], coef(fit)[2] + coef(fit)[4], lwd = 3)
-points(x[1 : (n/2)], y[1 : (n/2)], pch = 21, col = "black", bg = "lightblue", cex = 2)
-points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon", cex = 2)
-```
 
 ---
 ## Discussion
