@@ -73,7 +73,7 @@ summary(lm(Fertility ~ Agriculture, data = swiss))$coefficients
 (Intercept)  60.3044    4.25126  14.185 3.216e-18
 Agriculture   0.1942    0.07671   2.532 1.492e-02
 ~~~
-<!--
+
 Notice that the sign of the slope estimate reversed! This is an
 example of so-called "Simpson's Paradox". This purported paradox (which is actually not
 a paradox at all) simply points out that unadjusted and adjusted effects can
@@ -169,6 +169,8 @@ all explain the same amount of variation in Y. A third variable, W say,
 will only explain more variation in Y if it's not perfectly explained
 by X and Z. R lets you know when you've done this by putting redundant
 variables as having NA coefficients.
+
+<!--
 
 ## Dummy variables are smart
 
