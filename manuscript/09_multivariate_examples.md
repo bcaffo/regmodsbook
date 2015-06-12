@@ -10,7 +10,6 @@ to get a hands on sense of the basics.
 We'll  start with the `Swiss` dataset that is part of the
 `datasets` package. This can be loaded in R with:
 
-<!--
 {lang=r,line-numbers=off}
 ~~~
 > require(datasets); data(swiss); ?swiss
@@ -57,8 +56,8 @@ this coefficients as follows:
 
 Our models estimates an expected 0.17 decrease in standardized fertility for every 1% increase in percentage of males involved in agriculture in holding the remaining variables constant.
 
-Note that the the t-test for $H_0: \beta_{Agri} = 0$ versus
-$H_a: \beta_{Agri} \neq 0$ is  significant since `0.0187` is less
+Note that the the t-test for {$$}H_0: \beta_{Agri} = 0{/$$} versus
+{$$}H_a: \beta_{Agri} \neq 0{/$$} is  significant since `0.0187` is less
 that typical benchmarks (0.05, for exaple). Note that, by default, R is
 reporting the P-value for the two sided test. If you want the one sided test,
 calculate it directly using the T-statistic and the degrees of freedom.
