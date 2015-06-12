@@ -77,7 +77,6 @@ points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon
 
 ![Simulation 1.](images/adjustment1.png)
 
-<!--
 
 Looking at this plot notices that the X variable is
 unrelated to treatment/group status (color). In addition, the X variable
@@ -85,16 +84,23 @@ is clearly linearly related to Y, but the intercept
 of this relationship depends on group status. The treatment variable is also
 related to Y; especially look at the horizontal lines
 which connect the group means onto the Y axis.
+Furthermore, notice that the relationship between group status and Y is constant depending on X.
+In other words, both the apparent relationship and our estimated model have parallel lines. (Remember, our
+  model, by not including an interaction term, did not allow for estimated non parallel lines.)
 
-* The X variable is unrelated to group status
-* The X variable is related to Y, but the intercept depends
-  on group status.
-* The group variable is related to Y.
-  * The relationship between group status and Y is constant depending on X.
-  * The relationship between group and Y disregarding X is about the same as holding X constant
+Finally, notice that the estimated relationship between the group variable and the outcome doesn't
+change much, regardless of whether X is accounted for or not. You can see this by comparing the
+distance between the horizontal lines and the distance between the intercepts of the fitted lines. The horizontal lines are the group averages (disregarding X).
+That the relationship doesn't change much is ultimately a statement about balance. The nuisance variable (X) is well balanced between
+levels of the group variable. So, whether you account for X or not, you get about the same answer. Moreover, we have lots of data at every level of
+X to make a direct comparison of the group on Y.
+One way to try to achieve such balance with high probability is to randomize the group variable. This is especially useful,
+of course, when one doesn't get to observe the nuisance covariate. Though be careful that as the number
+of unobserved covariates
+
+Now let's consider less ideal settings.
 
 <!--
----
 ## Simulation 2
 ```{r, fig.height=5, fig.width=5, echo = FALSE, results='hide'}
 n <- 100; t <- rep(c(0, 1), c(n/2, n/2)); x <- c(runif(n/2), 1.5 + runif(n/2));

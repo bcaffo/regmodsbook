@@ -7,5 +7,3 @@ preface.md
 06_residuals.md
 07_inference.md
 08_multivariate.md
-09_multivariate_examples.md
-10_adjustment.md
