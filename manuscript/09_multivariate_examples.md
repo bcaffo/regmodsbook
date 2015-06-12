@@ -431,7 +431,7 @@ Moutier           85.8        36.5          12         7    33.77             20
 Neuveville        76.9        43.5          17        15     5.16             20.6
 Porrentruy        76.1        35.3           9         7    90.57             26.6
 ~~~
-<!--
+
 Let's create a  binary variable out of the variable Catholic to illustrate dummy
 variables in multivariable models. However, it should be noted that this isn't
 patently absurd, since the variable is highly bimodal anyway. Let's just split
@@ -465,6 +465,8 @@ where {$$}Y_i{/$$} is `Fertility`, {$$}X_{i1}{/$$} is '`Agriculture` and
 {$$}X_{i2}{/$$} is `CatholicBin`. Let's first fit the model with {$$}X_{i2}{/$$}
 removed.
 
+<!--
+
 {lang=r,line-numbers=off}
 ~~~
 > summary(lm(Fertility ~ Agriculture, data = swiss))$coef
@@ -473,6 +475,8 @@ removed.
 (Intercept)  60.3044    4.25126  14.185 3.216e-18
 Agriculture   0.1942    0.07671   2.532 1.492e-02
 ~~~
+
+<!--
 
 This model just assumes one line through the data (linear regression).
 Now let's add our second variable. Notice that the model is
