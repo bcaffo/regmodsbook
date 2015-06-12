@@ -406,7 +406,6 @@ Also, we'll cover Poisson GLMs for fitting count data.
 
 
 
-<!--
 
 ## Further analysis of the `swiss` dataset
 
@@ -439,10 +438,10 @@ patently absurd, since the variable is highly bimodal anyway. Let's just split
 at majority Catholic or not:
 
 {lang=r,line-numbers=off}
-> spray2 <- relevel(InsectSprays$spray, "C")
 ~~~
-library(dplyr);
-swiss = mutate(swiss, CatholicBin = 1 * (Catholic > 50))
+> spray2 <- relevel(InsectSprays$spray, "C")
+> library(dplyr)
+> swiss = mutate(swiss, CatholicBin = 1 * (Catholic > 50))
 ~~~
 
 Since we're interested in Agriculture as a variable and Fertility as an outcome, let's plot

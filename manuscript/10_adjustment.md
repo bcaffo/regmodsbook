@@ -117,7 +117,15 @@ included by itself and this effect would vanish if X was included.
 Further notice, there's no data to directly compare the groups
 at any particular value of X. (There's no vertical overlap
 between the blue and red points.) Thus the adjusted effect
-is entirely based on the model.
+is entirely based on the model, specifically the assumption
+of linearity. Try to drawing curves on this plot assuming
+non-linear relationships outside of their cloud of points
+for the blue and red groups. You quickly will conclude
+that many relationship are possible that would differ
+from this model's conclusions. Worse still, you have no data to
+check the assumptions. Of course, R will churn forward without
+any complaints fitting this model and reporting no significant
+difference between the groups.
 
 It's worth noting at this point, that our experiments
 just show how the data can arrive at different effects
@@ -144,35 +152,34 @@ In this case, it is very hard to study the groups as they were so contaminated b
 
 Thus we arrive at the conclusion that whether or not to include
 a covariate is a complex process relying on both the statistics and
-a careful investigation into the subject matter being studied. 
+a careful investigation into the subject matter being studied.
 
+## Experiment 3
 
-  <!--
-## Simulation 3
-```{r, fig.height=5, fig.width=5, echo = FALSE, results='hide'}
-n <- 100; t <- rep(c(0, 1), c(n/2, n/2)); x <- c(runif(n/2), .9 + runif(n/2));
-beta0 <- 0; beta1 <- 2; tau <- -1; sigma <- .2
-y <- beta0 + x * beta1 + t * tau + rnorm(n, sd = sigma)
-plot(x, y, type = "n", frame = FALSE)
-abline(lm(y ~ x), lwd = 2)
-abline(h = mean(y[1 : (n/2)]), lwd = 3)
-abline(h = mean(y[(n/2 + 1) : n]), lwd = 3)
-fit <- lm(y ~ x + t)
-abline(coef(fit)[1], coef(fit)[2], lwd = 3)
-abline(coef(fit)[1] + coef(fit)[3], coef(fit)[2], lwd = 3)
-points(x[1 : (n/2)], y[1 : (n/2)], pch = 21, col = "black", bg = "lightblue", cex = 2)
-points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon", cex = 2)
-```
+![Experiment 3.](images/adjustment3.png)
 
----
-## Discussion
-### Some things to note in this simulation
+In this experiment, we simulated data where the marginal (ignoring X)
+and conditional (using X) associations differ. First note that
+if X is ignored, one would estimate a higher marginal mean for Y
+of the red group over the blue group. However, if we look at the
+intercept in the fitted model, the blue group has a higher
+intercept. In other words, if you were to fit this linear
+model as `lm(Y ~ Group)` you would get one answer and
+`lm(Y ~ Group + X)` would give you the exact opposite answer,
+and in both cases the group effect would be highly statistically
+significant!
+
+Also in this settings, there isn't a lot of overlap
+between the groups for any given X. That means there
+isn't a lot of
+
 * Marginal association has red group higher than blue.
 * Adjusted relationship has blue group higher than red.
 * Group status related to X.
 * There is some direct evidence for comparing red and blue
 holding X fixed.
 
+<!--
 
 
 ---
