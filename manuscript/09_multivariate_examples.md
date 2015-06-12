@@ -203,7 +203,6 @@ including redundant variables will result in R just setting one of them to NA. W
 column is a column of ones, the group variable is one for those in the group while a variable for
 those not in the group would just be the subtraction of these two. Thus, it's linearly redundant and unnecessary.
 
-<!--
 
 ## More than two levels
 Consider a multilevel factor level. For didactic reasons, let's say a three level factor. As an example
@@ -229,6 +228,8 @@ If one category is an obvious reference category, chose that one to leave our.
 In R, if our variable is a factor variable, it will create the dummy variables for us and pick one of the
 levels to be the reference level. Let's go through an example to see.
 
+
+<!--
 
 ## Insect Sprays
 
