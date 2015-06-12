@@ -10,6 +10,7 @@ to get a hands on sense of the basics.
 We'll  start with the `Swiss` dataset that is part of the
 `datasets` package. This can be loaded in R with:
 
+<!--
 {lang=r,line-numbers=off}
 ~~~
 > require(datasets); data(swiss); ?swiss
@@ -541,3 +542,4 @@ of the main effects are change in the intercepts from the reference level while 
 are changes in slope (again compared to the reference level).
 
 Homework exercise, plot both lines on the data to see the fit!
+-->
