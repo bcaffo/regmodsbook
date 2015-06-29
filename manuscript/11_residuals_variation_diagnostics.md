@@ -120,6 +120,12 @@ Under this way of thinking,
 the distinctions over which of these two kinds of standardization are used
 is more academic than practical.
 
+A common use for residuals is to diagnose normality of the errors. This
+is often done by plotting the residual quantiles versus normal quantiles.
+This is called a residual QQ plot. Your residuals should fall roughly
+on a line if plotted in a normal QQ plot. There is of course noise and
+a perfect fit would not be expected even if the model held.
+
 **Leverage** is largely measured by one quantity, so called *hat diagonals*, which can be obtained in R by the function `hatvalues`. The
 hat values are necessarily between 0 and 1 with larger values indicating
 greater (potential for) leverage.
@@ -138,22 +144,26 @@ Finally, there's a residual measure that's also an influence measure.
 Particularly, consider `resid(fit) / (1 - hatvalues(fit))` where `fit` is the linear model fit. This is the so-called PRESS residuals. These
 are the residual error from leave one out cross validation. That is, the difference in the response and the predicted response at data point {$$}i{/$$}, where it was not included in the model fitting.
 
-<!--
 ## How do I use all of these things?
-* Be wary of simplistic rules for diagnostic plots and measures. The use of these tools is context specific. It's better to understand what they are trying to accomplish and use them judiciously.
-* Not all of the measures have meaningful absolute scales. You can look at them relative to the values across the data.
-* They probe your data in different ways to diagnose different problems.
-* Patterns in your residual plots generally indicate some poor aspect of model fit. These can include:
+
+First of all, be wary of simplistic rules for diagnostic plots and measures. The use of these tools is context specific. It's better to understand what they are trying to accomplish and use them judiciously. Not all diagnostics measures have meaningful absolute scales. You can look at them relative to the values across the data. Even for the ones with known
+exact distributions to establish cutoffs,
+those distributions (like the externally studentized residual) have degrees of freedom that depend on the sample size, so a single threshold can't
+be used across all settings.
+
+A better way to think about these tool is as diagnostics, like a
+physician diagnosing a health issue. These tools probe your data in different ways to diagnose different problems.  Some examples include:
+  * Patterns in your residual plots generally indicate some poor aspect of model fit.
   * Heteroskedasticity (non constant variance).
   * Missing model terms.
   * Temporal patterns (plot residuals versus collection order).
 * Residual QQ plots investigate normality of the errors.
-* Leverage measures (hat values) can be useful for diagnosing data entry errors.
+* Leverage measures (hat values) can be useful for diagnosing data entry errors and points that have a high potential for influence.
 * Influence measures get to the bottom line, 'how does deleting or including this point impact a particular aspect of the model'.
 
-<!--
+Let's do some experiments to see how these measure hold up.
 
----
+<!--
 ## Case 1
 <div class="rimage center"><img src="fig/unnamed-chunk-3.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div>
 
