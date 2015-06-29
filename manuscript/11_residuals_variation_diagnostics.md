@@ -1,5 +1,7 @@
 # Residuals, variation, diagnostics
 
+## Residuals
+
 Recall from Chapter 6 that the vertical distances between the observed data points and the fitted
 regression line are called residuals. We can generalize this idea to the vertical distances between
 the observed data and the fitted surface in multivariable settings.
@@ -20,44 +22,123 @@ residuals. Specifically, {$$}\hat \sigma^2 = \frac{\sum_{i=1}^n e_i^2}{n-p}{/$$}
 by {$$}n-p{/$$} rather than {$$}n{/$$} so that the estimate is unbiased, {$$}E[\hat \sigma^2] = \sigma^2{/$$}.
 
 
-<!--
-```r
+Obtaining and plotting residuals in R is particularly easy. The function `resid` will return the residuals of a model
+fit with `lm`. Some useful plots, including a residual plot, can be performed with the `plot` function on the output
+of a `lm` fit.   Consider the `swiss` dataset from previous chapters.
+
+{lang=r, line-numbers=off}
+~~~
 data(swiss); par(mfrow = c(2, 2))
 fit <- lm(Fertility ~ . , data = swiss); plot(fit)
-```
+~~~
 
-<div class="rimage center"><img src="fig/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div>
+![The result of the method `plot` on the `swiss` dataset.](images/mresid1.png)
+
+Consider the upper left hand plot of the residuals ({$$}e_i{/$$}) versus
+the fitted values ({$$}\hat Y_i{/$$}). Often, a horiztonal reference line at 0 is drawn
+since (whenever an intercept is included) the residuals must sum to 0 and
+so will lie above and below the zero. Just like in our previous residual
+plots, one is look for any systematic patters or large outlying observations.
+
+Note that this is one of many residual plots that one may be interested in
+performing. For example, one might want to look at plots of residuals by
+individual predictors or, as is done by `plot`, versus leverage (defined
+  later in this chapter).
 
 
----
 ## Influential, high leverage and outlying points
-<div class="rimage center"><img src="fig/unnamed-chunk-2.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div>
+
+As previously mentioned, it is a good idea to check our data for outliers.
+We may want to refer back to these points to see if we can ascertain how
+they became outliers, such as a misrecording. In addition, we may want
+to fit the models with and without those points included in order to
+ascertain their influence on the model fit and inferential goals.
+
+Outliers can results for a variety of reasons. They can be real, but
+inconvenient, data. They could arise from spurious processes like
+processing or recording errors. They can have varying degrees of
+influence on our model. Thus, calling a point an outlier is vague and
+we need a more precise language to discuss points that fall outside of
+our cloud of data. The plot below is useful for understanding different
+sorts of outliers.
+
+![Plot of simulated data with four different kinds of highlighted orange points.](images/mresid2.png)
 
 
----
-## Summary of the plot
-Calling a point an outlier is vague.
-  * Outliers can be the result of spurious or real processes.
-  * Outliers can have varying degrees of influence.
-  * Outliers can conform to the regression relationship (i.e being marginally outlying in X or Y, but not outlying given the regression relationship).
-* Upper left hand point has low leverage, low influence, outlies in a way not conforming to the regression relationship.
-* Lower left hand point has low leverage, low influence and is not to be an outlier in any sense.
-* Upper right hand point has high leverage, but chooses not to extert it and thus would have low actual influence by conforming to the regresison relationship of the other points.
-* Lower right hand point has high leverage and would exert it if it were included in the fit.
+The lower left hand point is not an outlier having neither leverage nor
+influence on our fitted model. The upper left hand point
+is an outlier in the Y direction, but not in the X. It will have little
+impact on our fitted model, since there's lots of X points nearby
+to counteract its effect. This point is said to have
+low leverage and influence. The upper right hand
+point is outside of the range of X values and Y values, but conforms
+nicely to the regression relationship. This point has  It will also have little effect
+on the fitted model. It has high leverage, but chooses not to extert it,
+and thus has low influence. The lower left hand point is outside of the range
+of X values, but not the Y values. However, it does not conform to the
+relationship of the remainder of points at all. This outlier has high leverage and influence.
 
----
-## Influence measures
-* Do `?influence.measures` to see the full suite of influence measures in stats. The measures include
-  * `rstandard` - standardized residuals, residuals divided by their standard deviations)
-  * `rstudent` - standardized residuals, residuals divided by their standard deviations, where the ith data point was deleted in the calculation of the standard deviation for the residual to follow a t distribution
-  * `hatvalues` - measures of leverage
+
+From this discussion you can maybe guess at the formal definition of
+two important terms: leverage and influence.
+Leverage discusses how outside of the norm a points X values
+are from the cloud of other X values. A point with high leverage has the
+opportunity to dramatically impact the regression model. Whether or not
+it does so depends on how closely it conforms to the fit.
+
+The other concept, influence, is a measure of how much impact a point has
+on the regression fit. The most direct way to measure influence is
+fit the model with the point included and excluded.
+
+
+
+
+## Residuals, Leverage and Influence measures
+Now that we understand the three concepts of residuals, leverage and influence, we present a laundry list
+of probes.  Do `?influence.measures` to see the full suite of influence measures in stats.  
+
+First consider **residuals**. We already know if `fit` is the output of
+`lm` (as in `fit = lm(y ~ x1 + x2)`), then `resid(fit)` returns the
+ordinary residuals. A problem, though, is that these are defined as
+{$$}Y_i - \hat Y_i {/$$} and thus have the units of the outcome. This
+isn't great for comparing residual values across different analyses
+with different experiments. So, some efforts to standardize residuals
+have been made. Two of the most common are:
+
+* `rstandard` - residuals divided by their standard deviations
+* `rstudent` - residuals divided by their standard deviations, where the ith data point was deleted in the calculation of the standard deviation for the residual to follow a t distribution
+
+Both of these endeavor to create T-like (as in Student's T distribution)
+statistics so that one can threshold residuals using T cutoffs. This is
+why these sorts of residuals are called `studentized`. The `rstudent`
+residuals are exactly T distributed while the `rstandard` is not. The
+`rstandard` residuals are sometimes called internally standardized while the
+`rstudent` are called externally. The distinction between the residuals
+is mostly for establishing probability based cutoffs. Instead, we recommend
+looking at the residuals as a collective and using the cutoffs loosely.
+Under this way of thinking,
+the distinctions over which of these two kinds of standardization are used
+is more academic than practical.
+
+**Leverage** is largely measured by one quantity, so called *hat diagonals*, which can be obtained in R by the function `hatvalues`. The
+hat values are necessarily between 0 and 1 with larger values indicating
+greater (potential for) leverage.
+
+After leverage, there are quite a few ways to probe for **influence. These
+are:
+
   * `dffits` - change in the predicted response when the $i^{th}$ point is deleted in fitting the model.
   * `dfbetas` - change in individual coefficients when the $i^{th}$ point is deleted in fitting the model.
-  * `cooks.distance` - overall change in teh coefficients when the $i^{th}$ point is deleted.
-  * `resid` - returns the ordinary residuals
-  * `resid(fit) / (1 - hatvalues(fit))` where `fit` is the linear model fit returns the PRESS residuals, i.e. the leave one out cross validation residuals - the difference in the response and the predicted response at data point $i$, where it was not included in the model fitting.
+  * `cooks.distance` - overall change in the coefficients when the $i^{th}$ point is deleted.
 
----
+In other words, the `dffits` check for influence in the fitted values,
+`dfbetas` check for influence in the coefficients individually and `cooks.distance` checks for influence in the coefficients as a collective.
+
+Finally, there's a residual measure that's also an influence measure.
+Particularly, consider `resid(fit) / (1 - hatvalues(fit))` where `fit` is the linear model fit. This is the so-called PRESS residuals. These
+are the residual error from leave one out cross validation. That is, the difference in the response and the predicted response at data point {$$}i{/$$}, where it was not included in the model fitting.
+
+<!--
 ## How do I use all of these things?
 * Be wary of simplistic rules for diagnostic plots and measures. The use of these tools is context specific. It's better to understand what they are trying to accomplish and use them judiciously.
 * Not all of the measures have meaningful absolute scales. You can look at them relative to the values across the data.
@@ -69,6 +150,8 @@ Calling a point an outlier is vague.
 * Residual QQ plots investigate normality of the errors.
 * Leverage measures (hat values) can be useful for diagnosing data entry errors.
 * Influence measures get to the bottom line, 'how does deleting or including this point impact a particular aspect of the model'.
+
+<!--
 
 ---
 ## Case 1
