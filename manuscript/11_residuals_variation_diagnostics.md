@@ -164,42 +164,58 @@ physician diagnosing a health issue. These tools probe your data in different wa
 
 Let's do some experiments to see how these measure hold up.
 
-<!--
+![IMage for first simulation.](images/mresid3.png)
+
 ## Case 1
-<div class="rimage center"><img src="fig/unnamed-chunk-3.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div>
+
+In what follows, we're going to try several simulation settings and see the values of some 
+on the residuals, influence measures and leverage. In our first
+case, we simulate 100 points. The 101st point, `c(10, 10)`,
+has created a strong regression relationship where there shouldn't be one.
+Note we prepend this point at the beginning of the Y and X vectors.
 
 
----
-## The code
-```
+{lang=r,line-numbers=off}
+~~~
 n <- 100; x <- c(10, rnorm(n)); y <- c(10, c(rnorm(n)))
 plot(x, y, frame = FALSE, cex = 2, pch = 21, bg = "lightblue", col = "black")
 abline(lm(y ~ x))
-```
-* The point `c(10, 10)` has created a strong regression relationship where there shouldn't be one.
+~~~
 
----
-## Showing a couple of the diagnostic values
 
-```r
-fit <- lm(y ~ x)
-round(dfbetas(fit)[1 : 10, 2], 3)
-```
+<div class="rimage center"><img src="fig/unnamed-chunk-3.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" class="plot" /></div>
 
-```
+
+First, let's look at the `dfbetas`. Note the `dfbetas` are 101 by 2 dimensional, since there's a `dfbeta`
+for both the intercept and the slope. Let's just output the first 10 for the slope.
+
+{lang=r,line-numbers=off}
+~~~
+> fit <- lm(y ~ x)
+> round(dfbetas(fit)[1 : 10, 2], 3)
      1      2      3      4      5      6      7      8      9     10
  6.007 -0.019 -0.007  0.014 -0.002 -0.083 -0.034 -0.045 -0.112 -0.008
-```
+~~~
 
-```r
+Clearly the first point has a much, much larger `dfbeta` for the slope than
+the other points. That is, the slope changes dramatically from when we include
+this point to not including it. Try it out with Cook's distance and the
+`dffits`. Let's look at leverage.
+
+
+{lang=r,line-numbers=off}
+~~~
 round(hatvalues(fit)[1 : 10], 3)
-```
-
-```
     1     2     3     4     5     6     7     8     9    10
 0.445 0.010 0.011 0.011 0.030 0.017 0.012 0.033 0.021 0.010
-```
+~~~
 
+Again, this point has a much higher leverage value than that of 
+the other points. By having a large leverage value and 
+`dfbeta`, we're seeing that this point has a high potential for influence, and
+decided to exert it.
+
+<!--
 
 ---
 ## Case 2
