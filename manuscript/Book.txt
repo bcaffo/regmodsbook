@@ -10,3 +10,4 @@ preface.md
 09_multivariate_examples.md
 10_adjustment.md
 11_residuals_variation_diagnostics.md
+12_multiple_variables.md
