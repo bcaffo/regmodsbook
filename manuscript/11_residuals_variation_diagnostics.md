@@ -2,6 +2,7 @@
 
 ## Residuals
 
+
 Recall from Chapter 6 that the vertical distances between the observed data points and the fitted
 regression line are called residuals. We can generalize this idea to the vertical distances between
 the observed data and the fitted surface in multivariable settings.
