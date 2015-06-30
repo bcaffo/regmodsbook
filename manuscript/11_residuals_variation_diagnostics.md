@@ -145,7 +145,7 @@ Finally, there's a residual measure that's also an influence measure.
 Particularly, consider `resid(fit) / (1 - hatvalues(fit))` where `fit` is the linear model fit. This is the so-called PRESS residuals. These
 are the residual error from leave one out cross validation. That is, the difference in the response and the predicted response at data point {$$}i{/$$}, where it was not included in the model fitting.
 
-## How do I use all of these things?
+### How do I use all of these things?
 
 First of all, be wary of simplistic rules for diagnostic plots and measures. The use of these tools is context specific. It's better to understand what they are trying to accomplish and use them judiciously. Not all diagnostics measures have meaningful absolute scales. You can look at them relative to the values across the data. Even for the ones with known
 exact distributions to establish cutoffs,
@@ -166,7 +166,9 @@ Let's do some experiments to see how these measure hold up.
 
 ![IMage for first simulation.](images/mresid3.png)
 
-## Case 1
+## Simulation examples
+
+### Case 1
 
 In what follows, we're going to try several simulation settings and see the values of some 
 on the residuals, influence measures and leverage. In our first
@@ -215,75 +217,81 @@ the other points. By having a large leverage value and
 `dfbeta`, we're seeing that this point has a high potential for influence, and
 decided to exert it.
 
-<!--
 
----
-## Case 2
-<div class="rimage center"><img src="fig/unnamed-chunk-5.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" class="plot" /></div>
+### Case 2
 
+Consider a second case where the point lies on a natural
+line defined by the data, but is well outside of the cloud
+of X values. Since the code is so similar, I don't show it.
+But, as always, it can be found in the github repo for the
+courses.
 
----
-## Looking at some of the diagnostics
+![Second simulation example.](images/mresid4.png)
 
-```r
-round(dfbetas(fit2)[1 : 10, 2], 3)
-```
+Now let's consider the `dfbetas` and the leverage for the
+first 10 observations. 
 
-```
+{lang=r,line-numbers=off}
+~~~
+> round(dfbetas(fit2)[1 : 10, 2], 3)
      1      2      3      4      5      6      7      8      9     10
 -0.072 -0.041 -0.007  0.012  0.008 -0.187  0.017  0.100 -0.059  0.035
-```
-
-```r
-round(hatvalues(fit2)[1 : 10], 3)
-```
-
-```
+> round(hatvalues(fit2)[1 : 10], 3)
     1     2     3     4     5     6     7     8     9    10
 0.164 0.011 0.014 0.012 0.010 0.030 0.017 0.017 0.013 0.021
-```
+~~~
+
+As we would expect, the `dfbeta` value for the first point is well with
+the range of the other points. The leverage is much larger than the others.
+In this case, the point has high leverage, but choses not to exert it as influence.
+
+Play around with more simulation examples to get a feeling for what these
+measures do. This will help more than anything in understanding their
+value.
+
+## Example described by Stefanski
+
+We end with a really fun example from Stefanski in [TAS 2007 volume 61](http://amstat.tandfonline.com/doi/abs/10.1198/000313007X190079).
+This paper illustrates how a residual plot can unveil hidden treasures that would be nearly
+impossible to detect with other kinds of plots. He has several examples on his website
+and we go through one. First, let's read in the data and do a scatterplot matrix.
 
 
----
-## Example described by Stefanski TAS 2007 Vol 61.
-
-```r
-## Don't everyone hit this server at once.  Read the paper first.
+{lang=r,line-numbers=off}
+~~~
 dat <- read.table('http://www4.stat.ncsu.edu/~stefanski/NSF_Supported/Hidden_Images/orly_owl_files/orly_owl_Lin_4p_5_flat.txt', header = FALSE)
 pairs(dat)
-```
+~~~
 
-<div class="rimage center"><img src="fig/unnamed-chunk-7.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" class="plot" /></div>
+![Scatterplot matrix from the Stefanski data.](images/mresid5.png)
 
+It looks like a big mess of nothing. We can fit a model and get 
+that all of the variables are highly significant
 
----
-## Got our P-values, should we bother to do a residual plot?
-
-```r
-summary(lm(V1 ~ . -1, data = dat))$coef
-```
-
-```
+{lang=r,line-numbers=off}
+~~~
+> summary(lm(V1 ~ . -1, data = dat))$coef
    Estimate Std. Error t value  Pr(>|t|)
 V2   0.9856    0.12798   7.701 1.989e-14
 V3   0.9715    0.12664   7.671 2.500e-14
 V4   0.8606    0.11958   7.197 8.301e-13
 V5   0.9267    0.08328  11.127 4.778e-28
-```
+~~~
 
+Can we call it a day? Let's check a residual plot.
 
----
-## Residual plot
-### P-values significant, O RLY?
-
-```r
+{lang=r,line-numbers=off}
+~~~
 fit <- lm(V1 ~ . - 1, data = dat); plot(predict(fit), resid(fit), pch = '.')
-```
+~~~
 
-<div class="rimage center"><img src="fig/unnamed-chunk-9.png" title="plot of chunk unnamed-chunk-9" alt="plot of chunk unnamed-chunk-9" class="plot" /></div>
+![Residuals versus fitted values from the Stefanski data.](images/mresid7.png)
 
+There appears to be a pattern. The moral of the story here is that residual plots
+can really hone in on systematic patters in the data that are completely non-apparent
+from other plots.
 
----
 ## Back to the Swiss data
-<div class="rimage center"><img src="fig/unnamed-chunk-10.png" title="plot of chunk unnamed-chunk-10" alt="plot of chunk unnamed-chunk-10" class="plot" /></div>
--->
+
+![Plot of the influence, leverage and residuals from the `swiss` dataset](images/mresid7.png)
+
