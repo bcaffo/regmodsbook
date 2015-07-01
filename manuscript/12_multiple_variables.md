@@ -70,7 +70,7 @@ For the rest of the lecture, let's discuss the known knowns and what their unnec
 in our analysis.
 
 ## General rules
-Here we state a couple of general rules regarding model selection.
+Here we state a couple of general rules regarding model selection for our known knowns.
 
 * Omitting variables results in bias in the coefficients of interest - unless the regressors are uncorrelated with the omitted ones.
 
@@ -92,34 +92,58 @@ So we don't want to idly throw variables into the model. In addition the model m
 fit as the number of non-redundant regressors approaches the sample size.  Our {$$}R^2{/$$}
 increases monotonically as more regressors are included, even unrelated white noise.
 
-<!--
-## Plot of $R^2$ versus $n$
-For simulations as the number of variables included equals increases to $n=100$.
-No actual regression relationship exist in any simulation
-<div class="rimage center"><img src="fig/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div>
+
+## {$$}R^2{/$$} goes up as you put regressors in the model
+
+Let's try a simulation. In this simulation, no regression relationship exists. We simulate data and {$$}p{/$$} regressors as random normals.
+The plot is of the {$$}R^2{/$$}.
+
+{lang=r,line-numbers=off}
+~~~
+n <- 100
+plot(c(1, n), 0 : 1, type = "n", frame = FALSE, xlab = "p", ylab = "R^2")
+y <- rnorm(n); x <- NULL; r <- NULL
+for (i in 1 : n){
+   x <- cbind(x, rnorm(n))
+   r <- c(r, summary(lm(y ~ x))$r.squared)
+}
+lines(1 : n, r, lwd = 3)
+abline(h = 1)
+~~~
+
+![Plot of {$$}R^2{/$$} by {$$}n{/$$} as more regressors are included. No actual regression ](images/model1.png)
+
+Notice that the {$$}R^2{/$$} goes up, monotonically, as the number of regressors
+is increased.
 
 
----
 ## Variance inflation
 
-```r
-n <- 100; nosim <- 1000
-x1 <- rnorm(n); x2 <- rnorm(n); x3 <- rnorm(n);
-betas <- sapply(1 : nosim, function(i){
+Now let's use simulation to demonstrate variation inflation. In this case,
+we're going to simulate three regressors, x1, x2 and x3. We then repeatedly
+generate data from a model where y only depends on x1. We fit three models,
+`y ~ x1`, `y ~ x1 + x2`, and `y ~ x1 + x2 + x3`. We do this over and over
+again and look at the standard deviation of the x1 coefficient.
+
+{lang=r, line-numbers=off}
+~~~
+> n <- 100; nosim <- 1000
+> x1 <- rnorm(n); x2 <- rnorm(n); x3 <- rnorm(n);
+> betas <- sapply(1 : nosim, function(i){
   y <- x1 + rnorm(n, sd = .3)
   c(coef(lm(y ~ x1))[2],
     coef(lm(y ~ x1 + x2))[2],
     coef(lm(y ~ x1 + x2 + x3))[2])
-})
-round(apply(betas, 1, sd), 5)
-```
+  })
+> round(apply(betas, 1, sd), 5)
 
-```
      x1      x1      x1
 0.02839 0.02872 0.02884
-```
+~~~
 
 
+---
+---
 ---
 ## Variance inflation
 
@@ -141,9 +165,6 @@ round(apply(betas, 1, sd), 5)
 0.03131 0.04270 0.09653
 ```
 
-
-
----
 ## Variance inflation factors
 * Notice variance inflation was much worse when we included a variable that
 was highly related to `x1`.
@@ -235,7 +256,7 @@ sqrt(vif(fit)) #I prefer sd
 * Principal components or factor analytic models on covariates are often useful for reducing complex covariate spaces.
 * Good design can often eliminate the need for complex model searches at analyses; though often control over the design is limited.
 * If the models of interest are nested and without lots of parameters differentiating them, it's fairly uncontroversial to use nested likelihood ratio tests. (Example to follow.)
-* My favoriate approach is as follows. Given a coefficient that I'm interested in, I like to use covariate adjustment and multiple models to probe that effect to evaluate it for robustness and to see what other covariates knock it out.  This isn't a terribly systematic approach, but it tends to teach you a lot about the the data as you get your hands dirty.
+* My favorite approach is as follows. Given a coefficient that I'm interested in, I like to use covariate adjustment and multiple models to probe that effect to evaluate it for robustness and to see what other covariates knock it out.  This isn't a terribly systematic approach, but it tends to teach you a lot about the the data as you get your hands dirty.
 
 ---
 ## How to do nested model testing in R
