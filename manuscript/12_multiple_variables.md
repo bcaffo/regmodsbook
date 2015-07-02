@@ -93,7 +93,7 @@ fit as the number of non-redundant regressors approaches the sample size.  Our {
 increases monotonically as more regressors are included, even unrelated white noise.
 
 
-## {$$}R^2{/$$} goes up as you put regressors in the model
+## R squared goes up as you put regressors in the model
 
 Let's try a simulation. In this simulation, no regression relationship exists. We simulate data and {$$}p{/$$} regressors as random normals.
 The plot is of the {$$}R^2{/$$}.
@@ -325,5 +325,6 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ~~~
 
 Notice how the three models I'm interested in are nested. That is, Model 3 contains all of the Model 2 variables which contains all of the Model 1
-variables. The P-values are for a test of whether all of the new variables are all zero or not (i.e. whether or not they're necessary). So this model would conclude that all of the terms are necessary
-(Model 3). Again, you don't want to blindly follow a model selection procedure, but when the models are naturally nested, this is a reasonable approach.
+variables. The P-values are for a test of whether all of the new variables are all zero or not (i.e. whether or not they're necessary). So this model would conclude that all of the added Model 3 terms are necessary over Model 2 and all of the Model 2 terms are necessary over Model 1. So, unless there were some other
+compelling reasons, we'd pick Model 3. 
+Again, you don't want to blindly follow a model selection procedure, but when the models are naturally nested, this is a reasonable approach.
