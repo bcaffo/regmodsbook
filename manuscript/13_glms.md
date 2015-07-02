@@ -1,4 +1,4 @@
-## Generalized Linear Models
+# Generalized Linear Models
 
 Generalized linear models (GLMs) were a great advance in statistical modeling. The
 original manuscript with the GLM framework was from [Nelder and Wedderburn in 1972](http://www.jstor.org/stable/2344614).
