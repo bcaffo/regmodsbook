@@ -113,9 +113,9 @@ theory. The exact equation that gets solved is the so-called normal equations
 
 The variance differs by the model. The {$$}W_i{/$$} are derivative terms that we won't deal with.
 
-* For the linear model $Var(Y_i) = \sigma^2$ (is constant).
-* For Bernoulli case $Var(Y_i) = \mu_i (1 - \mu_i)$
-* For the Poisson case $Var(Y_i) = \mu_i$.
+* For the linear model {$$}Var(Y_i) = \sigma^2{/$$} (is constant).
+* For Bernoulli case {$$}Var(Y_i) = \mu_i (1 - \mu_i){/$$}
+* For the Poisson case {$$}Var(Y_i) = \mu_i{/$$}.
 
 In the latter two cases, it is often relevant to have a more flexible variance model, even if it doesn't correspond to an actual likelihood.
 We might make the following changes:
