@@ -1,20 +1,13 @@
----
-title       : Generalized linear models, binary data
-subtitle    : Regression models
-author      : Brian Caffo, Jeff Leek and Roger Peng
-job         : Johns Hopkins Bloomberg School of Public Health
-logo        : bloomberg_shield.png
-framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
-highlighter : highlight.js  # {highlight.js, prettify, highlight}
-hitheme     : tomorrow      # 
-url:
-  lib: ../../librariesNew
-  assets: ../../assets
-widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
-mode        : selfcontained # {standalone, draft}
----
+# Binary GLMs
 
+Binary GLMs come from trying to model outcomes that can take only two
+values. Some examples include: survival or not at the end of a study,
+winning versus losing of a team and success versus failure of a treatment or
+product. Often these outcomes are called Bernoulli outcomes, from the
+Bernoulli distribution named after the famous probabilist and mathematician.
 
+If we happen to have several exchangeable binary outcomes for the same level
+of 
 
 ## Key ideas
 
@@ -23,7 +16,7 @@ mode        : selfcontained # {standalone, draft}
   * Win/loss
   * Success/Failure
   * etc
-* Called binary, Bernoulli or 0/1 outcomes 
+* Called binary, Bernoulli or 0/1 outcomes
 * Collection of exchangeable binary outcomes for the same covariate data are called binomial outcomes.
 
 ---
@@ -64,7 +57,7 @@ $b_0$ - probability of a Ravens win if they score 0 points
 
 $b_1$ - increase in probability of a Ravens win for each additional point
 
-$e_i$ - residual variation due 
+$e_i$ - residual variation due
 
 ---
 
@@ -96,11 +89,11 @@ $$\rm{Pr}(RW_i | RS_i, b_0, b_1 )$$
 
 
 __Odds $(0,\infty)$__
-$$\frac{\rm{Pr}(RW_i | RS_i, b_0, b_1 )}{1-\rm{Pr}(RW_i | RS_i, b_0, b_1)}$$ 
+$$\frac{\rm{Pr}(RW_i | RS_i, b_0, b_1 )}{1-\rm{Pr}(RW_i | RS_i, b_0, b_1)}$$
 
 __Log odds $(-\infty,\infty)$__
 
-$$\log\left(\frac{\rm{Pr}(RW_i | RS_i, b_0, b_1 )}{1-\rm{Pr}(RW_i | RS_i, b_0, b_1)}\right)$$ 
+$$\log\left(\frac{\rm{Pr}(RW_i | RS_i, b_0, b_1 )}{1-\rm{Pr}(RW_i | RS_i, b_0, b_1)}\right)$$
 
 
 ---
@@ -144,7 +137,7 @@ $\exp(b_1)$ - Odds ratio of win probability for each point scored (compared to z
 
     $$E[earnings]= X p - Y (1 - p) = 0$$
 - Implies
-    $$\frac{Y}{X} = \frac{p}{1 - p}$$    
+    $$\frac{Y}{X} = \frac{p}{1 - p}$$
 - The odds can be said as "How much should you be willing to pay for a $p$ probability of winning a dollar?"
     - (If $p > 0.5$ you have to pay more if you lose than you get if you win.)
     - (If $p < 0.5$ you have to pay less if you lose than you get if you win.)
@@ -154,7 +147,7 @@ $\exp(b_1)$ - Odds ratio of win probability for each point scored (compared to z
 ```
 x <- seq(-10, 10, length = 1000)
 manipulate(
-    plot(x, exp(beta0 + beta1 * x) / (1 + exp(beta0 + beta1 * x)), 
+    plot(x, exp(beta0 + beta1 * x) / (1 + exp(beta0 + beta1 * x)),
          type = "l", lwd = 3, frame = FALSE),
     beta1 = slider(-2, 2, step = .1, initial = 2),
     beta0 = slider(-2, 2, step = .1, initial = 0)
@@ -174,10 +167,10 @@ summary(logRegRavens)
 ```
 
 Call:
-glm(formula = ravensData$ravenWinNum ~ ravensData$ravenScore, 
+glm(formula = ravensData$ravenWinNum ~ ravensData$ravenScore,
     family = "binomial")
 
-Deviance Residuals: 
+Deviance Residuals:
    Min      1Q  Median      3Q     Max  
 -1.758  -1.100   0.530   0.806   1.495  
 
@@ -220,8 +213,8 @@ exp(logRegRavens$coeff)
 ```
 
 ```
-          (Intercept) ravensData$ravenScore 
-               0.1864                1.1125 
+          (Intercept) ravensData$ravenScore
+               0.1864                1.1125
 ```
 
 ```r
@@ -255,7 +248,7 @@ Response: ravensData$ravenWinNum
 Terms added sequentially (first to last)
 
                       Df Deviance Resid. Df Resid. Dev Pr(>Chi)  
-NULL                                     19       24.4           
+NULL                                     19       24.4
 ravensData$ravenScore  1     3.54        18       20.9     0.06 .
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -268,7 +261,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ## Interpreting Odds Ratios
 
-* Not probabilities 
+* Not probabilities
 * Odds ratio of 1 = no difference in odds
 * Log odds ratio of 0 = no difference in odds
 * Odds ratio < 0.5 or > 2 commonly a "moderate effect"
@@ -286,6 +279,3 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 * [Logistic regression and glms in R](http://data.princeton.edu/R/glms.html)
 * Brian Caffo's lecture notes on: [Simpson's paradox](http://ocw.jhsph.edu/courses/MethodsInBiostatisticsII/PDFs/lecture23.pdf), [Case-control studies](http://ocw.jhsph.edu/courses/MethodsInBiostatisticsII/PDFs/lecture24.pdf)
 * [Open Intro Chapter on Logistic Regression](http://www.openintro.org/stat/down/oiStat2_08.pdf)
-
-
-
