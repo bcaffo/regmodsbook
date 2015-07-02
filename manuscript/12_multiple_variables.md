@@ -114,14 +114,19 @@ abline(h = 1)
 ![Plot of {$$}R^2{/$$} by {$$}n{/$$} as more regressors are included. No actual regression ](images/model1.png)
 
 Notice that the {$$}R^2{/$$} goes up, monotonically, as the number of regressors
-is increased.
+is increased. This reminds us of a couple of things. First, irrelevant variables
+explain residual variation by chance. And, when evaluating fit, we have to take
+into account the number of regressors included. The adjusted {$$}R^2{/$$} is better
+for these purposes than {$$}R^2{/$$} since it accounts for the number of variables
+included in the model. In R, you can get the adjusted {$$}R^2{/$$} very easily with
+by grabbing `summary(fitted_model)$adj.r.squared` instead of `summary(fitted_model)$r.squared`.
 
 
-## Variance inflation
+## Simulation demonstrating variance inflation
 
 Now let's use simulation to demonstrate variation inflation. In this case,
 we're going to simulate three regressors, x1, x2 and x3. We then repeatedly
-generate data from a model where y only depends on x1. We fit three models,
+generate data from a model, where y only depends on x1. We fit three models,
 `y ~ x1`, `y ~ x1 + x2`, and `y ~ x1 + x2 + x3`. We do this over and over
 again and look at the standard deviation of the x1 coefficient.
 
@@ -141,134 +146,170 @@ again and look at the standard deviation of the x1 coefficient.
 0.02839 0.02872 0.02884
 ~~~
 
+Notice that the standard error for the x1 coefficient goes up
+as more regressors are included (left to right in our vector output). It's important to note that
+these are the actual standard errors (obtained by repeatedly simulating
+the data). These aren't obtainable in a single dataset since we only get one realization.
+The estimated standard errors, the ones we have access to in a data analysis,
+may not go up as you include more regressors.
 
----
----
----
-## Variance inflation
+Now let's see if we can make the variance inflation worse.
+In this case, I've made x2 and x3 correlated with x1.
 
-```r
-n <- 100; nosim <- 1000
-x1 <- rnorm(n); x2 <- x1/sqrt(2) + rnorm(n) /sqrt(2)
-x3 <- x1 * 0.95 + rnorm(n) * sqrt(1 - 0.95^2);
-betas <- sapply(1 : nosim, function(i){
+{lang=r, line-numbers=off}
+~~~
+> n <- 100; nosim <- 1000
+> x1 <- rnorm(n); x2 <- x1/sqrt(2) + rnorm(n) /sqrt(2)
+> x3 <- x1 * 0.95 + rnorm(n) * sqrt(1 - 0.95^2);
+> betas <- sapply(1 : nosim, function(i){
   y <- x1 + rnorm(n, sd = .3)
   c(coef(lm(y ~ x1))[2],
     coef(lm(y ~ x1 + x2))[2],
     coef(lm(y ~ x1 + x2 + x3))[2])
 })
-round(apply(betas, 1, sd), 5)
-```
-
-```
+> round(apply(betas, 1, sd), 5)
      x1      x1      x1
 0.03131 0.04270 0.09653
-```
+~~~
 
-## Variance inflation factors
+Notice that the variance inflation goes up quite a bit more.
+This is an issue with including variables that are highly correlated
+with the ones that we are interested in. In the first simulation,
+the regressors were simulated independently, and the variance inflation
+wasn't bad. In the second, they were correlated and it was much worse.
+
+## Summary of variance inflation
 * Notice variance inflation was much worse when we included a variable that
 was highly related to `x1`.
-* We don't know $\sigma$, so we can only estimate the increase in the actual standard error of the coefficients for including a regressor.
-* However, $\sigma$ drops out of the relative standard errors. If one sequentially adds variables, one can check the variance (or sd) inflation for including each one.
-* When the other regressors are actually orthogonal to the regressor of interest, then there is no variance inflation.
+* We don't know {$$}\sigma{/$$}, the residual variance, so we can't know the actual variance inflation amount.
+* However, {$$}\sigma{/$$} drops out of the ratio of the standard errors.
+Thus, if one sequentially adds variables, one can check the variance (or sd) inflation for including each one.
+* When the other regressors are actually orthogonal (correlation 0) to the regressor of interest, then there is no variance inflation.
 * The variance inflation factor (VIF) is the increase in the variance for the ith regressor compared to the ideal setting where it is orthogonal to the other regressors.
-  * (The square root of the VIF is the increase in the sd ...)
+  * The square root of the VIF is the increase in the sd instead of variance.
 * Remember, variance inflation is only part of the picture. We want to include certain variables, even if they dramatically inflate our variance.
 
----
-## Revisting our previous simulation
+Let's revisit our previous simulation to show how one can estimate the relative
+increase in variance. Let's simulate a single dataset, and I'll show how to get
+the relative increase in variance for including `x2` and `x3`. All you need to do is
+take the ratio of the variances for that coefficient. If you don't exactly
+understand the code, don't worry. The idea is that we can obtain these from an observed
+data set.
 
-```r
-##doesn't depend on which y you use,
-y <- x1 + rnorm(n, sd = .3)
-a <- summary(lm(y ~ x1))$cov.unscaled[2,2]
-c(summary(lm(y ~ x1 + x2))$cov.unscaled[2,2],
+{lang=r, line-numbers=off}
+~~~
+> y <- x1 + rnorm(n, sd = .3)
+> a <- summary(lm(y ~ x1))$cov.unscaled[2,2]
+> c(summary(lm(y ~ x1 + x2))$cov.unscaled[2,2],
   summary(lm(y~ x1 + x2 + x3))$cov.unscaled[2,2]) / a
-```
-
-```
 [1] 1.895 9.948
-```
+~~~
 
-```r
-temp <- apply(betas, 1, var); temp[2 : 3] / temp[1]
-```
+Now let's check it by referring to our previous simulation and see what
+the relative variance for `x1` is when including the `x2` and `x2` plus `x3` models.
 
-```
+{lang=r, line-numbers=off}
+~~~
+> temp <- apply(betas, 1, var); temp[2 : 3] / temp[1]
    x1    x1
 1.860 9.506
-```
+~~~
 
----
-## Swiss data
+Notice that it's the same (about). In other words, from a single observed dataset
+we can perfectly estimate the *relative* variance inflation caused by adding a regressor.
 
-```r
-data(swiss);
-fit1 <- lm(Fertility ~ Agriculture, data = swiss)
-a <- summary(fit1)$cov.unscaled[2,2]
-fit2 <- update(fit, Fertility ~ Agriculture + Examination)
-fit3 <- update(fit, Fertility ~ Agriculture + Examination + Education)
-  c(summary(fit2)$cov.unscaled[2,2],
+
+## Swiss data revisited
+
+{lang=r, line-numbers=off}
+~~~
+> data(swiss);
+> fit1 <- lm(Fertility ~ Agriculture, data = swiss)
+> a <- summary(fit1)$cov.unscaled[2,2]
+>fit2 <- update(fit, Fertility ~ Agriculture + Examination)
+> fit3 <- update(fit, Fertility ~ Agriculture + Examination + Education)
+> c(summary(fit2)$cov.unscaled[2,2],
     summary(fit3)$cov.unscaled[2,2]) / a
-```
-
-```
 [1] 1.892 2.089
-```
+~~~
 
+Thus inclusion of Examination increases the variance of the Agriculture effect by 89.2% while
+further adding Examination and Education causes a 108.9% increase. Again,
+the observed standard errors won't follow these percentages. These are the
+increases if we actually knew {$$}\sigma^2{/$$}.
 
----
-## Swiss data VIFs,
+Let's look at the variance inflation factors. These measure how much
+variance inflation the variable causes relative to the setting where
+it was orthogonal to the other regressors. This is nice because it
+has a well contained interpretation within a single model fit. Also,
+one doesn't have to do all of the model refitting we did above to
+explore variance inflation. So, in general, the VIFs are the most
+convenient entity to work with.
 
-```r
-library(car)
-fit <- lm(Fertility ~ . , data = swiss)
-vif(fit)
-```
-
-```
+{lang=r, line-numbers=off}
+~~~
+> library(car)
+> fit <- lm(Fertility ~ . , data = swiss)
+> vif(fit)
      Agriculture      Examination        Education         Catholic Infant.Mortality
            2.284            3.675            2.775            1.937            1.108
-```
-
-```r
-sqrt(vif(fit)) #I prefer sd
-```
-
-```
+> sqrt(vif(fit)) #If you prefer sd inflation
      Agriculture      Examination        Education         Catholic Infant.Mortality
            1.511            1.917            1.666            1.392            1.052
-```
+~~~
 
 
----
-## What about residual variance estimation?
-* Assuming that the model is linear with additive iid errors (with finite variance), we can mathematically describe the impact of omitting necessary variables or including unnecessary ones.
-  * If we underfit the model, the variance estimate is biased.
-  * If we correctly or overfit the model, including all necessary covariates and/or unnecessary covariates, the variance estimate is unbiased.
-    * However, the variance of the variance is larger if we include unnecessary variables.
+## Impact of over- and under-fitting on residual variance estimation
+Assuming that the model is linear with additive iid errors,
+we can mathematically describe the impact of omitting necessary variables or including unnecessary ones. These
+two rules follow:
+  * If we underfit the model, that is omit necessary covariates, the variance estimate is biased.
+  * If we correctly *or overfit* the model, including all necessary covariates and possibly some unnecessary ones,
+    the variance estimate is unbiased. However, the variance *of the variance* is larger if we include unnecessary variables.
 
----
+These make sense. If we've omitted important variables, we're attributing residual variation that is really systematic
+variation explainable by those omitted covariates. Therefore, we would expect a variance estimate that is systematically
+off (biased). We would also expect absence of bias when we throw the kitchen sink at the model and include everything (necessary and unnecessary).
+However, then our variance estimate is unstable (the variance of the variance estimate is larger).
+
 ## Covariate model selection
-* Automated covariate selection is a difficult topic. It depends heavily on how rich of a covariate space one wants to explore.
-  * The space of models explodes quickly as you add interactions and polynomial terms.
-* In the prediction class, we'll cover many modern methods for traversing large model spaces for the purposes of prediction.
-* Principal components or factor analytic models on covariates are often useful for reducing complex covariate spaces.
-* Good design can often eliminate the need for complex model searches at analyses; though often control over the design is limited.
-* If the models of interest are nested and without lots of parameters differentiating them, it's fairly uncontroversial to use nested likelihood ratio tests. (Example to follow.)
-* My favorite approach is as follows. Given a coefficient that I'm interested in, I like to use covariate adjustment and multiple models to probe that effect to evaluate it for robustness and to see what other covariates knock it out.  This isn't a terribly systematic approach, but it tends to teach you a lot about the the data as you get your hands dirty.
+Ideally, you include only the necessary variables in a regression model.
+However, it's impossible to know in practice which ones are necessary
+and which ones are not. Thus we have to discuss variable selection a little bit.
+Automated covariate selection is a difficult topic. It depends heavily on how rich of a covariate space one wants to explore.
+The space of models explodes quickly as you add interactions and polynomial terms.
 
----
+In the Data Science Specialization prediction class, we'll cover many modern methods for traversing large model spaces for the purposes of
+prediction. In addition, principal components or factor analytic models on covariates are often useful for reducing complex covariate spaces.
+
+
+It should also be noted that careful design can often eliminate the need for complex model searches at the analyses stage. For example,
+randomized, randomized block designs, crossover designs, clinical trials, A/B testing are all examples of designs where randomization, balance and
+stratification are used to create data sets that have more direct analyses. However, control over the design is often limited in data science.
+
+I'll give my favorite approach for model selection when I'm trying to get a parsimonious explanatory model. (I would use a different strategy
+  for prediction.) Given a coefficient that I'm interested in, I like to use covariate adjustment and multiple models to probe that effect to evaluate it for robustness and to see what other covariates knock it out or amplify it.  In other words, if I have an effect, or absence of an effect, that I'd like to
+  report, I try to first come up with criticisms of that effect and then use models to try to answer those criticisms.
+
+As an example, if I had a significant effect of lead exposure on brain size I would think about the following criticism. Were the high exposure
+people smaller than the low exposure people. To address this, I would consider adding head size (intra-cranial volume). If the lead exposed were
+more obese than the non-exposed, I would put a model with body mass index (BMI) included.  This isn't a terribly systematic approach,
+but it tends to teach you a lot about the the data as you get your hands dirty. Most importantly, it makes you think hard about the questions
+your asking and what are the potential criticisms to your results. Heading those criticisms off at the pass early on is a good idea.
+
 ## How to do nested model testing in R
 
-```r
-fit1 <- lm(Fertility ~ Agriculture, data = swiss)
-fit3 <- update(fit, Fertility ~ Agriculture + Examination + Education)
-fit5 <- update(fit, Fertility ~ Agriculture + Examination + Education + Catholic + Infant.Mortality)
-anova(fit1, fit3, fit5)
-```
+One particular model selection technique is so useful I'll cover it since it likely wouldn't be covered in a machine learning or prediction class.
+If the models of interest are nested and without lots of parameters differentiating them,
+it's fairly uncontroversial to use nested likelihood ratio tests for model selection. Consider the following example:
 
-```
+{lang=r,line-numbers=off}
+~~~
+> fit1 <- lm(Fertility ~ Agriculture, data = swiss)
+> fit3 <- update(fit, Fertility ~ Agriculture + Examination + Education)
+> fit5 <- update(fit, Fertility ~ Agriculture + Examination + Education + Catholic + Infant.Mortality)
+> anova(fit1, fit3, fit5)
+
 Analysis of Variance Table
 
 Model 1: Fertility ~ Agriculture
@@ -281,5 +322,8 @@ Model 3: Fertility ~ Agriculture + Examination + Education + Catholic +
 3     41 2105  2      1076 10.5 0.00021 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-```
--->
+~~~
+
+Notice how the three models I'm interested in are nested. That is, Model 3 contains all of the Model 2 variables which contains all of the Model 1
+variables. The P-values are for a test of whether all of the new variables are all zero or not (i.e. whether or not they're necessary). So this model would conclude that all of the terms are necessary
+(Model 3). Again, you don't want to blindly follow a model selection procedure, but when the models are naturally nested, this is a reasonable approach.
