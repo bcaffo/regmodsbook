@@ -29,7 +29,6 @@ We'll go through the GLM model specification and likelihood for all three. For l
 throughout the book. The next two chapters will be devoted to binomial and Poisson regression. We'll only focus on
 the most popular and useful link functions.
 
-<!--
 ## Example, linear models
 Let's go through an example. Assume that our response is {$$}Y_i \sim N(\mu_i, \sigma^2){/$$}. The Gaussian distribution is an exponential family distribution.
 Define the **linear predictor** to be
@@ -99,6 +98,8 @@ Thus, the likelihood is:
 \prod_{i=1}^n (y_i !)^{-1} \mu_i^{y_i}e^{-\mu_i}
 \propto \exp\left(\sum_{i=1}^n y_i \eta_i - \sum_{i=1}^n \mu_i\right)
 {/$$}
+
+<!--
 
 ## How estimates are obtained
 
