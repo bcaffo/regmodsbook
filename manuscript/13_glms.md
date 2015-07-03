@@ -79,7 +79,6 @@ To get the estimates we maximize the likelihood. We can write out the likelihood
 \prod_{i=1}^n (1 + \eta_i)^{-1}
 {/$$}
 
-<!--
 
 ## Example, Poisson regression
 Let's consider a problem with count data.
@@ -89,7 +88,7 @@ Assume that :
 * Linear predictor {$$}\eta_i = \sum_{k=1}^p X_{ik} \beta_k{/$$}.
 * Link function {$$}g(\mu) = \eta = \log(\mu){/$$}
 
-Recall that {$$}e^x{$$} is the inverse of {$$}\log(x){/$$} so that we have:
+Recall that {$$}e^x{/$$} is the inverse of {$$}\log(x){/$$} so that we have:
 
 {$$}
 \mu_i = e^{\eta_i}
