@@ -29,6 +29,7 @@ We'll go through the GLM model specification and likelihood for all three. For l
 throughout the book. The next two chapters will be devoted to binomial and Poisson regression. We'll only focus on
 the most popular and useful link functions.
 
+<!--
 ## Example, linear models
 Let's go through an example. Assume that our response is {$$}Y_i \sim N(\mu_i, \sigma^2){/$$}. The Gaussian distribution is an exponential family distribution.
 Define the **linear predictor** to be
@@ -148,3 +149,4 @@ or the change in the link function of the expected response per unit change in {
 * Variations on Newon/Raphson's algorithm are used to do it.
 * Asymptotics are used for inference usually (but not always).
 * Many of the ideas from linear models can be brought over to GLMs.
+-->
