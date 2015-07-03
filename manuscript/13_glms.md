@@ -47,7 +47,6 @@ where {$$}\epsilon_i \stackrel{iid}{\sim} N(0, \sigma^2){/$$}. So, we've specifi
 model as a GLM above and with a more traditional linear model specification below.
 Let's try an example where the GLM is more necessary.
 
-<!--
 
 ## Example, logistic regression
 
@@ -79,6 +78,8 @@ To get the estimates we maximize the likelihood. We can write out the likelihood
 = \exp\left(\sum_{i=1}^n y_i \eta_i \right)
 \prod_{i=1}^n (1 + \eta_i)^{-1}
 {/$$}
+
+<!--
 
 ## Example, Poisson regression
 Let's consider a problem with count data.
