@@ -7,32 +7,34 @@ product. Often these outcomes are called Bernoulli outcomes, from the
 Bernoulli distribution named after the famous probabilist and mathematician.
 
 If we happen to have several exchangeable binary outcomes for the same level
-of 
+of covariate values, then that is binomial data and we can aggregate the 0's and
+1's into the count of 1's. As an example, imagine if we sprayed insect pests
+with 4 different pesticides and counted whether they died or not. Then for
+each spray, we could summarize the data with the count of dead and total number
+that were sprayed and treat the data as binomial rather than Bernoulli.
 
-## Key ideas
-
-* Frequently we care about outcomes that have two values
-  * Alive/dead
-  * Win/loss
-  * Success/Failure
-  * etc
-* Called binary, Bernoulli or 0/1 outcomes
-* Collection of exchangeable binary outcomes for the same covariate data are called binomial outcomes.
-
----
 
 ## Example Baltimore Ravens win/loss
-### Ravens Data
 
+The Baltimore Ravens are an American Football team in 
+the US's National Football League.[^f2] The data contains the wins 
+and losses of the Ravens
+by the number of points that they scored. (In Americal football, the
+goal is to score more points than your oponent.) It should be clear
+that there would be a positive relationship between the number of
+points scored and the probability of winning that particular game.
 
-```r
-download.file("https://dl.dropboxusercontent.com/u/7710864/data/ravensData.rda"
+[^f2]: Baltimore is the home of Johns Hopkins University where your author works. I got this data set
+from Jeff Leek, the instructor of three of the Data Science Specialization
+courses. 
+
+Let's load the data and use `head` to look at the first few rows.
+{lang=r,line-numbers=off}
+~~~
+> download.file("https://dl.dropboxusercontent.com/u/7710864/data/ravensData.rda"
               , destfile="./data/ravensData.rda",method="curl")
-load("./data/ravensData.rda")
-head(ravensData)
-```
-
-```
+> load("./data/ravensData.rda")
+> head(ravensData)
   ravenWinNum ravenWin ravenScore opponentScore
 1           1        W         24             9
 2           1        W         38            35
@@ -40,10 +42,9 @@ head(ravensData)
 4           1        W         34            31
 5           1        W         44            13
 6           0        L         23            24
-```
+~~~
 
-
----
+<!--
 
 ## Linear regression
 
@@ -59,7 +60,6 @@ $b_1$ - increase in probability of a Ravens win for each additional point
 
 $e_i$ - residual variation due
 
----
 
 ## Linear regression in R
 
@@ -279,3 +279,4 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 * [Logistic regression and glms in R](http://data.princeton.edu/R/glms.html)
 * Brian Caffo's lecture notes on: [Simpson's paradox](http://ocw.jhsph.edu/courses/MethodsInBiostatisticsII/PDFs/lecture23.pdf), [Case-control studies](http://ocw.jhsph.edu/courses/MethodsInBiostatisticsII/PDFs/lecture24.pdf)
 * [Open Intro Chapter on Logistic Regression](http://www.openintro.org/stat/down/oiStat2_08.pdf)
+-->
