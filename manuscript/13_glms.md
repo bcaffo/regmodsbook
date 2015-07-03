@@ -47,6 +47,8 @@ where {$$}\epsilon_i \stackrel{iid}{\sim} N(0, \sigma^2){/$$}. So, we've specifi
 model as a GLM above and with a more traditional linear model specification below.
 Let's try an example where the GLM is more necessary.
 
+<!--
+
 ## Example, logistic regression
 
 Assume that our outcome is a 0, 1 variable. Let's model {$$}Y_i \sim Bernoulli(\mu_i){/$$}
@@ -99,7 +101,6 @@ Thus, the likelihood is:
 \propto \exp\left(\sum_{i=1}^n y_i \eta_i - \sum_{i=1}^n \mu_i\right)
 {/$$}
 
-<!--
 
 ## How estimates are obtained
 
