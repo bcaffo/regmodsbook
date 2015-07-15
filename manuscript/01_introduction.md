@@ -1,3 +1,9 @@
+## The book
+
+As a Leanpub book, it is being published prior to being finished.
+It is roughly 50% finished at this point with a fair amount of
+copy editing and other requirements left to go.
+
 ## Before beginning
 This book is designed as a companion to the [Regression Models](https://www.coursera.org/course/regmods)
 Coursera class as part of the [Data Science Specialization](https://www.coursera.org/specialization/jhudatascience/1?utm_medium=courseDescripTop), a
@@ -314,7 +320,7 @@ Let's plot the best fitting line. In the subsequent chapter we will learn all
 about creating, interpreting and performing inference on such mode fits. (Note
 that I shifted the origin back to the means of the original data.) The
 results suggest that to every every 1 inch increase in the parents height,
-we estimate a 0.646 inch increase in the child's height. 
+we estimate a 0.646 inch increase in the child's height.
 
 ![Data with the best fitting line overlaid.](images/galton3.png)
 
