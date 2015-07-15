@@ -12,3 +12,4 @@ preface.md
 11_residuals_variation_diagnostics.md
 12_multiple_variables.md
 13_glms.md
+14_binary.md

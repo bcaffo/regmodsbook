@@ -16,8 +16,8 @@ that were sprayed and treat the data as binomial rather than Bernoulli.
 
 ## Example Baltimore Ravens win/loss
 
-The Baltimore Ravens are an American Football team in 
-the US's National Football League.[^f2] The data contains the wins 
+The Baltimore Ravens are an American Football team in
+the US's National Football League.[^f2] The data contains the wins
 and losses of the Ravens
 by the number of points that they scored. (In Americal football, the
 goal is to score more points than your oponent.) It should be clear
@@ -26,7 +26,7 @@ points scored and the probability of winning that particular game.
 
 [^f2]: Baltimore is the home of Johns Hopkins University where your author works. I got this data set
 from Jeff Leek, the instructor of three of the Data Science Specialization
-courses. 
+courses.
 
 Let's load the data and use `head` to look at the first few rows.
 {lang=r,line-numbers=off}
@@ -44,7 +44,6 @@ Let's load the data and use `head` to look at the first few rows.
 6           0        L         23            24
 ~~~
 
-<!--
 
 ## Linear regression
 
