@@ -13,3 +13,4 @@ preface.md
 12_multiple_variables.md
 13_glms.md
 14_binary.md
+15_counts.md

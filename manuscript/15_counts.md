@@ -1,70 +1,61 @@
----
-title       : Count outcomes, Poisson GLMs
-subtitle    : Regression Models
-author      : Brian Caffo, Jeffrey Leek, Roger Peng 
-job         : Johns Hopkins Bloomberg School of Public Health
-logo        : bloomberg_shield.png
-framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
-highlighter : highlight.js  # {highlight.js, prettify, highlight}
-hitheme     : tomorrow   # 
-url:
-  lib: ../../librariesNew
-  assets: ../../assets
-widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
-mode        : selfcontained # {standalone, draft}
----
+# Count data
 
+Many data take the form of unbounded count
+data. For example, consider the number of calls
+to a call center or the number of flu cases
+in an area or the number of hits to a web site.
 
+In some of these cases the counts are clearly
+bounded. However, modeling the counts as unbounded
+is often done when the upper limit is not known
+or very large relative to the number of events.
 
+If the upper bound is known, the techniques we're
+discussing can be used to model the proportion or
+rate. The
+starting point for most count analysis is the
+the Poisson distribution.
 
-
-## Key ideas
-
-* Many data take the form of counts
-  * Calls to a call center
-  * Number of flu cases in an area
-  * Number of cars that cross a bridge
-* Data may also be in the form of rates
-  * Percent of children passing a test
-  * Percent of hits to a website from a country
-* Linear regression with transformation is an option
-
----
 
 ## Poisson distribution
-- The Poisson distribution is a useful model for counts and rates
-- Here a rate is count per some monitoring time
-- Some examples uses of the Poisson distribution
-    - Modeling web traffic hits
-    - Incidence rates
-    - Approximating binomial probabilities with small $p$ and large $n$
-    - Analyzing contigency table data
 
----
-## The Poisson mass function
-- $X \sim Poisson(t\lambda)$ if
-$$
+The Poisson distribution is the goto distribution for modeling
+counts and rates. We'll define a rate as a count per unit of time.
+For example your heart rate is often expressed in beats per minute.
+So, we might look at web hits per day, or disease cases per
+exposure time (incidence rates). Also, though not exactly a rate,
+we can treat proportions as if rates when {$$}n{/$$} is large
+and the success probability is small.
+
+We would write that a random variable is Poisson,
+{$$}X \sim Poisson(t\lambda){/$$}, if its density function is:
+
+{$$}
 P(X = x) = \frac{(t\lambda)^x e^{-t\lambda}}{x!}
-$$
-For $x = 0, 1, \ldots$.
-- The mean of the Poisson is $E[X] = t\lambda$, thus $E[X / t] = \lambda$
-- The variance of the Poisson is $Var(X) = t\lambda$.
-- The Poisson tends to a normal as $t\lambda$ gets large.
+{/$$}
 
----
+where {$$}x = 0, 1, \ldots{/$$}. The
+mean of the Poisson is {$$}E[X] = t\lambda{/$$}, thus {$$}E[X / t] = \lambda{/$$}.
+The variance of the Poisson is {$$}Var(X) = t\lambda{/$$}.
+The Poisson tends to a normal as {$$}t\lambda{/$$} gets large and
+approximates a binomial with large {$$}n{/$$} and small {$$}p{/$$}
+where we would think of {$$}t\lamdba{/$$} as {$$}n p {/$$}.
 
+Here are some plots of the Poisson density to illustrate
+how it closely approximates a normal.
 
-```r
+{lang=r,line-numbers=off}
+~~~
 par(mfrow = c(1, 3))
 plot(0 : 10, dpois(0 : 10, lambda = 2), type = "h", frame = FALSE)
 plot(0 : 20, dpois(0 : 20, lambda = 10), type = "h", frame = FALSE)
-plot(0 : 200, dpois(0 : 200, lambda = 100), type = "h", frame = FALSE) 
-```
+plot(0 : 200, dpois(0 : 200, lambda = 100), type = "h", frame = FALSE)
+~~~
 
-<div class="rimage center"><img src="fig/simPois.png" title="plot of chunk simPois" alt="plot of chunk simPois" class="plot" /></div>
+![Poisson densities as the mean increases.](figures/simPois.png)
 
 
----
+<!--
 
 ## Poisson distribution
 ### Sort of, showing that the mean and variance are equal
@@ -181,7 +172,7 @@ $e_i$ - variation due to everything we didn't measure
 
 ---
 ## Exponentiating coefficients
-- $e^{E[\log(Y)]}$ geometric mean of $Y$. 
+- $e^{E[\log(Y)]}$ geometric mean of $Y$.
     - With no covariates, this is estimated by $e^{\frac{1}{n}\sum_{i=1}^n \log(y_i)} = (\prod_{i=1}^n y_i)^{1/n}$
 - When you take the natural log of outcomes and fit a regression model, your exponentiated coefficients
 estimate things about geometric means.
@@ -194,8 +185,8 @@ round(exp(coef(lm(I(log(gaData$visits + 1)) ~ gaData$julian))), 5)
 ```
 
 ```
-  (Intercept) gaData$julian 
-        0.000         1.002 
+  (Intercept) gaData$julian
+        0.000         1.002
 ```
 
 
@@ -264,7 +255,7 @@ plot(glm1$fitted,glm1$residuals,pch=19,col="grey",ylab="Residuals",xlab="Fitted"
 
 ---
 
-## Model agnostic standard errors 
+## Model agnostic standard errors
 
 
 ```r
@@ -318,7 +309,7 @@ gaData$julian   0.002058   0.002528
 
 ---
 
-## Rates 
+## Rates
 
 
 <br><br>
@@ -336,7 +327,7 @@ $$ \log\left(E[NHSS_i | JD_i, b_0, b_1]\right) = \log(NH_i) + b_0 + b_1 JD_i $$
 
 ---
 
-## Fitting rates in R 
+## Fitting rates in R
 
 
 ```r
@@ -351,7 +342,7 @@ points(julian(gaData$date),glm1$fitted,col="red",pch=19)
 
 ---
 
-## Fitting rates in R 
+## Fitting rates in R
 
 
 ```r
@@ -372,4 +363,6 @@ lines(julian(gaData$date),glm2$fitted/(gaData$visits+1),col="blue",lwd=3)
 * [Log-linear models and multiway tables](http://ww2.coastal.edu/kingw/statistics/R-tutorials/loglin.html)
 * [Wikipedia on Poisson regression](http://en.wikipedia.org/wiki/Poisson_regression), [Wikipedia on overdispersion](http://en.wikipedia.org/wiki/Overdispersion)
 * [Regression models for count data in R](http://cran.r-project.org/web/packages/pscl/vignettes/countreg.pdf)
-* [pscl package](http://cran.r-project.org/web/packages/pscl/index.html) - the function _zeroinfl_ fits zero inflated models. 
+* [pscl package](http://cran.r-project.org/web/packages/pscl/index.html) - the function _zeroinfl_ fits zero inflated models.
+
+-->
