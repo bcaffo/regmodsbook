@@ -373,81 +373,46 @@ Number of Fisher Scoring iterations: 5
 > plot(ravensData$ravenScore,logRegRavens$fitted,pch=19,col="blue",xlab="Score",ylab="Prob Ravens Win")
 ~~~
 
-![Fitted mode for the Ravens data.](images/logistic4.png)
+![Fitted model for the Ravens data.](images/logistic4.png)
 
-<!--
-## Odds ratios and confidence intervals
+In this case, the data only covers some of the logistic curve, so that the
+full "S" of the curve isn't visible. To interpret our coefficients,
+let's exponentiate them.
 
 
-```r
-exp(logRegRavens$coeff)
-```
-
-```
+{lang=r,line-numbers=off}
+~~~
+> exp(logRegRavens$coeff)
           (Intercept) ravensData$ravenScore
                0.1864                1.1125
-```
-
-```r
-exp(confint(logRegRavens))
-```
-
-```
+> exp(confint(logRegRavens))
                          2.5 % 97.5 %
 (Intercept)           0.005675  3.106
 ravensData$ravenScore 0.996230  1.303
-```
+~~~
+
+The first line of code shows that the exponentiated slope
+coefficient is 1.11. Thus, we estimate a 11% increase
+in the odds of winning per 1 point increase in score. However,
+the data are variable and the confident interval goes
+from 0.99 to 1.303. Since this interval contains 1 (or
+contains 0 on the log scale), it's not statistically significant.
+(It's pretty close, though.)
+
+If we had included another variable in our model, say
+home versus away game indicator, then our slope is
+interpreted holding the value of the covariate held
+fixed. Just like in multivariable regression.
+
+We can also compare nested models using ANOVA and,
+by and large, our general model discussion carries
+over to this setting as well.
 
 
+## Some summarizing comments
 
----
-
-## ANOVA for logistic regression
-
-
-```r
-anova(logRegRavens,test="Chisq")
-```
-
-```
-Analysis of Deviance Table
-
-Model: binomial, link: logit
-
-Response: ravensData$ravenWinNum
-
-Terms added sequentially (first to last)
-
-                      Df Deviance Resid. Df Resid. Dev Pr(>Chi)  
-NULL                                     19       24.4
-ravensData$ravenScore  1     3.54        18       20.9     0.06 .
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-```
-
-
-
-
----
-
-## Interpreting Odds Ratios
-
-* Not probabilities
-* Odds ratio of 1 = no difference in odds
-* Log odds ratio of 0 = no difference in odds
-* Odds ratio < 0.5 or > 2 commonly a "moderate effect"
-* Relative risk $\frac{\rm{Pr}(RW_i | RS_i = 10)}{\rm{Pr}(RW_i | RS_i = 0)}$ often easier to interpret, harder to estimate
-* For small probabilities RR $\approx$ OR but __they are not the same__!
-
-[Wikipedia on Odds Ratio](http://en.wikipedia.org/wiki/Odds_ratio)
-
-
----
-
-## Further resources
-
-* [Wikipedia on Logistic Regression](http://en.wikipedia.org/wiki/Logistic_regression)
-* [Logistic regression and glms in R](http://data.princeton.edu/R/glms.html)
-* Brian Caffo's lecture notes on: [Simpson's paradox](http://ocw.jhsph.edu/courses/MethodsInBiostatisticsII/PDFs/lecture23.pdf), [Case-control studies](http://ocw.jhsph.edu/courses/MethodsInBiostatisticsII/PDFs/lecture24.pdf)
-* [Open Intro Chapter on Logistic Regression](http://www.openintro.org/stat/down/oiStat2_08.pdf)
--->
+Odds aren't probabilities. In binary GLMs, we model the
+log of the odds (logit) and our slope parameters are
+interpreted as log odds ratios. Odds ratios of 1 or
+log odds ratios of 0 are interpreted as no effect
+of the regressor on the outcome.
