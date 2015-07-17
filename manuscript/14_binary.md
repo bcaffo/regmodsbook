@@ -272,8 +272,8 @@ in the regressor.
 ## Visualizing fitting logistic regression curves
 
 Let's visualize what the logistic regression model is  
-fitting.  Consider setting {$$}\beta_0{\$$} to 0 and
-varying {$$}\beta_1{\$$}. For X being a regressor
+fitting.  Consider setting {$$}\beta_0{/$$} to 0 and
+varying {$$}\beta_1{/$$}. For X being a regressor
 equally spaced between -10 and 10. Notice that
 the logistic curves vary in their curvature.
 
@@ -294,7 +294,7 @@ sapply(beta1s, function(beta1) {
 
 Try making the slope negative and see what happens. (It flips the curve
 from increasing to decreasing.)
-Now let's hold {$$}\beta_1{\$$} fixed and vary {$$}\beta_0{\$$}.
+Now let's hold {$$}\beta_1{/$$} fixed and vary {$$}\beta_0{/$$}.
 
 {lang=r,line-numbers=off}
 ~~~
