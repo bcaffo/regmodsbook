@@ -339,18 +339,15 @@ the data well. Here the fit says that the probability of a 1 for low values of
 x is very small, the probability of a 1 for high values of x is high and
 it is intermediate at the points in the middle.
 
-<!--
 
 ## Ravens logistic regression
 
+Now let's run our binary regression model on the Ravens data.
 
-```r
-logRegRavens <- glm(ravensData$ravenWinNum ~ ravensData$ravenScore,family="binomial")
-summary(logRegRavens)
-```
-
-```
-
+{lang = r, line-numbers = off}
+~~~
+> logRegRavens = glm(ravensData$ravenWinNum ~ ravensData$ravenScore,family="binomial")
+> summary(logRegRavens)
 Call:
 glm(formula = ravensData$ravenWinNum ~ ravensData$ravenScore,
     family = "binomial")
@@ -371,25 +368,14 @@ Residual deviance: 20.895  on 18  degrees of freedom
 AIC: 24.89
 
 Number of Fisher Scoring iterations: 5
-```
 
+## plotting the fit
+> plot(ravensData$ravenScore,logRegRavens$fitted,pch=19,col="blue",xlab="Score",ylab="Prob Ravens Win")
+~~~
 
+![Fitted mode for the Ravens data.](images/logistic4.png)
 
----
-
-## Ravens fitted values
-
-
-```r
-plot(ravensData$ravenScore,logRegRavens$fitted,pch=19,col="blue",xlab="Score",ylab="Prob Ravens Win")
-```
-
-<div class="rimage center"><img src="fig/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div>
-
-
-
----
-
+<!--
 ## Odds ratios and confidence intervals
 
 
