@@ -272,20 +272,74 @@ in the regressor.
 ## Visualizing fitting logistic regression curves
 
 Let's visualize what the logistic regression model is  
-fitting.
+fitting.  Consider setting {$$}\beta_0{\$$} to 0 and
+varying {$$}\beta_1{\$$}. For X being a regressor
+equally spaced between -10 and 10. Notice that
+the logistic curves vary in their curvature.
 
 {lang=r,line-numbers=off}
 ~~~
-x <- seq(-10, 10, length = 1000)
-manipulate(
-    plot(x, exp(beta0 + beta1 * x) / (1 + exp(beta0 + beta1 * x)),
-         type = "l", lwd = 3, frame = FALSE),
-    beta1 = slider(-2, 2, step = .1, initial = 2),
-    beta0 = slider(-2, 2, step = .1, initial = 0)
-    )
+x = seq(-10, 10, length = 1000)
+beta0 = 0; beta1s = seq(.25, 1.5, by = .1)
+plot(c(-10, 10), c(0, 1), type = "n", xlab = "X", ylab = "Probability", frame = FALSE)
+sapply(beta1s, function(beta1) {
+    y = 1 / (1 + exp( -1 * ( beta0 + beta1 * x ) ))
+    lines(x, y, type = "l", lwd = 3)
+}
+)
 ~~~
 
----
+![Plot of logistic curves for varying slope coefficients.](images/logistic.png)
+
+
+Try making the slope negative and see what happens. (It flips the curve
+from increasing to decreasing.)
+Now let's hold {$$}\beta_1{\$$} fixed and vary {$$}\beta_0{\$$}.
+
+{lang=r,line-numbers=off}
+~~~
+x = seq(-10, 10, length = 1000)
+beta0s = seq(-2, 2, by = .5); beta1 = 1
+plot(c(-10, 10), c(0, 1), type = "n", xlab = "X", ylab = "Probability", frame = FALSE)
+sapply(beta0s, function(beta0) {
+    y = 1 / (1 + exp( -1 * ( beta0 + beta1 * x ) ))
+    lines(x, y, type = "l", lwd = 3)
+}
+)
+~~~
+
+![Plot of logistic curves for varying intercepts.](images/logistic2.png)
+
+Notice that varying the intercept shifts the curve back and forth.
+Let's superimpose some data with the fitted curve.
+
+
+{lang=r,line-numbers=off}
+~~~
+x = seq(-10, 10, length = 1000)
+beta0 = 0; beta1 = 1
+p = 1 / (1 + exp(-1 * (beta0 + beta1 * x)))
+y = rbinom(prob = p, size = 1, n = length(p))
+
+plot(x, y, frame = FALSE, xlab = "x", ylab = "y")
+lines(lowess(x, y), type = "l", col = "blue", lwd = 3)
+fit = glm(y ~ x, family = binomial)
+lines(x, predict(fit, type = "response"), lwd = 3, col = "red")
+~~~
+
+![Image of simulated binary data, fitted model (red) and lowess smooth (blue).](images/logistic3.png)
+
+
+The plot above shows the simulated binary data (black points), the
+fitted logistic curve (red) and a lowess smoother through the data (blue).
+The lowess smoother shows a non-parametric estimate of the probability of a success
+at each x value. Think of it as a moving proportion. Logistic regression
+gets to move around the intercept and slope of the logistic curve to fit
+the data well. Here the fit says that the probability of a 1 for low values of
+x is very small, the probability of a 1 for high values of x is high and
+it is intermediate at the points in the middle.
+
+<!--
 
 ## Ravens logistic regression
 
