@@ -44,78 +44,169 @@ Let's load the data and use `head` to look at the first few rows.
 ~~~
 
 
+A linear regression model would look something like this:
 
+{$$} Y_i = \beta_0 + \beta_1 X_i + e_i {/$$}
 
-$$ RW_i = b_0 + b_1 RS_i + e_i $$
+Where,
+{$$}Y_i{/$$} is a binary indicator of whether or
+not the Ravens won game {$$}i{/$$}(1 for a win, 0 for a loss).
+{$$}X_i{/$$} is the number of points that they scored for that game.
+and {$$}\epsilon_i{/$$} is the residual error term.
 
-$RW_i$ - 1 if a Ravens win, 0 if not
+Under this model then {$$}\beta_0{/$$} is the expected value of
+{$$}Y_i{/$$} given a 0 point game. For a 0/1 variable, the expected
+value is the probability, so the intercept is the probability that
+the Ravens win with 0 points scored. Then {$$}\beta_1{/$$} is the
+increase in probability of a win for each addiational point.
 
-$RS_i$ - Number of points Ravens scored
+At this point in the book, I hope that fitting and interpreting
+this model would be second nature.
 
-$b_0$ - probability of a Ravens win if they score 0 points
-
-$b_1$ - increase in probability of a Ravens win for each additional point
-
-$e_i$ - residual variation due
-
-
-## Linear regression in R
-
-
-```r
-lmRavens <- lm(ravensData$ravenWinNum ~ ravensData$ravenScore)
-summary(lmRavens)$coef
-```
-
-```
+{lang=r,line-numbers=off}
+~~~
+> lmRavens <- lm(ravensData$ravenWinNum ~ ravensData$ravenScore)
+> summary(lmRavens)$coef
                       Estimate Std. Error t value Pr(>|t|)
 (Intercept)             0.2850   0.256643   1.111  0.28135
 ravensData$ravenScore   0.0159   0.009059   1.755  0.09625
-```
+~~~
 
----
+There's numerous problems with this model. First, if the Ravens
+score more than 63 points in a game, we estimate a {$$}0.0159 \times
+63 > 1{/$$} increase in the probability of them winning. This is
+an impossibility, since a probability can't be greater than 1.
+(63 is an unusual, but not impossible, score in American football.)
+
+Perhaps less galling, but still an annoying aspect of the model, is that
+if the error is assumed to be Gaussian, then our model allows {$$}Y_i{/$$}
+to be anything from minus infinity to plus infinity, when we know our
+data can be only be 0 or 1. If we assume that our errors are discrete
+to force this, we assume a very strange distribution on the errors.
+
+There also aren't any transformations to make things better. Any
+isomorphic transformation of our outcome
+is still just going to have two values with the same set of problems.
+
+The key insight was to transform the probability of a 1 (win in our
+  example) rather than the data itself. Which transformation is most
+useful? It turns out that it involves the log of the odds, called
+the logit.
 
 ## Odds
+You've heard of odds before, most likely from discussions of gambling.
+First note, odds are a fraction, not a percentage. So, when someone says
+"The odds are fifty percent", they are mistaking probability and odds.
+They likely mean "The probability is fifty percent.", or equivalently
+"The odds are one.", or "The odds are one to one", or "The odds are
+fifty [divided by] fifty." The odds statements are all the same since:
+1, 1 / 1 and 50 / 50 are all the same number.
 
-__Binary Outcome 0/1__
+If {$$}p{/$$} is a probability, the odds are defined as
+{$$}o = p/(1-p){/$$}. Note that we can go backwards as
+{$$}p = o / (1 + o){/$$}. Thus, if someone says the odds are 1 to 1,
+they're saying that the odds are 1 and thus {$$}p = 1 / (1 + 1) = 0.5{/$$}.
+Conversely, if someone says that the probability that something occurrs
+is 50%, then they mean that {$$}p=0.5{/$$} so that the odds are
+{$$}o = p / (1 - p) = 0.5 / (1 - 0.5) = {/$$}.
 
-$$RW_i$$  
+The odds are famously derived using a standard fair game setting.
+Imagine that you are playing a game where you flip a coin with success probability
+{$$}p{/$$} with the following rules:
 
-__Probability (0,1)__
+* If it comes up heads, you win {$$}X{/$$} dollars.
+* If it comes up tails, you lose {$$}Y{/$$}.
 
-$$\rm{Pr}(RW_i | RS_i, b_0, b_1 )$$
+What should we set {$$}X{/$$} and {$$}Y{/$$} for the game to be fair?
+Fair means the expected earnings for either player is 0. That is:
+
+{$$}E[earnings]= X p - Y (1 - p) = 0{/$$}
+
+This implies {$$}\frac{Y}{X} = \frac{p}{1 - p} = o{/$$}.
+Consider setting {$$}X=1{/$$}, then {$$} Y = o{/$$}.
+Thus, the odds can be interpreted as
+"How much should you be willing to pay for a {$$}p{/$$} probability
+of winning a dollar?"
+If {$$}p > 0.5{/$$} you have to pay more if you lose than you get if you win.
+If {$$}p < 0.5{/$$} you have to pay less if you lose than you get if you win.
+
+So, imagine that I go to a horse race and the odds that a horse loses are
+50 to 1. They usually specify in terms of losing at horse tracks, so this
+would be said to be 50 to 1 "against" where the against is implied and
+not stated on the boards. The odds of the horse winning are
+then 1/50. Thus, for a fair bet if I were to bet on the horse winning,
+they should pay me 50 dollars if he wins and should pay 1 dollar if he
+loses. (Or any agreed upon multiple, such as
+100 dollars if he wins and 2 dollars if he loses.) The implied probability
+that the horse loses is {$$}50 / (1 + 50){/$$}.  
+
+It's interesting  
+to note that the house sets the odds (hence the implied probability)
+only by the bets coming in. They take a small fee for every bet win or lose
+(the rake). So, by setting the odds dynamically as the bets roll in,
+they can guarantee that they make money (risk free) via the rake. Thus
+the phrase "the house always wins" applies literally. Even more interesting
+is that by the wisdom of the crowd, the final probabilities tend to match the percentage
+of times that event happens. That is, 50 to 1 horses tend to win about
+1 out of 51 times, even though that 50 to 1 was set by a random collection
+of mostly uninformed bettors. This is why even your sports
+junkie friend with seemingly endless sports knowledge
+can't make a killing betting on sports; the crowd is just too smart as a group
+even though all of the individuals know less.
+
+Finally, and then I'll get back on track, many of the machine learning
+algorithms work on the principle of the wisdom of crowds:
+many small dumb models can make really
+good models. This is often called ensemble learning, where a lot of independent
+weak classifiers are combined to make a strong one. Random forests and boosting
+come to mind as examples.
+
+Probabilities are between 0 and 1. Odds are between 0 and infinity. So, it
+makes sense to model the log of the odds (the logit), since it goes from
+minus infinity to plus infinity. The logit is defined as
+
+{$$}
+g = \mathrm{logit}(p) = \log(p / 1 - p)
+{/$$}
+
+We can go backwards from the logit to the probability with the so-called
+expit
+
+{$$}
+\mathrm{expit}(g) = e^g / (1 + e^g) = p.
+{/$$}
+
+## Modeling the odds
+
+Let's come up with notation for modeling the odds. Recall that
+{$$}Y_i{/$$} was our outcome, a 0 or 1 indicator of whether or not
+the Raven's won game {$$}i{/$$}.
+
+Let
+{$$}
+p_i = \mathrm{P}(Y_i = 1 ~|~ X_i = x_i, \beta_0, \beta_1)
+{/$$}
+
+be the probability of a win for number of points {$$}x_i{/$$}.
+Then the odds that they win is {$$}p_i / (1 - p_i){/$$} and the
+log odds is {$$}\log{p_i / (1 - p_i)} = \mathrm{logit}(p_i){/$$}.
+
+Logistic regression puts the model on the log of the odds (logit)
+scale. In other words,
+
+{$$}
+\logit(p_i) = \beta_0 + \beta_1 x_i
+{/$$}
+
+Or, equivalently, we could just say
+
+{$$}
+P(Y_i = 1 ~|~ X_i = x_i, \beta_0,\beta_1)
+= p_i = \frac{ \exp^{\beta_0 + \beta_1 x_i}}{1 + \exp(\beta_0 + \beta_1 x_i)}
+{/$$}
 
 
-__Odds $(0,\infty)$__
-$$\frac{\rm{Pr}(RW_i | RS_i, b_0, b_1 )}{1-\rm{Pr}(RW_i | RS_i, b_0, b_1)}$$
-
-__Log odds $(-\infty,\infty)$__
-
-$$\log\left(\frac{\rm{Pr}(RW_i | RS_i, b_0, b_1 )}{1-\rm{Pr}(RW_i | RS_i, b_0, b_1)}\right)$$
-
-
----
-
-## Linear vs. logistic regression
-
-__Linear__
-
-$$ RW_i = b_0 + b_1 RS_i + e_i $$
-
-or
-
-$$ E[RW_i | RS_i, b_0, b_1] = b_0 + b_1 RS_i$$
-
-__Logistic__
-
-$$ \rm{Pr}(RW_i | RS_i, b_0, b_1) = \frac{\exp(b_0 + b_1 RS_i)}{1 + \exp(b_0 + b_1 RS_i)}$$
-
-or
-
-$$ \log\left(\frac{\rm{Pr}(RW_i | RS_i, b_0, b_1 )}{1-\rm{Pr}(RW_i | RS_i, b_0, b_1)}\right) = b_0 + b_1 RS_i $$
-
----
-
+<!--
 ## Interpreting Logistic Regression
 
 $$ \log\left(\frac{\rm{Pr}(RW_i | RS_i, b_0, b_1 )}{1-\rm{Pr}(RW_i | RS_i, b_0, b_1)}\right) = b_0 + b_1 RS_i $$
@@ -128,17 +219,6 @@ $b_1$ - Log odds ratio of win probability for each point scored (compared to zer
 $\exp(b_1)$ - Odds ratio of win probability for each point scored (compared to zero points)
 
 ---
-## Odds
-- Imagine that you are playing a game where you flip a coin with success probability $p$.
-- If it comes up heads, you win $X$. If it comes up tails, you lose $Y$.
-- What should we set $X$ and $Y$ for the game to be fair?
-
-    $$E[earnings]= X p - Y (1 - p) = 0$$
-- Implies
-    $$\frac{Y}{X} = \frac{p}{1 - p}$$
-- The odds can be said as "How much should you be willing to pay for a $p$ probability of winning a dollar?"
-    - (If $p > 0.5$ you have to pay more if you lose than you get if you win.)
-    - (If $p < 0.5$ you have to pay less if you lose than you get if you win.)
 
 ---
 ## Visualizing fitting logistic regression curves
