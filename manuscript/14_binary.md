@@ -72,7 +72,6 @@ this model would be second nature.
 ravensData$ravenScore   0.0159   0.009059   1.755  0.09625
 ~~~
 
-<!--
 There's numerous problems with this model. First, if the Ravens
 score more than 63 points in a game, we estimate a {$$}0.0159 \times
 63 > 1{/$$} increase in the probability of them winning. This is
@@ -184,6 +183,7 @@ Let's come up with notation for modeling the odds. Recall that
 the Raven's won game {$$}i{/$$}.
 
 Let
+
 {$$}
 p_i = \mathrm{P}(Y_i = 1 ~|~ X_i = x_i, \beta_0, \beta_1)
 {/$$}
@@ -196,7 +196,7 @@ Logistic regression puts the model on the log of the odds (logit)
 scale. In other words,
 
 {$$}
-\logit(p_i) = \beta_0 + \beta_1 x_i
+\mathrm{logit}(p_i) = \beta_0 + \beta_1 x_i
 {/$$}
 
 Or, equivalently, we could just say
