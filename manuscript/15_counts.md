@@ -39,7 +39,7 @@ mean of the Poisson is {$$}E[X] = t\lambda{/$$}, thus {$$}E[X / t] = \lambda{/$$
 The variance of the Poisson is {$$}Var(X) = t\lambda{/$$}.
 The Poisson tends to a normal as {$$}t\lambda{/$$} gets large and
 approximates a binomial with large {$$}n{/$$} and small {$$}p{/$$}
-where we would think of {$$}t\lamdba{/$$} as {$$}n p {/$$}.
+where we would think of {$$}t\lambda{/$$} as {$$}n p {/$$}.
 
 Here are some plots of the Poisson density to illustrate
 how it closely approximates a normal.
