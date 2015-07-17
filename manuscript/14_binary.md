@@ -271,7 +271,7 @@ in the regressor.
 
 ## Visualizing fitting logistic regression curves
 
-Let's visualize what the logistic regression model is
+Let's visualize what the logistic regression model is 
 fitting.
 
 {lang=r,line-numbers=off}
