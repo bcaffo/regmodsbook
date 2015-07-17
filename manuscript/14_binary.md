@@ -209,7 +209,7 @@ scale. In other words,
 Or, equivalently, we could just say
 
 {$$}
-P(Y_i = 1 ~|~ X_i = x_i, \beta_0,\beta_1)
+P(Y_i = 1 ~|~ X_i = x_i, \beta_0, \beta_1)
 = p_i = \frac{ \exp^{\beta_0 + \beta_1 x_i}}{1 + \exp(\beta_0 + \beta_1 x_i)}
 {/$$}
 
@@ -245,8 +245,8 @@ the following:
 \mathrm{log}\{O(Y_i = 1 ~|~ X_i = x_i)\}
 =
 \mathrm{log}\left\{
-  \frac{O(Y_i = 1 ~|~ X_i = x_i + 1)}%
-{O(Y_i = 1 ~|~ X_i = x_i)}
+  \frac{O(Y_i = 1 ~|~ X_i = x_i + 1)}
+{O(Y_i = 1 ~|~ X_i = x_i)} \right\}
 = \beta_1
 {/$$}
 
