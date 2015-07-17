@@ -7,7 +7,7 @@ product. Often these outcomes are called Bernoulli outcomes, from the
 Bernoulli distribution named after the famous probabilist and mathematician.
 
 If we happen to have several exchangeable binary outcomes for the same level
-of covariate values, then that is binomial data and we can aggregate the 0's and
+of covariate values, then that is *binomial* data and we can aggregate the 0's and
 1's into the count of 1's. As an example, imagine if we sprayed insect pests
 with 4 different pesticides and counted whether they died or not. Then for
 each spray, we could summarize the data with the count of dead and total number
@@ -18,9 +18,8 @@ that were sprayed and treat the data as binomial rather than Bernoulli.
 
 The Baltimore Ravens are an American Football team in
 the US's National Football League.[^f2] The data contains the wins
-and losses of the Ravens
-by the number of points that they scored. (In Americal football, the
-goal is to score more points than your oponent.) It should be clear
+and losses of the Ravens by the number of points that they scored. (In American football, the
+goal is to score more points than your opponent.) It should be clear
 that there would be a positive relationship between the number of
 points scored and the probability of winning that particular game.
 
@@ -45,7 +44,7 @@ Let's load the data and use `head` to look at the first few rows.
 ~~~
 
 
-## Linear regression
+
 
 $$ RW_i = b_0 + b_1 RS_i + e_i $$
 
