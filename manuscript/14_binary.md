@@ -72,6 +72,7 @@ this model would be second nature.
 ravensData$ravenScore   0.0159   0.009059   1.755  0.09625
 ~~~
 
+<!--
 There's numerous problems with this model. First, if the Ravens
 score more than 63 points in a game, we estimate a {$$}0.0159 \times
 63 > 1{/$$} increase in the probability of them winning. This is
