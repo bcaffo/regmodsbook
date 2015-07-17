@@ -73,10 +73,12 @@ ravensData$ravenScore   0.0159   0.009059   1.755  0.09625
 ~~~
 
 There's numerous problems with this model. First, if the Ravens
-score more than 63 points in a game, we estimate a {$$}0.0159 \times
-63 > 1{/$$} increase in the probability of them winning. This is
+score more than 63 points in a game, we estimate a 0.0159 *
+63, which is greater than 1, increase in the probability of them winning. This is
 an impossibility, since a probability can't be greater than 1.
-(63 is an unusual, but not impossible, score in American football.)
+63 is an unusual, but not impossible, score in American football, but
+the principle applies broadly: modeling binary data with linear models
+results in models that fail the basic assumption of the data.
 
 Perhaps less galling, but still an annoying aspect of the model, is that
 if the error is assumed to be Gaussian, then our model allows {$$}Y_i{/$$}
@@ -85,8 +87,8 @@ data can be only be 0 or 1. If we assume that our errors are discrete
 to force this, we assume a very strange distribution on the errors.
 
 There also aren't any transformations to make things better. Any
-isomorphic transformation of our outcome
-is still just going to have two values with the same set of problems.
+one to one transformation of our outcome
+is still just going to have two values, thus the same set of problems.
 
 The key insight was to transform the probability of a 1 (win in our
   example) rather than the data itself. Which transformation is most
@@ -95,18 +97,19 @@ the logit.
 
 ## Odds
 You've heard of odds before, most likely from discussions of gambling.
-First note, odds are a fraction, not a percentage. So, when someone says
+First note, odds are a fraction greater than 0 but unbounded.
+The odds are not a percentage or proportion. So, when someone says
 "The odds are fifty percent", they are mistaking probability and odds.
 They likely mean "The probability is fifty percent.", or equivalently
 "The odds are one.", or "The odds are one to one", or "The odds are
-fifty [divided by] fifty." The odds statements are all the same since:
-1, 1 / 1 and 50 / 50 are all the same number.
+fifty [divided by] fifty." The latter three odds statements
+are all the same since: 1, 1 / 1 and 50 / 50 are all the same number.
 
 If {$$}p{/$$} is a probability, the odds are defined as
 {$$}o = p/(1-p){/$$}. Note that we can go backwards as
 {$$}p = o / (1 + o){/$$}. Thus, if someone says the odds are 1 to 1,
 they're saying that the odds are 1 and thus {$$}p = 1 / (1 + 1) = 0.5{/$$}.
-Conversely, if someone says that the probability that something occurrs
+Conversely, if someone says that the probability that something occurs
 is 50%, then they mean that {$$}p=0.5{/$$} so that the odds are
 {$$}o = p / (1 - p) = 0.5 / (1 - 0.5) = {/$$}.
 
@@ -140,40 +143,44 @@ loses. (Or any agreed upon multiple, such as
 100 dollars if he wins and 2 dollars if he loses.) The implied probability
 that the horse loses is {$$}50 / (1 + 50){/$$}.  
 
-It's interesting  
-to note that the house sets the odds (hence the implied probability)
+It's an interesting  
+side note that the house sets the odds (hence the implied probability)
 only by the bets coming in. They take a small fee for every bet win or lose
 (the rake). So, by setting the odds dynamically as the bets roll in,
 they can guarantee that they make money (risk free) via the rake. Thus
 the phrase "the house always wins" applies literally. Even more interesting
 is that by the wisdom of the crowd, the final probabilities tend to match the percentage
-of times that event happens. That is, 50 to 1 horses tend to win about
-1 out of 51 times, even though that 50 to 1 was set by a random collection
+of times that event happens. That is, house declared 50 to 1 horses
+tend to win about 1 out of 51 times and lose 50 out of 51 times,
+even though that 50 to 1 was set by a random collection
 of mostly uninformed bettors. This is why even your sports
-junkie friend with seemingly endless sports knowledge
+junkie friend with seemingly endless up to date sports knowledge
 can't make a killing betting on sports; the crowd is just too smart as a group
-even though all of the individuals know less.
+even though most of the individuals know much less.
 
 Finally, and then I'll get back on track, many of the machine learning
-algorithms work on the principle of the wisdom of crowds:
+algorithms work on this principle of the wisdom of crowds:
 many small dumb models can make really
 good models. This is often called ensemble learning, where a lot of independent
 weak classifiers are combined to make a strong one. Random forests and boosting
-come to mind as examples.
+come to mind as examples. In the Coursera Practical Machine Learning class,
+we cover ensemble learning algorithms.
 
-Probabilities are between 0 and 1. Odds are between 0 and infinity. So, it
+Getting back to the issues at hand, recall that
+probabilities are between 0 and 1. Odds are between 0 and infinity. So, it
 makes sense to model the log of the odds (the logit), since it goes from
-minus infinity to plus infinity. The logit is defined as
+minus infinity to plus infinity. The log of the odds is called the
+logit:
 
 {$$}
 g = \mathrm{logit}(p) = \log(p / 1 - p)
 {/$$}
 
 We can go backwards from the logit to the probability with the so-called
-expit
+expit (inverse logit):
 
 {$$}
-\mathrm{expit}(g) = e^g / (1 + e^g) = p.
+\mathrm{expit}(g) = e^g / (1 + e^g) = 1 / (1 + e^{-g}) = p.
 {/$$}
 
 ## Modeling the odds
@@ -207,23 +214,68 @@ P(Y_i = 1 ~|~ X_i = x_i, \beta_0,\beta_1)
 {/$$}
 
 
-<!--
 ## Interpreting Logistic Regression
 
-$$ \log\left(\frac{\rm{Pr}(RW_i | RS_i, b_0, b_1 )}{1-\rm{Pr}(RW_i | RS_i, b_0, b_1)}\right) = b_0 + b_1 RS_i $$
+Recall our model is:
+
+{$$}
+\mathrm{logit}\{P(Y_i = 1 ~|~ X_i = x_i)\} = \beta_0 + \beta_1 x_i
+{/$$}
+
+Let's write this as:
+
+{$$}
+\mathrm{log}\{O(Y_i = 1 ~|~ X_i = x_i)\} = \beta_0 + \beta_1 x_i
+{/$$}
+
+where {$$}O(Y_i = 1 ~|~ X_i = x_i){/$$} refers to the odds.
+Interpreting {$$}\beta_0{\$$} is straightforward, it's the
+log of the odds of the Ravens winning for a 0 point game. Just
+like in regular regression, for this to have meaning, a 0
+X value has to have meaning. In this case, there's a structural
+consideration that's being ignored in that the Ravens *can't*
+win if they score 0 points (they can only tie or, much more likely,
+  lose). This is an unfortunate assumption of our model.
+
+For interpreting the {$$}\beta_1{/$$} coefficient, consider
+the following:
+
+{$$}
+\mathrm{log}\{O(Y_i = 1 ~|~ X_i = x_i + 1)\} -
+\mathrm{log}\{O(Y_i = 1 ~|~ X_i = x_i)\}
+=
+\mathrm{log}\left\{
+  \frac{O(Y_i = 1 ~|~ X_i = x_i + 1)}%
+{O(Y_i = 1 ~|~ X_i = x_i)}
+= \beta_1
+{/$$}
+
+So that {$$}\beta_1{/$$} is the log of the relative increase
+in the odds of the Ravens winning
+for a one point increase in score. The ratio of two odds is called,
+not surprisingly, the odds ratio. So {$$}\beta_1{/$$} is the log
+odds ratio of the Ravens winning associated with a one point increase
+in score.
+
+We can get rid of the log by exponentiating and then
+get that {$$}\exp(\beta_1){/$$} is the odds ratio associated with
+a one point increase in score. It's a nifty fact that you
+can often perform this exponentiation in your head, since for
+numbers close to zero, exponentiation is about 1 + that number.
+So, if you have a logistic regression slope
+coefficient of 0.01, you know that e to that
+coefficient is about 1.01. So you know that the coefficient estimates
+a 1% increase in the odds of a success for every 1 unit increase
+in the regressor.
 
 
-$b_0$ - Log odds of a Ravens win if they score zero points
-
-$b_1$ - Log odds ratio of win probability for each point scored (compared to zero points)
-
-$\exp(b_1)$ - Odds ratio of win probability for each point scored (compared to zero points)
-
----
-
----
 ## Visualizing fitting logistic regression curves
-```
+
+Let's visualize what the logistic regression model is
+fitting.
+
+{lang=r,line-numbers=off}
+~~~
 x <- seq(-10, 10, length = 1000)
 manipulate(
     plot(x, exp(beta0 + beta1 * x) / (1 + exp(beta0 + beta1 * x)),
@@ -231,7 +283,7 @@ manipulate(
     beta1 = slider(-2, 2, step = .1, initial = 2),
     beta0 = slider(-2, 2, step = .1, initial = 0)
     )
-```
+~~~
 
 ---
 
