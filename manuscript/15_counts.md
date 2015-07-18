@@ -1,4 +1,5 @@
 # Count data
+Acknowledgement to Jeff Leek for much of the code and organization of this chapter.
 
 Many data take the form of unbounded count
 data. For example, consider the number of calls
@@ -55,47 +56,25 @@ plot(0 : 200, dpois(0 : 200, lambda = 100), type = "h", frame = FALSE)
 ![Poisson densities as the mean increases.](figures/simPois.png)
 
 
-<!--
 
 ## Poisson distribution
-### Sort of, showing that the mean and variance are equal
 
-```r
-x <- 0 : 10000; lambda = 3
-mu <- sum(x * dpois(x, lambda = lambda))
-sigmasq <- sum((x - mu)^2 * dpois(x, lambda = lambda))
-c(mu, sigmasq)
-```
+Let's analyze some data using the Poisson distribution.
+Consider the daily counts to Jeff Leek's web site: [http://biostat.jhsph.edu/~jleek/](http://biostat.jhsph.edu/~jleek/)
 
-```
-[1] 3 3
-```
+We're interested in the number of hits per day.
+Since the unit of time is always one day, set {$$}t = 1{/$$} and then
+the Poisson mean is interpreted as web hits per day.
+If we set {$$}t = 24{/$$} then our Poisson rate
+would be interpreted as web hits per hour.
 
-
----
-
-## Example: Leek Group Website Traffic
-* Consider the daily counts to Jeff Leek's web site
-
-[http://biostat.jhsph.edu/~jleek/](http://biostat.jhsph.edu/~jleek/)
-
-* Since the unit of time is always one day, set $t = 1$ and then
-the Poisson mean is interpretted as web hits per day. (If we set $t = 24$, it would
-be web hits per hour).
-
----
-
-## Website data
-
-
-```r
-download.file("https://dl.dropboxusercontent.com/u/7710864/data/gaData.rda",destfile="./data/gaData.rda",method="curl")
-load("./data/gaData.rda")
-gaData$julian <- julian(gaData$date)
-head(gaData)
-```
-
-```
+Let's load the data:
+{lang=r, line-numbers=off}
+~~~
+> download.file("https://dl.dropboxusercontent.com/u/7710864/data/gaData.rda",destfile="./data/gaData.rda",method="curl")
+> load("./data/gaData.rda")
+> gaData$julian <- julian(gaData$date)
+> head(gaData)
         date visits simplystats julian
 1 2011-01-01      0           0  14975
 2 2011-01-02      0           0  14976
@@ -103,45 +82,33 @@ head(gaData)
 4 2011-01-04      0           0  14978
 5 2011-01-05      0           0  14979
 6 2011-01-06      0           0  14980
-```
+
+> plot(gaData$julian,gaData$visits,pch=19,col="darkgrey",xlab="Julian",ylab="Visits")
+~~~
+
+![Plot of the count of web hits by day.](images/count1.png)
 
 
-[http://skardhamar.github.com/rga/](http://skardhamar.github.com/rga/)
-
-
----
-
-## Plot data
-
-
-```r
-plot(gaData$julian,gaData$visits,pch=19,col="darkgrey",xlab="Julian",ylab="Visits")
-```
-
-<div class="rimage center"><img src="fig/unnamed-chunk-2.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" class="plot" /></div>
-
-
-
----
 
 ## Linear regression
 
-$$ NH_i = b_0 + b_1 JD_i + e_i $$
+We could try to fit the data with linear regression.
+This is an often reasonable thing to do. Specifically,
+we would start with the model
 
-$NH_i$ - number of hits to the website
+{$$} Y_i = \beta_0 + beta_1 x_i + \epsilon_i {/$$}
 
-$JD_i$ - day of the year (Julian day)
+where {$$}Y_i{/$$} is the number of web hits on day i
+and {$$}x_i{/$$} is the day (expressed as a Julian
+date, the number of days since January 1st, 1970).
 
-$b_0$ - number of hits on Julian day 0 (1970-01-01)
-
-$b_1$ - increase in number of hits per unit day
-
-$e_i$ - variation due to everything we didn't measure
-
-
----
-
-## Linear regression line
+This model isn't anywhere near as objectionable as when applied in
+the binary case. Two sticking points remain. First, the
+response is a count and thus is non-negative, while our model
+doesn't acknowledge that. Secondly, the errors are typically
+assumed Gaussian, which is not an accurate approximation for
+small counts. As the counts get larger, straight application of
+linear or multivariable regression models becomes more compelling.
 
 
 ```r
@@ -152,96 +119,89 @@ abline(lm1,col="red",lwd=3)
 
 <div class="rimage center"><img src="fig/linReg.png" title="plot of chunk linReg" alt="plot of chunk linReg" class="plot" /></div>
 
----
 
-## Aside, taking the log of the outcome
-- Taking the natural log of the outcome has a specific interpretation.
-- Consider the model
+The non-negativity could be handled by a (natural)
+log transformation of
+the outcome. The log has a special interpretation with respect
+to regression, so we cover it here. First, there is the issue of
+zero counts (which can't be logged). Often a +1 is added to
+all data before taking the log, a reasonable solution but
+one that harms the nice interpretation properties of the log.
+Secondly, a square root or cube root
+transformation is often applied (which works just fine on zeros).
+While correcting nicely for skewness, this approach the issue
+of losing the nice interpretation of logs. Thus for the time being,
+let's assume no zero counts in the discussion.
 
-$$ \log(NH_i) = b_0 + b_1 JD_i + e_i $$
+Consider now the model:
 
-$NH_i$ - number of hits to the website
+{$$} \log(Y_i) = \beta_0 + \beta_1 x_i + \epsilon_i {/$$}
 
-$JD_i$ - day of the year (Julian day)
+The quantity {$$}e^{E[\log(Y)]}{/$$} geometric mean of {$$}Y{/$$}.
+When you take the natural log of outcomes and fit a regression model, your exponentiated coefficients estimate things about geometric means.
+Thus our {$$}e^{\beta_0}{/$$} is the geometric mean hits on
+day 0 while {$$}e^{\beta_1}{/$$} is the relative increase or
+decrease in hits going from one day to the next.
 
-$b_0$ - log number of hits on Julian day 0 (1970-01-01)
+Let's try this briefly with Jeff's data.
 
-$b_1$ - increase in log number of hits per unit day
-
-$e_i$ - variation due to everything we didn't measure
-
----
-## Exponentiating coefficients
-- $e^{E[\log(Y)]}$ geometric mean of $Y$.
-    - With no covariates, this is estimated by $e^{\frac{1}{n}\sum_{i=1}^n \log(y_i)} = (\prod_{i=1}^n y_i)^{1/n}$
-- When you take the natural log of outcomes and fit a regression model, your exponentiated coefficients
-estimate things about geometric means.
-- $e^{\beta_0}$ estimated geometric mean hits on day 0
-- $e^{\beta_1}$ estimated relative increase or decrease in geometric mean hits per day
-- There's a problem with logs with you have zero counts, adding a constant works
-
-```r
-round(exp(coef(lm(I(log(gaData$visits + 1)) ~ gaData$julian))), 5)
-```
-
-```
+{lang=r,line-numbers=off}
+~~~
+> round(exp(coef(lm(I(log(gaData$visits + 1)) ~ gaData$julian))), 5)
   (Intercept) gaData$julian
         0.000         1.002
-```
+~~~
+
+Thus our model estimates a 0.2% increase in geometric mean
+daily web hits each day. What's nice about the geometric mean is it's
+a multiplicative quantity. In this case it make sense to think
+multiplicatively, as we would very naturally think in the terms
+of percent increases or decreases in the daily rate of web traffic.
+
+## Poisson regression
+
+Poisson regression is similar to logging the outcome. However, instead
+we log the model
+mean exactly as in the binary chapter where we logged the  modeled odds.
+This takes care of the problem of zero counts elegantly.
+
+Consider a model where we assume that {$$}Y_i \sim \mbox{Poisson}(\mu_i){/$$}.
+annd
+
+{$$}
+\log(E[Y_i ~|~ X_i = x_i]) = \log(\mu_i) = \beta_0 + \beta_1 x_i
+{/$$}
+
+Note that we're not logging the outcome, we're logging the assumed mean
+in the model.
+
+We interpret our coefficients as follows.
+{$$}e^\beta_0{\$$} is the expected mean of the outcome when {$$}x_i = 0{/$$}.
+Using the relationship:
+
+{$$}
+\frac{E[Y_i ~|~ X_i = x_i+1]}{E[Y_i ~|~ X_i = x_i]} = e^{\beta_1}
+{/$$}
+
+we interpret {$$}e^\beta_1{\$$} as the expected relative increase in the
+outcome for a unit change in the regressor. If there's more than one
+regressor in the model, then the coefficients are interpreted in the terms
+of the other regressors being held fixed.
+
+Let's try it in R for Jeff's data:
 
 
----
-
-## Linear vs. Poisson regression
-
-__Linear__
-
-$$ NH_i = b_0 + b_1 JD_i + e_i $$
-
-or
-
-$$ E[NH_i | JD_i, b_0, b_1] = b_0 + b_1 JD_i$$
-
-__Poisson/log-linear__
-
-$$ \log\left(E[NH_i | JD_i, b_0, b_1]\right) = b_0 + b_1 JD_i $$
-
-or
-
-$$ E[NH_i | JD_i, b_0, b_1] = \exp\left(b_0 + b_1 JD_i\right) $$
-
-
----
-
-## Multiplicative differences
-
-<br><br>
-$$ E[NH_i | JD_i, b_0, b_1] = \exp\left(b_0 + b_1 JD_i\right) $$
-
-<br><br>
-
-$$ E[NH_i | JD_i, b_0, b_1] = \exp\left(b_0 \right)\exp\left(b_1 JD_i\right) $$
-
-<br><br>
-
-If $JD_i$ is increased by one unit, $E[NH_i | JD_i, b_0, b_1]$ is multiplied by $\exp\left(b_1\right)$
-
----
-
-## Poisson regression in R
-
-
-```r
-plot(gaData$julian,gaData$visits,pch=19,col="darkgrey",xlab="Julian",ylab="Visits")
-glm1 <- glm(gaData$visits ~ gaData$julian,family="poisson")
-abline(lm1,col="red",lwd=3); lines(gaData$julian,glm1$fitted,col="blue",lwd=3)
-```
+{lang=r,line-numbers=off}
+~~~
+> plot(gaData$julian,gaData$visits,pch=19,col="darkgrey",xlab="Julian",ylab="Visits")
+> glm1 <- glm(gaData$visits ~ gaData$julian,family="poisson")
+> abline(lm1,col="red",lwd=3); lines(gaData$julian,glm1$fitted,col="blue",lwd=3)
+~~~
 
 <div class="rimage center"><img src="fig/poisReg.png" title="plot of chunk poisReg" alt="plot of chunk poisReg" class="plot" /></div>
 
 
 
----
 
 ## Mean-variance relationship?
 
