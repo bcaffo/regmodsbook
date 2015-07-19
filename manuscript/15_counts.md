@@ -56,7 +56,6 @@ plot(0 : 200, dpois(0 : 200, lambda = 100), type = "h", frame = FALSE)
 ![Poisson densities as the mean increases.](figures/simPois.png)
 
 
-<!--
 ## Poisson distribution
 
 Let's analyze some data using the Poisson distribution.
@@ -87,6 +86,7 @@ Let's load the data:
 ~~~
 
 ![Plot of the count of web hits by day.](images/count1.png)
+
 
 
 
@@ -156,6 +156,8 @@ daily web hits each day. What's nice about the geometric mean is it's
 a multiplicative quantity. In this case it make sense to think
 multiplicatively, as we would very naturally think in the terms
 of percent increases or decreases in the daily rate of web traffic.
+
+<!--
 
 ## Poisson regression
 
