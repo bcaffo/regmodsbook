@@ -29,7 +29,7 @@ we can treat proportions as if rates when {$$}n{/$$} is large
 and the success probability is small.
 
 We would write that a random variable is Poisson,
-{$$}X \sim Poisson(t\lambda){/$$}, if its density function is:
+{$$}X \sim \mathrm{Poisson}(t\lambda){/$$}, if its density function is:
 
 {$$}
 P(X = x) = \frac{(t\lambda)^x e^{-t\lambda}}{x!}
@@ -56,7 +56,7 @@ plot(0 : 200, dpois(0 : 200, lambda = 100), type = "h", frame = FALSE)
 ![Poisson densities as the mean increases.](figures/simPois.png)
 
 
-
+<!--
 ## Poisson distribution
 
 Let's analyze some data using the Poisson distribution.
@@ -286,3 +286,4 @@ points(julian(gaData$date),glm1$fitted,col="red",pch=19)
 ```
 
 ![Plot of the fitted rates.](images/count5.png)
+-->
