@@ -73,7 +73,7 @@ Let's load the data:
 ~~~
 > download.file("https://dl.dropboxusercontent.com/u/7710864/data/gaData.rda",destfile="./data/gaData.rda",method="curl")
 > load("./data/gaData.rda")
-> gaData$julian <- julian(gaData$date)
+> gaData$julian = julian(gaData$date)
 > head(gaData)
         date visits simplystats julian
 1 2011-01-01      0           0  14975
@@ -112,13 +112,12 @@ linear or multivariable regression models becomes more compelling.
 
 
 ```r
-plot(gaData$julian,gaData$visits,pch=19,col="darkgrey",xlab="Julian",ylab="Visits")
-lm1 <- lm(gaData$visits ~ gaData$julian)
-abline(lm1,col="red",lwd=3)
+> plot(gaData$julian,gaData$visits,pch=19,col="darkgrey",xlab="Julian",ylab="Visits")
+> lm1 = lm(gaData$visits ~ gaData$julian)
+> abline(lm1,col="red",lwd=3)
 ```
 
-<div class="rimage center"><img src="fig/linReg.png" title="plot of chunk linReg" alt="plot of chunk linReg" class="plot" /></div>
-
+![Plot of the data plus the fitted line.](images/count2.png)
 
 The non-negativity could be handled by a (natural)
 log transformation of
@@ -194,135 +193,96 @@ Let's try it in R for Jeff's data:
 {lang=r,line-numbers=off}
 ~~~
 > plot(gaData$julian,gaData$visits,pch=19,col="darkgrey",xlab="Julian",ylab="Visits")
-> glm1 <- glm(gaData$visits ~ gaData$julian,family="poisson")
+> glm1 = glm(gaData$visits ~ gaData$julian,family="poisson")
 > abline(lm1,col="red",lwd=3); lines(gaData$julian,glm1$fitted,col="blue",lwd=3)
 ~~~
 
-<div class="rimage center"><img src="fig/poisReg.png" title="plot of chunk poisReg" alt="plot of chunk poisReg" class="plot" /></div>
+![Data with fitted Poisson regression line.](images/count3.png)
 
+## Mean-variance relationship
 
+The Poisson model suggest a specific relationship between the mean and
+the variance. Specifically, if {$$}Y_i \sim \mbox{Poisson}(\mu_i){/$$},
+then {$$}E[Y_i] = \mathrm{Var}(Y_i){/$$}. We can often check whether or
+not this relationship apparently holds. For example, we can plot the
+fitted values (estimates {$$}E[Y_i]{/$$}) by generalized version of residuals
+for Poisson models. Bins of the
 
+{lang=r,line-numbers=off}
+~~~
+> plot(glm1$fitted,glm1$residuals,pch=19,col="grey",ylab="Residuals",xlab="Fitted")
+~~~
 
-## Mean-variance relationship?
+![Plot of the fitted means versus the residuals.](images/count3.png)
 
+There are several methods for dealing with data that, while being
+counts, do not follow the mean variance relationship assumed by the
+Poisson model. Perhaps the easiest is to assume a so-called quasi-Poisson
+model. This is from the idea of quasi-likelihood. Here, the model is
+extended to have the variance be a constant (non-fixed) multiple
+of the mean. A very related approach are so-called negative binomial
+models. These models typically assume a more general mean/variance
+relationship.
 
-```r
-plot(glm1$fitted,glm1$residuals,pch=19,col="grey",ylab="Residuals",xlab="Fitted")
-```
+Other approaches directly model the mean/variance
+relationship or rely on asymptotics to be robust to the assumption.
+We omit a full discussion of general of methods for addressing complex
+mean variance relationships and simply show a quasi-Poisson fit for the
+data of this chapter.
 
-<div class="rimage center"><img src="fig/unnamed-chunk-4.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" class="plot" /></div>
+{lang=r,line-numbers=off}
+~~~
+> glm2 = glm(visits ~ julian,family="quasipoisson", data = gaData)
+#
+# Confidence interval expressed as a percentage
+> 100 * (exp(confint(glm2)) - 1)[2,]
+Waiting for profiling to be done...
+                   2.5 %       97.5 %
+julian         0.2072924    0.2520376
+#
+# As compared to the standard Poisson interval
+> 100 * (exp(confint(glm1)) - 1)[2,]
+Waiting for profiling to be done...
+                   2.5 %       97.5 %
+julian         0.2192443    0.2399335
+~~~
 
-
----
-
-## Model agnostic standard errors
-
-
-```r
-library(sandwich)
-confint.agnostic <- function (object, parm, level = 0.95, ...)
-{
-    cf <- coef(object); pnames <- names(cf)
-    if (missing(parm))
-        parm <- pnames
-    else if (is.numeric(parm))
-        parm <- pnames[parm]
-    a <- (1 - level)/2; a <- c(a, 1 - a)
-    pct <- stats:::format.perc(a, 3)
-    fac <- qnorm(a)
-    ci <- array(NA, dim = c(length(parm), 2L), dimnames = list(parm,
-                                                               pct))
-    ses <- sqrt(diag(sandwich::vcovHC(object)))[parm]
-    ci[] <- cf[parm] + ses %o% fac
-    ci
-}
-```
-
-[http://stackoverflow.com/questions/3817182/vcovhc-and-confidence-interval](http://stackoverflow.com/questions/3817182/vcovhc-and-confidence-interval)
-
----
-
-## Estimating confidence intervals
-
-
-```r
-confint(glm1)
-```
-
-```
-                  2.5 %     97.5 %
-(Intercept)   -34.34658 -31.159716
-gaData$julian   0.00219   0.002396
-```
-
-```r
-confint.agnostic(glm1)
-```
-
-```
-                   2.5 %     97.5 %
-(Intercept)   -36.362675 -29.136997
-gaData$julian   0.002058   0.002528
-```
-
-
-
----
+In this case the distinction between the intervals is minimal. Again,
+we reiterate that this only pursues one direction of model departure.
 
 ## Rates
 
+We fit rates or proportions in Poisson models by including the temporal or sample
+size component as a (natural) log offset in the model specification.
+Recall that {$$}Y_i{/$$} was the number of web hits. Let {$$}W_i{/$$}
+be the number of hits directed to the site from the Simply Statistics
+BLOG site.
 
-<br><br>
+Consider the model where
+
+{$$} W_i \sim \mbox{Poisson}(\mu_i) {/$$}
+
+so that
+
+{$$} \log(\mu_i) = \beta_0 + \beta_1 x_i + \log(Y_i) {/$$}
+
+This is a model for the proportion in the sense that {$$}\mu_i{/$$} is the
+expected count and our model is:
+
+{$$}
+\log(\mu_i / Y_i) = \beta_0 + \beta_1 x_i
+{/$$}
 
 
-$$ E[NHSS_i | JD_i, b_0, b_1]/NH_i = \exp\left(b_0 + b_1 JD_i\right) $$
-
-<br><br>
-
-$$ \log\left(E[NHSS_i | JD_i, b_0, b_1]\right) - \log(NH_i)  =  b_0 + b_1 JD_i $$
-
-<br><br>
-
-$$ \log\left(E[NHSS_i | JD_i, b_0, b_1]\right) = \log(NH_i) + b_0 + b_1 JD_i $$
-
----
-
-## Fitting rates in R
-
+In this case we were interested in a proportion. If our interest was in
+rates, counts over a time period, such as incident rate (cases per time at risk),
+the time variable would be included as the offset.
 
 ```r
-glm2 <- glm(gaData$simplystats ~ julian(gaData$date),offset=log(visits+1),
+glm3 = glm(simplystats ~ julian(gaData$date),offset=log(visits+1),
             family="poisson",data=gaData)
-plot(julian(gaData$date),glm2$fitted,col="blue",pch=19,xlab="Date",ylab="Fitted Counts")
+plot(julian(gaData$date),glm3$fitted,col="blue",pch=19,xlab="Date",ylab="Fitted Counts")
 points(julian(gaData$date),glm1$fitted,col="red",pch=19)
 ```
 
-<div class="rimage center"><img src="fig/ratesFit.png" title="plot of chunk ratesFit" alt="plot of chunk ratesFit" class="plot" /></div>
-
-
----
-
-## Fitting rates in R
-
-
-```r
-glm2 <- glm(gaData$simplystats ~ julian(gaData$date),offset=log(visits+1),
-            family="poisson",data=gaData)
-plot(julian(gaData$date),gaData$simplystats/(gaData$visits+1),col="grey",xlab="Date",
-     ylab="Fitted Rates",pch=19)
-lines(julian(gaData$date),glm2$fitted/(gaData$visits+1),col="blue",lwd=3)
-```
-
-<div class="rimage center"><img src="fig/unnamed-chunk-6.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" class="plot" /></div>
-
-
----
-
-## More information
-
-* [Log-linear models and multiway tables](http://ww2.coastal.edu/kingw/statistics/R-tutorials/loglin.html)
-* [Wikipedia on Poisson regression](http://en.wikipedia.org/wiki/Poisson_regression), [Wikipedia on overdispersion](http://en.wikipedia.org/wiki/Overdispersion)
-* [Regression models for count data in R](http://cran.r-project.org/web/packages/pscl/vignettes/countreg.pdf)
-* [pscl package](http://cran.r-project.org/web/packages/pscl/index.html) - the function _zeroinfl_ fits zero inflated models.
-
--->
+![Plot of the fitted rates.](images/count5.png)
