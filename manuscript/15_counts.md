@@ -165,9 +165,8 @@ we log the model
 mean exactly as in the binary chapter where we logged the  modeled odds.
 This takes care of the problem of zero counts elegantly.
 
-<!--
 
-Consider a model where we assume that {$$}Y_i \sim \mbox{Poisson}(\mu_i){/$$}.
+Consider a model where we assume that {$$}Y_i \sim \mathrm{Poisson}(\mu_i){/$$}.
 and
 
 {$$}
@@ -265,7 +264,7 @@ BLOG site.
 
 Consider the model where
 
-{$$} W_i \sim \mbox{Poisson}(\mu_i) {/$$}
+{$$} W_i \sim \mathrm{Poisson}(\mu_i) {/$$}
 
 so that
 
@@ -291,4 +290,3 @@ points(julian(gaData$date),glm1$fitted,col="red",pch=19)
 ```
 
 ![Plot of the fitted rates.](images/count5.png)
--->
