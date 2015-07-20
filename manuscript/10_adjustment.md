@@ -1,5 +1,6 @@
 # Adjustment
 
+[Watch this video before beginning.](https://youtu.be/SFPM9IuP2m8)
 
 Adjustment,
 is the idea of putting regressors into a linear model
