@@ -204,7 +204,7 @@ Let's try it in R for Jeff's data:
 ![Data with fitted Poisson regression line.](images/count3.png)
 
 ## Mean-variance relationship
-
+ 
 The Poisson model suggest a specific relationship between the mean and
 the variance. Specifically, if {$$}Y_i \sim \mathrm{Poisson}(\mu_i){/$$},
 then {$$}E[Y_i] = \mathrm{Var}(Y_i){/$$}. We can often check whether or
