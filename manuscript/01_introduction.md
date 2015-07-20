@@ -1,3 +1,5 @@
+# Introduction
+
 ## The book
 
 As a Leanpub book, it is being published prior to being finished.
