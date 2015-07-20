@@ -134,8 +134,5 @@ You can find the code for the plot [here](https://github.com/bcaffo/courses/blob
 ![Image of the data, the fitted line and error bars.](images/galton4.png)
 
 ## Showing the OLS result
-If you would like to see a proof of why the ordinary least squares result works out to be the way that it is: 
+If you would like to see a proof of why the ordinary least squares result works out to be the way that it is:
 [watch this video](https://www.youtube.com/watch?v=COVQX8WZVA8&index=8&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC).
-
-
-## Exercises

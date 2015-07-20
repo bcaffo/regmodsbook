@@ -1,7 +1,7 @@
 # Regression to the mean
 [Watch this video before beginning](https://www.youtube.com/watch?v=-I0_4JIeGws&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=9)
 
-## A historically famous idea, Regression to the Mean
+## A historically famous idea, regression to the mean
 Here is a fundamental question.
 Why is it that the children of tall parents tend to be tall, but not as tall as their parents?
 Why do children of short parents tend to be short, but not as short as their parents?

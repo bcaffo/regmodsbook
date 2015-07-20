@@ -254,5 +254,3 @@ g
 * The prediction interval must incorporate the variability
   in the data around the line.
   * Even if we knew {$$}\beta_0{/$$} and {$$}\beta_1{/$$} this interval would still have width.
-
-## Exercises

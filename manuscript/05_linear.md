@@ -259,5 +259,3 @@ line. The new X values are the at vertical lines, which are connected to
 the predicted values via the connected horizontal lines.
 
 ![Illustrating prediction with regression.](images/diamond2.png)
-
-## Exercises

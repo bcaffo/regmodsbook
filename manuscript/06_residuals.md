@@ -267,5 +267,3 @@ or a P-value, often masks important aspects of the data.
 The code is quite simple: `data(anscombe);example(anscombe)`.
 
 ![Plot of Anscombe's data set.](images/anscombe.png)
-
-## Exercises

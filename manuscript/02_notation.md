@@ -101,7 +101,11 @@ Cor(X, Y) = \frac{Cov(X, Y)}{S_x S_y}
 {/$$}
 
 where {$$}S_x{/$$} and {$$}S_y{/$$} are the estimates of standard deviations
-for the {$$}X{/$$} observations and {$$}Y{/$$} observations, respectively.
+for the {$$}X{/$$} observations and {$$}Y{/$$} observations, respectively. The correlation is simply the covariance of
+the separately normalized X and Y data. Because the the
+data have been normalized, the correlation is a unit free
+quantity and thus has more of a hope of being interpretable
+across settings.
 
 ## Some facts about correlation
 First, the order of the arguments is irrelevant {$$}Cor(X, Y) = Cor(Y, X){/$$}
@@ -111,5 +115,3 @@ perfectly on a negatively or positively sloped, line, respectively.
 Fourthly, {$$}Cor(X, Y){/$$} measures the strength of the linear relationship between
 the two variables, with stronger relationships as {$$}Cor(X,Y){/$$} heads towards -1 or 1.
 Finally, {$$}Cor(X, Y) = 0{/$$} implies no linear relationship.
-
-## Exercises

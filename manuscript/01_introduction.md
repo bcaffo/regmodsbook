@@ -97,7 +97,8 @@ Here's some key sentences:
 - "Linear regression suggests that an increase of 1% in % of shots taken by Kobe results in a drop of 1.16 points (+/- 0.22)  in score differential."
 
 In this book we will cover how to create summary statements like this using
-regression model building. Note the nice interpretability
+regression model building. Note the nice interpretability of
+the regression model.
 
 
 ## Summary notes: questions for this book
@@ -323,6 +324,3 @@ results suggest that to every every 1 inch increase in the parents height,
 we estimate a 0.646 inch increase in the child's height.
 
 ![Data with the best fitting line overlaid.](images/galton3.png)
-
-## Exercises
--->
