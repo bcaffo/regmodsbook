@@ -179,6 +179,8 @@ We interpret our coefficients as follows.
 {$$}e^\beta_0{\$$} is the expected mean of the outcome when {$$}x_i = 0{/$$}.
 Using the relationship:
 
+<!--
+
 {$$}
 \frac{E[Y_i ~|~ X_i = x_i+1]}{E[Y_i ~|~ X_i = x_i]} = e^{\beta_1}
 {/$$}
@@ -190,7 +192,6 @@ of the other regressors being held fixed.
 
 Let's try it in R for Jeff's data:
 
-<!--
 
 {lang=r,line-numbers=off}
 ~~~
