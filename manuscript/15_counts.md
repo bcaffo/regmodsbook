@@ -202,6 +202,7 @@ Let's try it in R for Jeff's data:
 
 ![Data with fitted Poisson regression line.](images/count3.png)
 
+<!--
 ## Mean-variance relationship
 
 The Poisson model suggest a specific relationship between the mean and
@@ -290,3 +291,4 @@ points(julian(gaData$date),glm1$fitted,col="red",pch=19)
 ```
 
 ![Plot of the fitted rates.](images/count5.png)
+-->
