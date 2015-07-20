@@ -53,7 +53,7 @@ plot(0 : 20, dpois(0 : 20, lambda = 10), type = "h", frame = FALSE)
 plot(0 : 200, dpois(0 : 200, lambda = 100), type = "h", frame = FALSE)
 ~~~
 
-![Poisson densities as the mean increases.](figures/simPois.png)
+![Poisson densities as the mean increases.](images/simPois.png)
 
 
 ## Poisson distribution
@@ -166,7 +166,7 @@ mean exactly as in the binary chapter where we logged the  modeled odds.
 This takes care of the problem of zero counts elegantly.
 
 Consider a model where we assume that {$$}Y_i \sim \mbox{Poisson}(\mu_i){/$$}.
-annd
+and
 
 {$$}
 \log(E[Y_i ~|~ X_i = x_i]) = \log(\mu_i) = \beta_0 + \beta_1 x_i
@@ -203,7 +203,7 @@ Let's try it in R for Jeff's data:
 ## Mean-variance relationship
 
 The Poisson model suggest a specific relationship between the mean and
-the variance. Specifically, if {$$}Y_i \sim \mbox{Poisson}(\mu_i){/$$},
+the variance. Specifically, if {$$}Y_i \sim \mathrm{Poisson}(\mu_i){/$$},
 then {$$}E[Y_i] = \mathrm{Var}(Y_i){/$$}. We can often check whether or
 not this relationship apparently holds. For example, we can plot the
 fitted values (estimates {$$}E[Y_i]{/$$}) by generalized version of residuals
