@@ -165,6 +165,8 @@ we log the model
 mean exactly as in the binary chapter where we logged the  modeled odds.
 This takes care of the problem of zero counts elegantly.
 
+<!--
+
 Consider a model where we assume that {$$}Y_i \sim \mbox{Poisson}(\mu_i){/$$}.
 and
 
@@ -179,7 +181,6 @@ We interpret our coefficients as follows.
 {$$}e^\beta_0{\$$} is the expected mean of the outcome when {$$}x_i = 0{/$$}.
 Using the relationship:
 
-<!--
 
 {$$}
 \frac{E[Y_i ~|~ X_i = x_i+1]}{E[Y_i ~|~ X_i = x_i]} = e^{\beta_1}
