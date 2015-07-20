@@ -173,13 +173,12 @@ and
 \log(E[Y_i ~|~ X_i = x_i]) = \log(\mu_i) = \beta_0 + \beta_1 x_i
 {/$$}
 
-<!--
 
 Note that we're not logging the outcome, we're logging the assumed mean
 in the model.
 
 We interpret our coefficients as follows.
-{$$}e^\beta_0{\$$} is the expected mean of the outcome when {$$}x_i = 0{/$$}.
+{$$}e^\beta_0{/$$} is the expected mean of the outcome when {$$}x_i = 0{/$$}.
 Using the relationship:
 
 
@@ -187,7 +186,7 @@ Using the relationship:
 \frac{E[Y_i ~|~ X_i = x_i+1]}{E[Y_i ~|~ X_i = x_i]} = e^{\beta_1}
 {/$$}
 
-we interpret {$$}e^\beta_1{\$$} as the expected relative increase in the
+we interpret {$$}e^{\beta_1}{\$$} as the expected relative increase in the
 outcome for a unit change in the regressor. If there's more than one
 regressor in the model, then the coefficients are interpreted in the terms
 of the other regressors being held fixed.
@@ -292,4 +291,3 @@ points(julian(gaData$date),glm1$fitted,col="red",pch=19)
 ```
 
 ![Plot of the fitted rates.](images/count5.png)
--->
