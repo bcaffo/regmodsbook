@@ -173,6 +173,8 @@ and
 \log(E[Y_i ~|~ X_i = x_i]) = \log(\mu_i) = \beta_0 + \beta_1 x_i
 {/$$}
 
+<!--
+
 Note that we're not logging the outcome, we're logging the assumed mean
 in the model.
 
@@ -202,7 +204,6 @@ Let's try it in R for Jeff's data:
 
 ![Data with fitted Poisson regression line.](images/count3.png)
 
-<!--
 ## Mean-variance relationship
 
 The Poisson model suggest a specific relationship between the mean and
