@@ -190,6 +190,7 @@ of the other regressors being held fixed.
 
 Let's try it in R for Jeff's data:
 
+<!--
 
 {lang=r,line-numbers=off}
 ~~~
@@ -251,7 +252,6 @@ julian         0.2192443    0.2399335
 In this case the distinction between the intervals is minimal. Again,
 we reiterate that this only pursues one direction of model departure.
 
-<!--
 
 ## Rates
 
