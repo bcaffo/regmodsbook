@@ -1,7 +1,8 @@
 ## About this book
-This book is written as a companion book to the [Regression models  FIX LINK]()
+This book is written as a companion book to the
+[Regression MOdels](https://www.coursera.org/course/regmods)
 Coursera class as part of the [Data Science Specialization](https://www.coursera.org/specialization/jhudatascience/1?utm_medium=courseDescripTop). However, if you do not take the class, the book mostly stands on its own. A
-useful component of the book is a series of YouTube videos that comprise the
+useful component of the book is a series of [YouTube videos](https://www.youtube.com/playlist?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC) that comprise the
 Coursera class.
 
 The book is intended to be a low cost introduction to the important field of
@@ -18,4 +19,7 @@ works and that changes are shared in the same way as the original work.
 
 
 ## About the cover
-FILL IN HERE
+The picture on the cover is a public domain image taken from
+Francis Galton's paper on hereditary stature. It represents
+an important leap in the development of regression and
+correlation as well as regression to the mean.

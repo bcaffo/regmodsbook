@@ -1,7 +1,7 @@
 ## The book
 
 As a Leanpub book, it is being published prior to being finished.
-It is roughly 50% finished at this point with a fair amount of
+It is roughly 70% finished at this point with a fair amount of
 copy editing and other requirements left to go.
 
 ## Before beginning
@@ -11,7 +11,7 @@ ten course program offered by three faculty, Jeff Leek, Roger Peng and Brian Caf
 at the Johns Hopkins University Department of Biostatistics.
 
 The videos associated with this book
-[can be watched in full here FIX LINK](),
+[can be watched in full here](https://www.youtube.com/playlist?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC),
 though the relevant links to specific videos are placed at the appropriate
 locations throughout.
 
