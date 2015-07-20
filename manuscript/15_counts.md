@@ -157,7 +157,6 @@ a multiplicative quantity. In this case it make sense to think
 multiplicatively, as we would very naturally think in the terms
 of percent increases or decreases in the daily rate of web traffic.
 
-<!--
 
 ## Poisson regression
 
@@ -251,6 +250,8 @@ julian         0.2192443    0.2399335
 
 In this case the distinction between the intervals is minimal. Again,
 we reiterate that this only pursues one direction of model departure.
+
+<!--
 
 ## Rates
 
