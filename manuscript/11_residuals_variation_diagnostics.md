@@ -1,5 +1,7 @@
 # Residuals, variation, diagnostics
 
+[Watch this video before beginning)[http://youtu.be/VohfwSJuG4k]
+
 ## Residuals
 
 
@@ -95,6 +97,9 @@ fit the model with the point included and excluded.
 
 
 ## Residuals, Leverage and Influence measures
+
+[Watch this video before beginning.](http://youtu.be/b6iqeHs_iro)
+
 Now that we understand the three concepts of residuals, leverage and influence, we present a laundry list
 of probes.  Do `?influence.measures` to see the full suite of influence measures in stats.  
 
@@ -170,7 +175,7 @@ Let's do some experiments to see how these measure hold up.
 
 ### Case 1
 
-In what follows, we're going to try several simulation settings and see the values of some 
+In what follows, we're going to try several simulation settings and see the values of some
 on the residuals, influence measures and leverage. In our first
 case, we simulate 100 points. The 101st point, `c(10, 10)`,
 has created a strong regression relationship where there shouldn't be one.
@@ -212,8 +217,8 @@ round(hatvalues(fit)[1 : 10], 3)
 0.445 0.010 0.011 0.011 0.030 0.017 0.012 0.033 0.021 0.010
 ~~~
 
-Again, this point has a much higher leverage value than that of 
-the other points. By having a large leverage value and 
+Again, this point has a much higher leverage value than that of
+the other points. By having a large leverage value and
 `dfbeta`, we're seeing that this point has a high potential for influence, and
 decided to exert it.
 
@@ -229,7 +234,7 @@ courses.
 ![Second simulation example.](images/mresid4.png)
 
 Now let's consider the `dfbetas` and the leverage for the
-first 10 observations. 
+first 10 observations.
 
 {lang=r,line-numbers=off}
 ~~~
@@ -251,6 +256,8 @@ value.
 
 ## Example described by Stefanski
 
+[Watch this video before beginning.](http://youtu.be/oMW7jGEdZ48)
+
 We end with a really fun example from Stefanski in [TAS 2007 volume 61](http://amstat.tandfonline.com/doi/abs/10.1198/000313007X190079).
 This paper illustrates how a residual plot can unveil hidden treasures that would be nearly
 impossible to detect with other kinds of plots. He has several examples on his website
@@ -265,7 +272,7 @@ pairs(dat)
 
 ![Scatterplot matrix from the Stefanski data.](images/mresid5.png)
 
-It looks like a big mess of nothing. We can fit a model and get 
+It looks like a big mess of nothing. We can fit a model and get
 that all of the variables are highly significant
 
 {lang=r,line-numbers=off}
@@ -294,4 +301,3 @@ from other plots.
 ## Back to the Swiss data
 
 ![Plot of the influence, leverage and residuals from the `swiss` dataset](images/mresid7.png)
-
