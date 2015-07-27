@@ -28,6 +28,7 @@ from Jeff Leek, the instructor of three of the Data Science Specialization
 courses.
 
 Let's load the data and use `head` to look at the first few rows.
+
 {lang=r,line-numbers=off}
 ~~~
 > download.file("https://dl.dropboxusercontent.com/u/7710864/data/ravensData.rda"
