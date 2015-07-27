@@ -144,8 +144,7 @@ loses. (Or any agreed upon multiple, such as
 100 dollars if he wins and 2 dollars if he loses.) The implied probability
 that the horse loses is {$$}50 / (1 + 50){/$$}.  
 
-It's an interesting  
-side note that the house sets the odds (hence the implied probability)
+It's an interesting side note that the house sets the odds (hence the implied probability)
 only by the bets coming in. They take a small fee for every bet win or lose
 (the rake). So, by setting the odds dynamically as the bets roll in,
 they can guarantee that they make money (risk free) via the rake. Thus
@@ -211,7 +210,7 @@ Or, equivalently, we could just say
 
 {$$}
 P(Y_i = 1 ~|~ X_i = x_i, \beta_0, \beta_1)
-= p_i = \frac{ \exp^{\beta_0 + \beta_1 x_i}}{1 + \exp(\beta_0 + \beta_1 x_i)}
+= p_i = \frac{ \exp{\beta_0 + \beta_1 x_i}}{1 + \exp(\beta_0 + \beta_1 x_i)}
 {/$$}
 
 
