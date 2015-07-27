@@ -292,7 +292,7 @@ Can we call it a day? Let's check a residual plot.
 fit <- lm(V1 ~ . - 1, data = dat); plot(predict(fit), resid(fit), pch = '.')
 ~~~
 
-![Residuals versus fitted values from the Stefanski data.](images/mresid7.png)
+![Residuals versus fitted values from the Stefanski data.](images/mresid6.png)
 
 There appears to be a pattern. The moral of the story here is that residual plots
 can really hone in on systematic patters in the data that are completely non-apparent
