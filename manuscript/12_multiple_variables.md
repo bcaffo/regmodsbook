@@ -1,4 +1,5 @@
 # Multiple variables and model selection
+[Watch this video before beginning.](https://youtu.be/zfhNo8uNBho?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
 
 This chapter represents a challenging question: "How do we chose
 what to variables to include in a regression model?". Sadly, no
@@ -123,6 +124,7 @@ by grabbing `summary(fitted_model)$adj.r.squared` instead of `summary(fitted_mod
 
 
 ## Simulation demonstrating variance inflation
+[Watch this video before beginning.](https://youtu.be/sP5JJlOCNNo?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
 
 Now let's use simulation to demonstrate variation inflation. In this case,
 we're going to simulate three regressors, x1, x2 and x3. We then repeatedly
@@ -326,5 +328,5 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Notice how the three models I'm interested in are nested. That is, Model 3 contains all of the Model 2 variables which contains all of the Model 1
 variables. The P-values are for a test of whether all of the new variables are all zero or not (i.e. whether or not they're necessary). So this model would conclude that all of the added Model 3 terms are necessary over Model 2 and all of the Model 2 terms are necessary over Model 1. So, unless there were some other
-compelling reasons, we'd pick Model 3. 
+compelling reasons, we'd pick Model 3.
 Again, you don't want to blindly follow a model selection procedure, but when the models are naturally nested, this is a reasonable approach.
