@@ -14,4 +14,4 @@ preface.md
 13_glms.md
 14_binary.md
 15_counts.md
-16_bonus.md
+16_some_bonus.md
