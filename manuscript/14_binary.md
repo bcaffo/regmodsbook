@@ -1,5 +1,7 @@
 # Binary GLMs
 
+[Watch this video before beginning.](https://youtu.be/CteWtkdXQ-Y?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
+
 Binary GLMs come from trying to model outcomes that can take only two
 values. Some examples include: survival or not at the end of a study,
 winning versus losing of a team and success versus failure of a treatment or
@@ -271,6 +273,8 @@ in the regressor.
 
 ## Visualizing fitting logistic regression curves
 
+[Watch this video before beginning.](https://youtu.be/-g3wtUAW1rU?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
+
 Let's visualize what the logistic regression model is  
 fitting.  Consider setting {$$}\beta_0{/$$} to 0 and
 varying {$$}\beta_1{/$$}. For X being a regressor
@@ -341,6 +345,8 @@ it is intermediate at the points in the middle.
 
 
 ## Ravens logistic regression
+
+[Watch this video before beginning.](https://youtu.be/lZCCj-IxYOA?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
 
 Now let's run our binary regression model on the Ravens data.
 

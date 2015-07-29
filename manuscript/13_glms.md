@@ -1,5 +1,7 @@
 # Generalized Linear Models
 
+![Watch this video before beginning.](https://youtu.be/xEwM1nzQckY)
+
 Generalized linear models (GLMs) were a great advance in statistical modeling. The
 original manuscript with the GLM framework was from [Nelder and Wedderburn in 1972](http://www.jstor.org/stable/2344614).
 in the Journal of the Royal Statistical Society. The McCullagh and Nelder book[^f1] is the famous

@@ -261,7 +261,11 @@ convenient entity to work with.
 ~~~
 
 
+
 ## Impact of over- and under-fitting on residual variance estimation
+
+[Watch this video before beginning.](https://www.youtube.com/watch?v=Mg6WUKkRiS8&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=32)
+
 Assuming that the model is linear with additive iid errors,
 we can mathematically describe the impact of omitting necessary variables or including unnecessary ones. These
 two rules follow:

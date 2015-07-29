@@ -1,4 +1,6 @@
 # Count data
+[Watch this video before beginning.](https://youtu.be/YtotMuVmOUM?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
+
 Acknowledgement to Jeff Leek for much of the code and organization of this chapter.
 
 Many data take the form of unbounded count
@@ -160,6 +162,8 @@ of percent increases or decreases in the daily rate of web traffic.
 
 ## Poisson regression
 
+[Watch this video before beginning.](https://youtu.be/hg51LjG1xIc?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
+
 Poisson regression is similar to logging the outcome. However, instead
 we log the model
 mean exactly as in the binary chapter where we logged the  modeled odds.
@@ -204,7 +208,7 @@ Let's try it in R for Jeff's data:
 ![Data with fitted Poisson regression line.](images/count3.png)
 
 ## Mean-variance relationship
- 
+
 The Poisson model suggest a specific relationship between the mean and
 the variance. Specifically, if {$$}Y_i \sim \mathrm{Poisson}(\mu_i){/$$},
 then {$$}E[Y_i] = \mathrm{Var}(Y_i){/$$}. We can often check whether or
