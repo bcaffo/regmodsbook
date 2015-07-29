@@ -1,11 +1,5 @@
 # Introduction
 
-## The book
-
-As a Leanpub book, it is being published prior to being finished.
-It is roughly 70% finished at this point with a fair amount of
-copy editing and other requirements left to go.
-
 ## Before beginning
 This book is designed as a companion to the [Regression Models](https://www.coursera.org/course/regmods)
 Coursera class as part of the [Data Science Specialization](https://www.coursera.org/specialization/jhudatascience/1?utm_medium=courseDescripTop), a
@@ -39,23 +33,22 @@ Download `swirl` [here](http://swirlstats.com). There's a swirl
 Try it out, it's probably the most effective way to learn.
 
 
-# Introduction
+## Regression models
 
 [Watch this video before beginning](https://www.youtube.com/watch?v=58ZPhK32sU8&index=1&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
 
-## Regression models
-Regression models are the workhorse of data science. They the most
+Regression models are the workhorse of data science. They are the most
 well described, practical and theoretically understood models in statistics.
-A data scientist versed well in regression models will be able to
+A data scientist well versed in regression models will be able to
 solve and incredible array of problems.
 
 Perhaps the key insight for regression models is that they produce
 highly interpretable model fits. This is unlike machine learning
-algorithms, which often sacrifice interpretability for such things as:
+algorithms, which often sacrifice interpretability for
 improved prediction performance or automation. These are, of course,
 valuable attributes in their own rights. However, the benefit of
 simplicity, parsimony and intrepretability offered by regression models
-(and their close generalizations) a first tool of choice for any practical
+(and their close generalizations) should make them a first tool of choice for any practical
 problem.
 
 
@@ -68,7 +61,7 @@ regression. In his landmark paper [*Regression Toward Mediocrity in
 Hereditary Stature*](http://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf)
 he compared the heights of parents and their children. He was particularly
 interested in the idea that the children of tall parents tended to be tall also,
-but a little shorter than their parents, and children of short parents tended
+but a little shorter than their parents. Children of short parents tended
 to be short, but not quite as short as their parents. He referred to this
 as "regression to mediocrity" (or regression to the mean). In quantifying
 regression to the mean, he invented what we would call regression.
@@ -81,7 +74,7 @@ technology (spoiler alert, Galton wins).
 Some questions from Galton's data come to mind. How would one fit a model that relates
 parent and child heights? How would one predict a childs height based on their
 parents? How would we quantify regression to the mean? In this class, we'll
-answer all of these questions.
+answer all of these questions plus many more.
 
 ### Simply Statistics versus Kobe Bryant
 
@@ -95,29 +88,30 @@ players. (By the way, your author has played basketball with Rafael, who
 
 Here's some key sentences:
 
-- "Data supports claim that if Kobe stops ball hogging the Lakers will win more"
+- "Data supports the claim that if Kobe stops ball hogging the Lakers will win more"
 - "Linear regression suggests that an increase of 1% in % of shots taken by Kobe results in a drop of 1.16 points (+/- 0.22)  in score differential."
 
 In this book we will cover how to create summary statements like this using
 regression model building. Note the nice interpretability of
-the regression model.
+the linear regression model. With this model Rafa numerically relates the
+impact of more shots taken on score differential.
 
 
 ## Summary notes: questions for this book
 Regression models are incredibly handy statistical tools. One can use
-them to answer all sorts of question.
+them to answer all sorts of questions.
 Consider three of the most common tasks for regression models:
 
 1. **Prediction** Eg: to use the parent's heights to predict children's heights.
 2. **Modeling** Eg: to try to find a parsimonious, easily described mean
-    relationship between parent and children's heights.
-3. **Covariation** Eg: to investigate the variation in children's heights that appears
-  unrelated to parent's heights (residual variation) and to quantify what impact genotype information has beyond parental height in explaining child height.
+    relationship between parental and child heights.
+3. **Covariation** Eg: to investigate the variation in child heights that appears
+  unrelated to parental heights (residual variation) and to quantify what impact genotype information has beyond parental height in explaining child height.
 
 An important aspect, especially in questions 2 and 3 is assessing
 modeling assumptions. For example, it is important to figure out how/whether
 and what assumptions are needed to generalize findings beyond the data in question.
-Presumably, if we find a relationship between parent and children's  heights,
+Presumably, if we find a relationship between parental and child  heights,
 we'd like to extend that knowledge beyond the data used to build the model.
 This requires assumptions. In this book, we'll cover the main assumptions
 necessary.
@@ -133,11 +127,9 @@ was the cousin of Charles Darwin.
 You may need to run `install.packages("UsingR")` if the `UsingR` library is
 not installed. Let's look at the marginal (parents disregarding children and
 children disregarding parents) distributions first.
-Parent distribution is all heterosexual couples. The parental average corrected
+The parental distribution is all heterosexual couples. The parental average was corrected
 for gender via multiplying female heights by 1.08. Remember, Galton didn't have
 regression to help figure out a betetr way to do this correction!
-It's also worth noting that overplotting is an issue from discretization
-of the heights.
 
 
 {lang=r,title="Loading and plotting Galton's data.",line-numbers=off}
@@ -153,7 +145,7 @@ g
 
 ### Finding the middle via least squares
 Consider only the children's heights. How could one describe the "middle"?
-One definition, let {$$}Y_i{/$$} be the height of child {$$}i{/$$} for
+Consider one definition. Let {$$}Y_i{/$$} be the height of child {$$}i{/$$} for
 {$$}i = 1, \ldots, n = 928{/$$}, then define the middle as the value
 of {$$}\mu{/$$} that minimizes
 
@@ -171,8 +163,8 @@ the same, then there would be no error around the mean. Otherwise, our estimate
 has to balance the fact that our estimate of {$$}\mu{/$$} isn't going to
 predict every observation perfectly. Minimizing the average (or sum of the)
 squared errors seems like a reasonable strategy, though of course there are others.
-We could minimize the average absolute deviation between the data and estimated
-mean (this leads to the median as the estimate instead of the mean).
+We could minimize the average absolute deviation between the data {$$}\mu{/$$}
+ (this leads to the median as the estimate instead of the mean).
 However, minimizing the squared error has many nice properties, so we'll stick
 with that for this class.
 
@@ -325,4 +317,14 @@ that I shifted the origin back to the means of the original data.) The
 results suggest that to every every 1 inch increase in the parents height,
 we estimate a 0.646 inch increase in the child's height.
 
-![Data with the best fitting line overlaid.](images/galton3.png)
+![Data with the best fitting line.](images/galton3.png)
+
+## Exercises
+1. Consider the dataset given by `x=c(0.725,0.429,-0.372 ,0.863)`. What value
+of `mu` minimizes `sum((x - mu)^2)`?
+2. Reconsider the previous question. Suppose that weights were given,
+`w = c(2, 2, 1, 1)` so that we wanted to minimize `sum(w * (x - mu) ^ 2)` for `mu`.
+What value would we obtain?
+3. Take the Galton and obtain the regression through the origin slope estimate
+where the centered parental height is the outcome and the child's height is
+the predictor.

@@ -115,3 +115,13 @@ perfectly on a negatively or positively sloped, line, respectively.
 Fourthly, {$$}Cor(X, Y){/$$} measures the strength of the linear relationship between
 the two variables, with stronger relationships as {$$}Cor(X,Y){/$$} heads towards -1 or 1.
 Finally, {$$}Cor(X, Y) = 0{/$$} implies no linear relationship.
+
+
+## Exercises
+1. Take the Galton dataset and find the mean, standard deviation and correlation between
+the parental and child heights.
+2. Center the parent and child variables and verify that the normalized variable means are 0.
+3. Rescale the parent and child variables and verify that the normalized variable standard deviations are 1.
+4. Normalize the parental and child heights. Verify that
+the normalized variables have mean 0 and standard deviation 1 and take the
+correlation between them.

@@ -20,7 +20,7 @@ the model out as:
 Y_i = \beta_0 + \beta_1 X_i + \epsilon_{i}
 {/$$}
 
-Here the {$$}\epsilon_{i}{/$$} are assumed to be independent and
+Here, the {$$}\epsilon_{i}{/$$} are assumed to be independent and
 identically distributed as
 {$$}N(0, \sigma^2){/$$}. Under this model,
 
@@ -259,3 +259,18 @@ line. The new X values are the at vertical lines, which are connected to
 the predicted values via the connected horizontal lines.
 
 ![Illustrating prediction with regression.](images/diamond2.png)
+
+## Exercises
+1. Fit a linear regression model to the `father.son` dataset with
+the father as the predictor and the son as the outcome. Give a p-value
+for the slope coefficient and perform the relevant hypothesis test.
+2. Refer to question 1. Interpret both parameters. Recenter for the
+intercept if necessary.
+3. Refer to question 1. Predict the son's height if the father's height
+is 80 inches. Would you recommend this prediction? Why or why not?
+4. Load the `mtcars` dataset. Fit a linear regression with
+miles per gallon as the outcome and horsepower as the predictor. Interpret
+your coefficients, recenter for the intercept if necessary.
+5. Refer to question 4. Overlay the fit onto a scatterplot.
+6. Test the hypothesis of no relationship between horsepower and miles per gallon.
+7. Predict the miles per gallon for a horsepower of 111.

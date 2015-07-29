@@ -267,3 +267,18 @@ or a P-value, often masks important aspects of the data.
 The code is quite simple: `data(anscombe);example(anscombe)`.
 
 ![Plot of Anscombe's data set.](images/anscombe.png)
+
+
+## Exercises
+1. Fit a linear regression model to the `father.son` dataset with
+the father as the predictor and the son as the outcome. Plot the
+son's height (horizontal axis) versus the residuals (vertical axis).
+2. Refer to question 1. Directly estimate the residual variance and
+compare this estimate to the output of `lm`.
+3. Refer to question 1. Give the R squared for this model.
+4. Load the `mtcars` dataset. Fit a linear regression with
+miles per gallon as the outcome and horsepower as the predictor.
+Plot horsepower versus the residuals.
+5. Refer to question 4. Directly estimate the residual variance and
+compare this estimate to the output of `lm`.
+6. Refer to question 4. Give the R squared for this model.

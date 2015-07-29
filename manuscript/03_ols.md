@@ -22,7 +22,7 @@ Let's try using least squares by minimizing the following equation
 over {$$}\beta_0{/$$} and {$$}\beta_1{/$$}:
 
 {$$}
-\sum_{i=1}^n \{Y_i - (\beta_0 + \beta_1 X_i)\}^2,
+\sum_{i=1}^n \{Y_i - (\beta_0 + \beta_1 X_i)\}^2.
 {/$$}
 
 Minimizing this equation will minimize the sum of the squared distances
@@ -38,7 +38,7 @@ through the data pairs {$$}(X_i, Y_i){/$$} with {$$}Y_i{/$$} as the outcome obta
 the line {$$}Y = \hat \beta_0 + \hat \beta_1 X{/$$}
 where:
 
-{$$}\hat \beta_1 = Cor(Y, X) \frac{Sd(Y)}{Sd(X)} ~~~ \hat \beta_0 = \bar Y - \hat \beta_1 \bar X{/$$}
+{$$}\hat \beta_1 = Cor(Y, X) \frac{Sd(Y)}{Sd(X)} ~~~\mbox{and}~~~ \hat \beta_0 = \bar Y - \hat \beta_1 \bar X.{/$$}
 
 At this point, a couple of notes are in order.
 First, the slope, {$$}\hat \beta_1{/$$}, has the units of {$$}Y / X{/$$}. Secondly,
@@ -57,7 +57,7 @@ yields the following solution to the least squares criteria:
 \hat \beta_1 = \frac{\sum_{i=1}^n X_i Y_i}{\sum_{i=1}^n X_i^2},
 {/$$}
 
-This is exactly the correlation time the
+This is exactly the correlation times the
 ratio in the standard deviations if
 the both the Xs and Ys have been centered first. (Try it out using R to
 verify this!)
@@ -136,3 +136,19 @@ You can find the code for the plot [here](https://github.com/bcaffo/courses/blob
 ## Showing the OLS result
 If you would like to see a proof of why the ordinary least squares result works out to be the way that it is:
 [watch this video](https://www.youtube.com/watch?v=COVQX8WZVA8&index=8&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC).
+
+## Exercises
+1. Install and load the package `UsingR` and load the `father.son` data with `data(father.son)`. Get the
+linear regression fit where the son's height is the outcome and the father's height is the predictor.
+Give the intercept and the slope, plot the data and overlay the fitted regression line.
+2. Center the father and son variable and refit the model omitting the intercept and see that the slope estimate is the same.
+3. Normalize the father and son data and see that the fitted slope is the correlation.
+4. Go back to the linear regression line from Problem 1. If a father's height was 63 inches, what would you predict
+the son's height to be?
+5. Consider a data set where the standard deviation of the outcome variable is double that of the predictor. Also, the variables
+have a correlation of 0.3. If you fit a linear regression model, what would be the estimate of the slope?
+6. Consider the previous problem. The outcome variable has a mean of 1 and the predictor has a mean of 0.5. What would be
+the intercept?
+7. True or false, if the predictor variable has mean 0, the estimated intercept from linear regression
+will be the mean of the outcome?
+8. Consider problem 5 again. What would be the estimated slope if the predictor and outcome were reversed?
