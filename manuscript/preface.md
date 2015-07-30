@@ -1,3 +1,5 @@
+# Preface
+
 ## About this book
 This book is written as a companion book to the
 [Regression Models](https://www.coursera.org/course/regmods)
