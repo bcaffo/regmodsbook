@@ -422,3 +422,15 @@ log of the odds (logit) and our slope parameters are
 interpreted as log odds ratios. Odds ratios of 1 or
 log odds ratios of 0 are interpreted as no effect
 of the regressor on the outcome.
+
+
+## Exercises
+
+1. Load the dataset `Seatbelts` as part of the `Datasets` package via `data(Seatbelts)`. Use
+`as.data.frame` to convert the object to a dataframe. Create a new outcome variable
+for whether or not greater than 119 drivers were killed that month. Fit a logistic regression GLM with this variable
+as the outcome and `kms`, `PetrolPrice` and `law` as predictors. Interpret your parameters.
+2. Fit a binomial model with `DriversKilled` as the outcome and `drivers` as the total count
+with `kms` , `petrol` and `law` as predictors, interpret your results.
+
+3.

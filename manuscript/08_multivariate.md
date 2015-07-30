@@ -230,3 +230,18 @@ learning technique, *by far*.
   * Fit factor variables as predictors.
   * Uncover complex multivariate relationships with the response.
   * Build accurate prediction models.
+
+## Exercises
+
+1. Load the dataset `Seatbelts` as part of the `Datasets` package via `data(Seatbelts)`. Use
+`as.data.frame` to convert the object to a dataframe. Fit a linear model of driver deaths
+with `kms` and `petrol` as predictors. Interpret your results.
+2. Predict the number of driver deaths at the average `kms` and `petrol` levels.
+3. Take the residual for `DriversKilled` having regressed out `kms` and an intercept
+and the residual for `petrol` having regressed out `kms` and an intercept. Fit a regression
+through the origin of the two residuals and show that it is the same as your coefficient
+obtained in question 1.
+4. Take the residual for `DriversKilled` having regressed out `petrol` and an intercept.
+Take the residual for `kms` having regressed out `petrol` and an intercept. Fit a regression
+through the origin of the two residuals and show that it is the same as your coefficient
+obtained in question 1.

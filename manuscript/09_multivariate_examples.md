@@ -549,3 +549,14 @@ of the main effects are change in the intercepts from the reference level while 
 are changes in slope (again compared to the reference level).
 
 Homework exercise, plot both lines on the data to see the fit!
+
+## Exercises
+
+1. Load the dataset `Seatbelts` as part of the `Datasets` package via `data(Seatbelts)`. Use
+`as.data.frame` to convert the object to a dataframe. Fit a linear model of driver deaths
+with `kms` and `petrol` as predictors. Interpret your results.
+2. Repeat question 1 for the outcome being the log of the count of driver deaths. Interpret your coefficients.
+3. Refer to question 1. Add the dummy variable `law` and interpret the results.
+4. Repeat question 3 with a factor variable that you create called `lawFactor` that takes the levels `No` and `Yes`.
+Change the reference level from `No` to `Yes`.
+4. Perform the plot requested at the end of the last chapter.

@@ -334,3 +334,10 @@ Notice how the three models I'm interested in are nested. That is, Model 3 conta
 variables. The P-values are for a test of whether all of the new variables are all zero or not (i.e. whether or not they're necessary). So this model would conclude that all of the added Model 3 terms are necessary over Model 2 and all of the Model 2 terms are necessary over Model 1. So, unless there were some other
 compelling reasons, we'd pick Model 3.
 Again, you don't want to blindly follow a model selection procedure, but when the models are naturally nested, this is a reasonable approach.
+
+
+## Exercises
+1. Load the dataset `Seatbelts` as part of the `Datasets` package via `data(Seatbelts)`. Use
+`as.data.frame` to convert the object to a dataframe. Fit a linear model of driver deaths
+with `kms`, `petrol` and `law` as predictors.
+2. Perform a model selection exercise to arrive at a final model. 

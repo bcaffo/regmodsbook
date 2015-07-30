@@ -301,3 +301,11 @@ from other plots.
 ## Back to the Swiss data
 
 ![Plot of the influence, leverage and residuals from the `swiss` dataset](images/mresid7.png)
+
+## Exercises
+
+1. Load the dataset `Seatbelts` as part of the `Datasets` package via `data(Seatbelts)`. Use
+`as.data.frame` to convert the object to a dataframe. Fit a linear model of driver deaths
+with `kms`, `petrol` and `law` as predictors.
+2. Refer to question 1. Directly estimate the residual variation via the function `resid`. Compare with R's residual variance estimate.
+3. Refer to question 1. Perform an analysis of diagnostic measures including, dffits, dfbetas, influence and hat diagonals.
