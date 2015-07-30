@@ -432,5 +432,5 @@ for whether or not greater than 119 drivers were killed that month. Fit a logist
 as the outcome and `kms`, `PetrolPrice` and `law` as predictors. Interpret your parameters.
 2. Fit a binomial model with `DriversKilled` as the outcome and `drivers` as the total count
 with `kms` , `petrol` and `law` as predictors, interpret your results.
-
-3.
+3. Refer to Question 1. Use the `anova` function to compare models with just `kms`, `kms` and `PetrolPrice` and
+all three predictors.

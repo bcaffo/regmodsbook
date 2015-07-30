@@ -247,3 +247,10 @@ change apparent relationships.
 We should also caution that our discussion only dealt with
 associations. Establishing causal or truly mechanistic
 relationships requires quite a bit more thinking.
+
+## Exercises
+1. Load the dataset `Seatbelts` as part of the `Datasets` package via `data(Seatbelts)`. Use
+`as.data.frame` to convert the object to a dataframe. Fit a linear model of driver deaths
+with `kms` and `petrol` as predictors. Interpret your results.
+2. Compare the `kms` coefficient with and without the inclusion of the `petrol` variable in the model.
+3. Compare the `petrol` coefficient with and without the inclusion fo the `kms` variable in the model.
