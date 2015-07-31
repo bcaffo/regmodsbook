@@ -263,14 +263,14 @@ the predicted values via the connected horizontal lines.
 ## Exercises
 1. Fit a linear regression model to the `father.son` dataset with
 the father as the predictor and the son as the outcome. Give a p-value
-for the slope coefficient and perform the relevant hypothesis test.
+for the slope coefficient and perform the relevant hypothesis test. [Watch a video solution.](https://www.youtube.com/watch?v=LxA2x2VvPWo&index=19&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
 2. Refer to question 1. Interpret both parameters. Recenter for the
-intercept if necessary.
+intercept if necessary. [Watch a video solution.](https://www.youtube.com/watch?v=YtXTK9ztE00&index=20&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
 3. Refer to question 1. Predict the son's height if the father's height
-is 80 inches. Would you recommend this prediction? Why or why not?
+is 80 inches. Would you recommend this prediction? Why or why not? [Watch a video solution.](https://www.youtube.com/watch?v=kB95XqatMho&index=21&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
 4. Load the `mtcars` dataset. Fit a linear regression with
 miles per gallon as the outcome and horsepower as the predictor. Interpret
-your coefficients, recenter for the intercept if necessary.
-5. Refer to question 4. Overlay the fit onto a scatterplot.
-6. Test the hypothesis of no relationship between horsepower and miles per gallon.
-7. Predict the miles per gallon for a horsepower of 111.
+your coefficients, recenter for the intercept if necessary. [Watch a video solution.](https://www.youtube.com/watch?v=4yc5ACmtYMw&index=22&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
+5. Refer to question 4. Overlay the fit onto a scatterplot. [Watch a video solution.](https://www.youtube.com/watch?v=mhskQnUIVO4&index=23&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
+6. Refer to question 4. Test the hypothesis of no linear relationship between horsepower and miles per gallon. [Watch a video solution.](https://www.youtube.com/watch?v=zjP82piLr1E&index=24&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
+7. Refer to question 4. Predict the miles per gallon for a horsepower of 111. [Watch a video solution.](https://www.youtube.com/watch?v=UxSrHtY_klY&index=25&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)

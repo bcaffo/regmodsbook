@@ -93,12 +93,12 @@ properties are being discussed, or just regression to the mean.
 1. You have two noisy scales and a bunch of people that you'd like to weigh. You
 weigh each person on both scales. The correlation was 0.75. If you normalized
 each set of weights, what would you have to multiply the weight on one scale
-to get a good estimate of the weight on the other scale?
+to get a good estimate of the weight on the other scale? [Watch a video solution.](https://youtu.be/rZsnJ0EzVHo)
 2. Consider the previous problem. Someone's weight was 2 standard deviations above
 the mean of the group on the first scale. How many standard deviations above the
-mean would you estimate them to be on the second?
+mean would you estimate them to be on the second? [Watch a video solution.](http://youtu.be/2lHYXeRl0eg)
 3. You ask a collection of husbands and wives to guess how many jellybeans are in a jar.
 The correlation is 0.2. The standard deviation for the husbands is 10 beans while the
 standard deviation for wives is 8 beans. Assume that the data were centered so
 that 0 is the mean for each. The centered guess for a husband was 30 beans (above
-  the mean). What would be your best estimate of the wife's guess. 
+  the mean). What would be your best estimate of the wife's guess? [Watch a video solution.](https://youtu.be/htFH-4-vjS8)
