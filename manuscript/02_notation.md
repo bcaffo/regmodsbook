@@ -119,9 +119,9 @@ Finally, {$$}Cor(X, Y) = 0{/$$} implies no linear relationship.
 
 ## Exercises
 1. Take the Galton dataset and find the mean, standard deviation and correlation between
-the parental and child heights.
-2. Center the parent and child variables and verify that the normalized variable means are 0.
-3. Rescale the parent and child variables and verify that the normalized variable standard deviations are 1.
+the parental and child heights. [Watch a video solution.](https://www.youtube.com/watch?v=6zq-excgkHg&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=4)
+2. Center the parent and child variables and verify that the centered variable means are 0. [Watch a video solution.](https://www.youtube.com/watch?v=OT9tn_jtzus&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=5)
+3. Rescale the parent and child variables and verify that the scaled variable standard deviations are 1. [Watch a video solution.](https://www.youtube.com/watch?v=y32m9mjEQsk&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=6)
 4. Normalize the parental and child heights. Verify that
 the normalized variables have mean 0 and standard deviation 1 and take the
-correlation between them.
+correlation between them. [Watch a video solution.](https://www.youtube.com/watch?v=D7LmrbjenZk&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=7)

@@ -140,15 +140,16 @@ If you would like to see a proof of why the ordinary least squares result works 
 ## Exercises
 1. Install and load the package `UsingR` and load the `father.son` data with `data(father.son)`. Get the
 linear regression fit where the son's height is the outcome and the father's height is the predictor.
-Give the intercept and the slope, plot the data and overlay the fitted regression line.
-2. Center the father and son variable and refit the model omitting the intercept and see that the slope estimate is the same.
-3. Normalize the father and son data and see that the fitted slope is the correlation.
+Give the intercept and the slope, plot the data and overlay the fitted regression line. [Watch a video solution.](https://www.youtube.com/watch?v=HH78kFrT-5k&index=8&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
+2. Refer to problem 1. Center the father and son variables and refit the model omitting the intercept. Verify that the slope estimate is the same as the linear regression fit
+from problem 1. [Watch a video solution.](https://www.youtube.com/watch?v=Bf0euQ_-CuE&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=10)
+3. Refer to problem 1. Normalize the father and son data and see that the fitted slope is the correlation. [Watch a video solution.](https://www.youtube.com/watch?v=Bf0euQ_-CuE&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=10)
 4. Go back to the linear regression line from Problem 1. If a father's height was 63 inches, what would you predict
-the son's height to be?
+the son's height to be? [Watch a video solution.](https://www.youtube.com/watch?v=46eu_SrKVNE&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=11)
 5. Consider a data set where the standard deviation of the outcome variable is double that of the predictor. Also, the variables
-have a correlation of 0.3. If you fit a linear regression model, what would be the estimate of the slope?
+have a correlation of 0.3. If you fit a linear regression model, what would be the estimate of the slope? [Watch a video solution.](https://www.youtube.com/watch?v=rRADoy09tXg&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=12)
 6. Consider the previous problem. The outcome variable has a mean of 1 and the predictor has a mean of 0.5. What would be
-the intercept?
+the intercept? [Watch a video solution.](https://www.youtube.com/watch?v=TRxhUJB2zfg&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=13)
 7. True or false, if the predictor variable has mean 0, the estimated intercept from linear regression
-will be the mean of the outcome?
-8. Consider problem 5 again. What would be the estimated slope if the predictor and outcome were reversed?
+will be the mean of the outcome? [Watch a video solution.](https://www.youtube.com/watch?v=XBXL70A9eDw&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=14)
+8. Consider problem 5 again. What would be the estimated slope if the predictor and outcome were reversed? [Watch a video solution.](https://www.youtube.com/watch?v=kzmyzpHcNtg&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=15)

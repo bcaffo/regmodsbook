@@ -321,10 +321,10 @@ we estimate a 0.646 inch increase in the child's height.
 
 ## Exercises
 1. Consider the dataset given by `x=c(0.725,0.429,-0.372 ,0.863)`. What value
-of `mu` minimizes `sum((x - mu)^2)`?
+of `mu` minimizes `sum((x - mu)^2)`? [Watch a video solution.](https://www.youtube.com/watch?v=Uhxm58rylec&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=1)
 2. Reconsider the previous question. Suppose that weights were given,
 `w = c(2, 2, 1, 1)` so that we wanted to minimize `sum(w * (x - mu) ^ 2)` for `mu`.
-What value would we obtain?
+What value would we obtain? [Watch a video solution.](https://www.youtube.com/watch?v=DS-Wl2dRxCA&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=2)
 3. Take the Galton and obtain the regression through the origin slope estimate
 where the centered parental height is the outcome and the child's height is
-the predictor.
+the predictor. [Watch a video solution.](https://www.youtube.com/watch?v=IGVRkmrOrww&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=3)
