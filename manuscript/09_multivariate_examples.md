@@ -25,7 +25,7 @@ i.e., in [0, 100].
 ~~~
 [,1]   Fertility          a common standardized fertility measure
 [,2]   Agriculture        percent of males involved in agriculture as occupation
-[,3]	 Examination        percent draftees receiving highest mark on army examination
+[,3]	 Examination        percent draftees receiving highest on army examination
 [,4]	 Education          percent education beyond primary school for draftees
 [,5]	 Catholic           percent catholic (as opposed to protestant)
 [,6]	 Infant.Mortality   live births who live less than 1 year
@@ -237,9 +237,10 @@ let's assume (probably accurately)
 that these were annoying bad insects, like fleas, mosquitoes or cockroaches, and not good ones like butterflies
 or ladybugs. After getting over that mental hurdle, let's plot the data.
 
-require(datasets);data(InsectSprays); require(stats); require(ggplot2)
+
 {lang=r,line-numbers=off}
 ~~~
+require(datasets);data(InsectSprays); require(stats); require(ggplot2)
 g = ggplot(data = InsectSprays, aes(y = count, x = spray, fill  = spray))
 g = g + geom_violin(colour = "black", size = 2)
 g = g + xlab("Type of spray") + ylab("Insect count")
@@ -364,8 +365,8 @@ example. We created a variable `spray2` that has Spray C as the reference
 level.
 
 {lang=r,line-numbers=off}
-> spray2 <- relevel(InsectSprays$spray, "C")
 ~~~
+> spray2 <- relevel(InsectSprays$spray, "C")
 > summary(lm(count ~ spray2, data = InsectSprays))$coef
             Estimate Std. Error t value  Pr(>|t|)
 (Intercept)    2.083      1.132  1.8401 7.024e-02
@@ -423,13 +424,13 @@ rows.
 > library(datasets); data(swiss)
 > head(swiss)
 
-             Fertility Agriculture Examination Education Catholic Infant.Mortality
-Courtelary        80.2        17.0          15        12     9.96             22.2
-Delemont          83.1        45.1           6         9    84.84             22.2
-Franches-Mnt      92.5        39.7           5         5    93.40             20.2
-Moutier           85.8        36.5          12         7    33.77             20.3
-Neuveville        76.9        43.5          17        15     5.16             20.6
-Porrentruy        76.1        35.3           9         7    90.57             26.6
+          Fertility Agriculture Examination Education Catholic Infant.Mortality
+Courtelary     80.2        17.0          15        12     9.96             22.2
+Delemont       83.1        45.1           6         9    84.84             22.2
+Franches-Mnt   92.5        39.7           5         5    93.40             20.2
+Moutier        85.8        36.5          12         7    33.77             20.3
+Neuveville     76.9        43.5          17        15     5.16             20.6
+Porrentruy     76.1        35.3           9         7    90.57             26.6
 ~~~
 
 Let's create a  binary variable out of the variable Catholic to illustrate dummy
@@ -552,11 +553,14 @@ Homework exercise, plot both lines on the data to see the fit!
 
 ## Exercises
 
-1. Load the dataset `Seatbelts` as part of the `Datasets` package via `data(Seatbelts)`. Use
+1. Do exercise 1 of the previous chapter if you have not already.
+Load the dataset `Seatbelts` as part of the `datasets` package via `data(Seatbelts)`. Use
 `as.data.frame` to convert the object to a dataframe. Fit a linear model of driver deaths
-with `kms` and `petrol` as predictors. Interpret your results.
-2. Repeat question 1 for the outcome being the log of the count of driver deaths. Interpret your coefficients.
-3. Refer to question 1. Add the dummy variable `law` and interpret the results.
-4. Repeat question 3 with a factor variable that you create called `lawFactor` that takes the levels `No` and `Yes`.
-Change the reference level from `No` to `Yes`.
-4. Perform the plot requested at the end of the last chapter.
+with `kms` and `PetrolPrice` as predictors. Interpret your results.
+2. Repeat question 1 for the outcome being the log of the count of driver deaths. Interpret your coefficients. [Watch a video solution.](https://www.youtube.com/watch?v=GfIjC4rM08A&index=40&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
+3. Refer to question 1. Add the dummy variable `law` and interpret the results. Repeat this
+question  with a factor variable that you create called `lawFactor` that takes the levels `No` and `Yes`.
+Change the reference level from `No` to `Yes`. [Watch a video solution.](https://www.youtube.com/watch?v=ikKQv98i-EQ&index=41&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
+4. Discretize the `PetrolPrice` variable into four factor levels. Fit the linear model with this factor
+to see how R treats multiple level factor variables. [Watch a video solution.](https://www.youtube.com/watch?v=4FB8O-Vt1I0&index=42&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
+5. Perform the plot requested at the end of the last chapter.
