@@ -298,12 +298,12 @@ points(julian(gaData$date),glm1$fitted,col="red",pch=19)
 
 ##  Exercises
 
-1. Load the dataset `Seatbelts` as part of the `Datasets` package via `data(Seatbelts)`. Use
+1. Load the dataset `Seatbelts` as part of the `datasets` package via `data(Seatbelts)`. Use
 `as.data.frame` to convert the object to a dataframe. Fit a Poisson regression GLM with `UKDriversKilled`
-as the outcome and `kms`, `PetrolPrice` and `law` as predictors. Interpret your results.
+as the outcome and `kms`, `PetrolPrice` and `law` as predictors. Interpret your results. [Watch a video solution.](https://www.youtube.com/watch?v=TXO-SHOV_j4&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=55)
 2. Refer to question 1. Fit a linear model with the log of drivers killed as the outcome. Interpret
-your results.
-2. Refer to question 1. Fit your Poisson log-linear model with `drivers` as a log offset (to consider the
-  proportion of drivers killed of those killed or seriously injured.)
-3. Refer to Question 1. Use the `anova` function to compare models with just `kms`, `kms` and `PetrolPrice` and
-all three predictors. 
+your results. [Watch a video solution.](https://www.youtube.com/watch?v=7RyaIhmpM48&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=56)
+3. Refer to question 1. Fit your Poisson log-linear model with `drivers` as a log offset (to consider the
+  proportion of drivers killed of those killed or seriously injured.) [Watch a video solution.](https://www.youtube.com/watch?v=HylRM_XrUe0&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=57)
+4. Refer to Question 1. Use the `anova` function to compare models with just `law`, `law` and `PetrolPrice` and
+all three predictors. [Watch a video solution.](https://www.youtube.com/watch?v=ewfjP1i8gPs&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=58)

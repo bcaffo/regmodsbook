@@ -304,8 +304,8 @@ from other plots.
 
 ## Exercises
 
-1. Load the dataset `Seatbelts` as part of the `Datasets` package via `data(Seatbelts)`. Use
+1. Load the dataset `Seatbelts` as part of the `datasets` package via `data(Seatbelts)`. Use
 `as.data.frame` to convert the object to a dataframe. Fit a linear model of driver deaths
-with `kms`, `petrol` and `law` as predictors.
-2. Refer to question 1. Directly estimate the residual variation via the function `resid`. Compare with R's residual variance estimate.
-3. Refer to question 1. Perform an analysis of diagnostic measures including, dffits, dfbetas, influence and hat diagonals.
+with `kms`, `PetrolPrice` and `law` as predictors.
+2. Refer to question 1. Directly estimate the residual variation via the function `resid`. Compare with R's residual variance estimate. [Watch a video solution.](https://www.youtube.com/watch?v=T8nPIeH1rwU&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=44)
+3. Refer to question 1. Perform an analysis of diagnostic measures including, dffits, dfbetas, influence and hat diagonals. [Watch a video solution.](https://www.youtube.com/watch?v=XEqlmqFTVOI&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=45)

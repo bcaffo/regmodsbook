@@ -155,8 +155,8 @@ or the change in the link function of the expected response per unit change in {
 * Many of the ideas from linear models can be brought over to GLMs.
 
 ## Exercises
-1. True or false, generalized linear models transform the observed outcome. (Discuss.)
-2. True or false, the interpretation of the coefficients in a GLM are on the scale of the link function. (Discuss.)
-3. True or false, the generalized linear model assumes an exponential family for the outcome. (Discuss.)
-4. True or false, GLM estimates are obtained by maximizing the likelihood. (Discuss.)
-5. True or false, some GLM distributions impose restrictions on the relationship between the mean and the variance. (Discuss.)
+1. True or false, generalized linear models transform the observed outcome. (Discuss.) [Watch a video solution.](https://www.youtube.com/watch?v=gsfMdAmHxgA&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=47)
+2. True or false, the interpretation of the coefficients in a GLM are on the scale of the link function. (Discuss.) [Watch a video solution.](https://www.youtube.com/watch?v=ewAUYoJYG_0&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=48)
+3. True or false, the generalized linear model assumes an exponential family for the outcome. (Discuss.) [Watch a video solution.](https://www.youtube.com/watch?v=CkZ9wOm0Uvs&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=49)
+4. True or false, GLM estimates are obtained by maximizing the likelihood. (Discuss.) [Watch a video solution.](https://www.youtube.com/watch?v=LckCGsK8oqY&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=50)
+5. True or false, some GLM distributions impose restrictions on the relationship between the mean and the variance. (Discuss.) [Watch a video solution.](https://www.youtube.com/watch?v=oRUJv6ur_cY&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=51)

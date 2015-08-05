@@ -337,7 +337,7 @@ Again, you don't want to blindly follow a model selection procedure, but when th
 
 
 ## Exercises
-1. Load the dataset `Seatbelts` as part of the `Datasets` package via `data(Seatbelts)`. Use
+1. Load the dataset `Seatbelts` as part of the `datasets` package via `data(Seatbelts)`. Use
 `as.data.frame` to convert the object to a dataframe. Fit a linear model of driver deaths
-with `kms`, `petrol` and `law` as predictors.
-2. Perform a model selection exercise to arrive at a final model. 
+with `kms`, `PetrolPrice` and `law` as predictors.
+2. Perform a model selection exercise to arrive at a final model. [Watch a video solution.](https://www.youtube.com/watch?v=ffu80TAq2zY&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=46)

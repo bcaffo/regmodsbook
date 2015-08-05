@@ -426,11 +426,11 @@ of the regressor on the outcome.
 
 ## Exercises
 
-1. Load the dataset `Seatbelts` as part of the `Datasets` package via `data(Seatbelts)`. Use
+1. Load the dataset `Seatbelts` as part of the `datasets` package via `data(Seatbelts)`. Use
 `as.data.frame` to convert the object to a dataframe. Create a new outcome variable
 for whether or not greater than 119 drivers were killed that month. Fit a logistic regression GLM with this variable
-as the outcome and `kms`, `PetrolPrice` and `law` as predictors. Interpret your parameters.
+as the outcome and `kms`, `PetrolPrice` and `law` as predictors. Interpret your parameters. [Watch a video solution.](https://www.youtube.com/watch?v=CXWZqzKdkp4&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=52)
 2. Fit a binomial model with `DriversKilled` as the outcome and `drivers` as the total count
-with `kms` , `petrol` and `law` as predictors, interpret your results.
-3. Refer to Question 1. Use the `anova` function to compare models with just `kms`, `kms` and `PetrolPrice` and
-all three predictors.
+with `kms` , `PetrolPrice` and `law` as predictors, interpret your results. [Watch a video solution.](https://www.youtube.com/watch?v=M2KLD_ZFgdo&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=53)
+3. Refer to Question 1. Use the `anova` function to compare models with just `law`, `law` and `PetrolPrice` and
+all three predictors. [Watch a video solution.](https://www.youtube.com/watch?v=npHpBLqkhLg&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=54)

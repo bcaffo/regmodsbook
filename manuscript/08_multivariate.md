@@ -235,9 +235,9 @@ learning technique, *by far*.
 
 1. Load the dataset `Seatbelts` as part of the `datasets` package via `data(Seatbelts)`. Use
 `as.data.frame` to convert the object to a dataframe. Fit a linear model of driver deaths
-with `kms` and `PetrolPrice` as predictors. Interpret your results.
-2. Predict the number of driver deaths at the average `kms` and `petrol` levels.
-3. Take the residual for `DriversKilled` having regressed out `kms` and an intercept
+with `kms` and `PetrolPrice` as predictors. Interpret your results. [Watch a video Solution](https://www.youtube.com/watch?v=xcJKPyiuSMo&index=37&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
+2. Predict the number of driver deaths at the average `kms` and `petrol` levels. [Watch a video solution.](https://www.youtube.com/watch?v=2PO8djtbDU8&index=38&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
+3. Take the residual for `DriversKilled` having regressed out `kms` and an intercept [Watch a video solution.](https://www.youtube.com/watch?v=9NS9ue8Tzm4&index=39&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
 and the residual for `PetrolPrice` having regressed out `kms` and an intercept. Fit a regression
 through the origin of the two residuals and show that it is the same as your coefficient
 obtained in question 1.
