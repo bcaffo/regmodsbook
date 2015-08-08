@@ -4,10 +4,10 @@
 
 ## Residual variation
 Residuals represent variation left unexplained by our model. We emphasize the
-difference between residuals and errors. The errors unobservable true errors
-from the known coefficients, while residuals are the observable errors from
-the estimated coefficients. In a sense, the residuals are estimates of the
-errors.
+difference between residuals and errors. The errors are theunobservable true
+errors from the known coefficients, while residuals are the observable errors
+from the estimated coefficients. In a sense, the residuals are estimates of
+the errors.
 
 Consider again the `diamond` data set from `UsingR`. Recall that
 the data is diamond prices (Singapore dollars) and diamond weight
