@@ -22,7 +22,7 @@ Y_i = \beta_0 + \beta_1 X_i + \epsilon_{i}
 
 Here, the {$$}\epsilon_{i}{/$$} are assumed to be independent and
 identically distributed as
-{$$}N(0, \sigma^2){/$$}. Under this model,
+{$$}N(\mu, \sigma^2){/$$}. Under this model,
 
 {$$}E[Y_i ~|~ X_i = x_i] = \mu_i = \beta_0 + \beta_1 x_i{/$$}
 
