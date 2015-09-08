@@ -46,7 +46,7 @@ the least squares solution for minimizing
 
 The variance and standard deviation are measures of how spread out are data is.
 Under sampling assumptions, they estimate variability in the population.
-We define the empirical variance asL
+We define the empirical variance as:
 
 {$$}
 S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar X)^2
@@ -69,7 +69,7 @@ In particular, the data defined by:
 Z_i = \frac{X_i - \bar X}{s}
 {/$$}
 
-have empirical mean zero and empirical standard deviation 1.
+Has empirical mean zero and empirical standard deviation 1.
 The process of centering then scaling the data is called **normalizing** the data.
 Normalized data are centered at 0 and have units equal to standard deviations of the original data.
 Example, a value of 2 from normalized data means that data point was two standard deviations larger than the mean.
@@ -79,7 +79,7 @@ by getting rid of any shifting or scaling effects.
 
 
 ## The empirical covariance
-This class is largely considering how varaibles **covary**. This is estimated
+This class is largely considering how variables **covary**. This is estimated
 by the empirical covariance.
 Consider now when we have pairs of data, {$$}(X_i, Y_i){/$$}.
 Their empirical covariance is defined as:
@@ -100,9 +100,9 @@ The **correlation** is defined as:
 Cor(X, Y) = \frac{Cov(X, Y)}{S_x S_y}
 {/$$}
 
-where {$$}S_x{/$$} and {$$}S_y{/$$} are the estimates of standard deviations
+Where {$$}S_x{/$$} and {$$}S_y{/$$} are the estimates of standard deviations
 for the {$$}X{/$$} observations and {$$}Y{/$$} observations, respectively. The correlation is simply the covariance of
-the separately normalized X and Y data. Because the the
+the separately normalized X and Y data. Because the
 data have been normalized, the correlation is a unit free
 quantity and thus has more of a hope of being interpretable
 across settings.
