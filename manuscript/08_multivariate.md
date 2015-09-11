@@ -30,7 +30,7 @@ by adding terms linearly into the model.
 {$$}
 Y_i =  \beta_1 X_{1i} + \beta_2 X_{2i} + \ldots +
 \beta_{p} X_{pi} + \epsilon_{i}
-= \sum_{k=1}^p X_{ik} \beta_j + \epsilon_{i}
+= \sum_{k=1}^p X_{ki} \beta_i + \epsilon_{i}
 {/$$}
 
 Here {$$}X_{1i}=1{/$$} typically, so that an intercept is included.
