@@ -146,7 +146,7 @@ pressure medication on the outcome.
 On the other hand consider another setting I ran into. A colleague
 was studying chemical brain measurements
 of patients a severe mental disorder versus controls post mortem.
-However, the time the time since death was highly related
+However, the time since death was highly related
 to the time the brain was stored since death, perhaps due to the differential patient sources of the two groups. The time since death was
 strongly related to the outcome we were studying.
 In this case, it is very hard to study the groups as they were so contaminated by this nuisance covariate.
