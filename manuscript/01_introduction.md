@@ -129,7 +129,7 @@ not installed. Let's look at the marginal (parents disregarding children and
 children disregarding parents) distributions first.
 The parental distribution is all heterosexual couples. The parental average was corrected
 for gender via multiplying female heights by 1.08. Remember, Galton didn't have
-regression to help figure out a better way to do this correction!
+regression to help figure out a betetr way to do this correction!
 
 
 {lang=r,title="Loading and plotting Galton's data.",line-numbers=off}
@@ -248,7 +248,7 @@ to make the size and color of the points be the frequency.
 A line requires two parameters to be specified, the intercept and the slope.
 Let's first focus on the slope. We want to find the slope of the line that
 best fits the data. However, we have to pick a good intercept. Let's subtract
-the mean from bot the parent and child heights so that their subsequent
+the mean from both the parent and child heights so that their subsequent
 means are 0.
 Now let's find the line that goes through the origin (has intercept 0) by
 picking the best slope.
