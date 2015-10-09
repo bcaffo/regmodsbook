@@ -46,7 +46,7 @@ the least squares solution for minimizing
 
 The variance and standard deviation are measures of how spread out are data is.
 Under sampling assumptions, they estimate variability in the population.
-We define the empirical variance asL
+We define the empirical variance as
 
 {$$}
 S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar X)^2
