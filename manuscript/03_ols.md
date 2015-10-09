@@ -26,7 +26,7 @@ over {$$}\beta_0{/$$} and {$$}\beta_1{/$$}:
 {/$$}
 
 Minimizing this equation will minimize the sum of the squared distances
-between the fitted line at the pareNnts heights ({$$} \beta_1 X_i{/$$})
+between the fitted line at the parents heights ({$$} \beta_1 X_i{/$$})
 and the observed child heights ({$$}Y_i{/$$}).
 
 The result actually has a closed form. Specifically, the least squares
