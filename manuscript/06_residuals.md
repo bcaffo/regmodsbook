@@ -4,15 +4,15 @@
 
 ## Residual variation
 Residuals represent variation left unexplained by our model. We emphasize the
-difference between residuals and errors. The errors unobservable true errors
+difference between residuals and errors. The errors are unobservable true errors
 from the known coefficients, while residuals are the observable errors from
 the estimated coefficients. In a sense, the residuals are estimates of the
 errors.
 
 Consider again the `diamond` data set from `UsingR`. Recall that
 the data is diamond prices (Singapore dollars) and diamond weight
-in carats (standard measure of diamond mass, 0.2 $g$).
-To get the data use `library(UsingR); data(diamond)`. Recall the data
+in carats (standard measure of diamond mass, 0.2g).
+To get the data use `library(UsingR); data(diamond)`. Recall that the data
 and our linear regression fit looked like the following:
 
 ![Diamond data plotted along with best fitting regression line.](images/diamond1.png)
@@ -114,8 +114,7 @@ of any sort.  Here's the plot for diamond data.
 ![Plot of the mass (horizontal) versus residuals (vertical)](images/resid2.png)
 
 
-Let's go through some more contrived examples to highlight
-Here's a plot of nonlinear data where we've fit a line.
+Let's go through some more contrived examples to highlight.  Here's a plot of nonlinear data where we've fit a line.
 
 ![Plot of simulated non-linear data.](images/resid3.png)
 
@@ -169,7 +168,7 @@ to estimate an extra parameter (the slope).
 
 Most of this is typically opaque to the user, since we just grab the correct
 residual variance output from `lm`. But, to solidify the concepts, let's
-go through the diamond example to make sure that we can hard code the estiamtes
+go through the diamond example to make sure that we can hard code the estimates
 on our own. (And from then on we'll just use `lm`.)
 
 ### Diamond example
@@ -217,9 +216,7 @@ that all of the quantities are positive and that they add up this way allows
 us to define the proportion of the total variability explained by the model.
 
 Consider our diamond example again. The plot below shows the variation
-explained by a model with an intercept only (representing
-  total variation) and that when the mass is included as a linear predictor.
-Notice how much the variation decreases when including the diamond mass.
+explained by a model with an intercept only (representing total variation) and then when the mass is included as a linear predictor.  Notice how much the variation decreases when including the diamond mass.
 
 Here's the code:
 
@@ -258,8 +255,8 @@ Here are some summary notes about R squared.
   * (For later.) Adding terms to a regression model always increases {$$}R^2{/$$}.
 
 
-Anscombe's residual (named after their inventor)
-are  a famous example of our R squared doesn't tell the whole story
+Anscombe's residuals, (named after their inventor),
+are  a famous example of how R squared doesn't tell the whole story
 about model fit.  In this example, four data sets have equivalent R squared
 values and beta values, but dramatically different model fits. The result is to suggest
 that reducing data to a single number, be it R squared, a test statistic

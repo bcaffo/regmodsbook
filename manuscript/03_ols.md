@@ -26,7 +26,7 @@ over {$$}\beta_0{/$$} and {$$}\beta_1{/$$}:
 {/$$}
 
 Minimizing this equation will minimize the sum of the squared distances
-between the fitted line at the pareNnts heights ({$$} \beta_1 X_i{/$$})
+between the fitted line at the parents heights ({$$} \beta_1 X_i{/$$})
 and the observed child heights ({$$}Y_i{/$$}).
 
 The result actually has a closed form. Specifically, the least squares
@@ -90,7 +90,7 @@ Let's double check our calculations using R
 ~~~
 
 We can see that the result of `lm` is identical to hard coding the fit ourselves.
-Let's Reversing the outcome/predictor relationship.
+Let's reverse the outcome/predictor relationship:
 
 {line-numbers=off,lang=r}
 ~~~

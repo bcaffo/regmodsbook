@@ -2,10 +2,9 @@
 
 [Watch this video before beginning.](https://youtu.be/SFPM9IuP2m8)
 
-Adjustment,
-is the idea of putting regressors into a linear model
+Adjustment is the idea of putting regressors into a linear model
 to investigate the role of a third variable on the relationship
-between another two. Since it is often the case that
+between another two, since it is often the case that
 a third variable can distort, or confound if you will,
 the relationship between two others.
 
@@ -58,7 +57,7 @@ beta0 <- 0; beta1 <- 2; tau <- 1; sigma <- .2
 y <- beta0 + x * beta1 + t * tau + rnorm(n, sd = sigma)
 ~~~
 
-Let's plot the data. Below I give the code for the first plot, the rest
+Let's plot the data. Below I give the code for the first plot; the rest
 of the code for plots throughout this chapter is omitted. (However,
 you can see the course git repository for the rest of the code.)
 
@@ -79,16 +78,16 @@ points(x[(n/2 + 1) : n], y[(n/2 + 1) : n], pch = 21, col = "black", bg = "salmon
 ![Experiment 1.](images/adjustment1.png)
 
 
-Looking at this plot notices that the X variable is
+Looking at this plot, notice that the X variable is
 unrelated to treatment/group status (color). In addition, the X variable
 is clearly linearly related to Y, but the intercept
 of this relationship depends on group status. The treatment variable is also
 related to Y; especially look at the horizontal lines
-which connect the group means onto the Y axis. The third line is the
+which connect the group means to the Y axis. The third line is the
 what you would get if you just fit X and ignored group.
 Furthermore, notice that the relationship between group status and Y is constant depending on X.
 In other words, both the apparent relationship and our estimated model have parallel lines. (Remember, our
-  model, by not including an interaction term, did not allow for estimated non parallel lines.)
+  model, by not including an interaction term, did not allow for estimated non-parallel lines.)
 
 Finally, notice that the estimated relationship between the group variable and the outcome doesn't
 change much, regardless of whether X is accounted for or not. You can see this by comparing the
@@ -116,11 +115,11 @@ effect of group on Y is entirely explained by X. Our regression
 model would likely have a strong significant effect if group was
 included by itself and this effect would vanish if X was included.
 
-Further notice, there's no data to directly compare the groups
+Further notice, there are no data to directly compare the groups
 at any particular value of X. (There's no vertical overlap
 between the blue and red points.) Thus the adjusted effect
 is entirely based on the model, specifically the assumption
-of linearity. Try to drawing curves on this plot assuming
+of linearity. Try to draw curves on this plot assuming
 non-linear relationships outside of their cloud of points
 for the blue and red groups. You quickly will conclude
 that many relationship are possible that would differ
@@ -132,7 +131,7 @@ difference between the groups.
 It's worth noting at this point, that our experiments
 just show how the data can arrive at different effects
 when X is included or not. In a real application,
-t may be the case that X should be
+it may be the case that X should be
 included and maybe that it shouldn't be.
 
 For example,
@@ -145,8 +144,8 @@ pressure medication on the outcome.
 
 On the other hand consider another setting I ran into. A colleague
 was studying chemical brain measurements
-of patients a severe mental disorder versus controls post mortem.
-However, the time the time since death was highly related
+of patients with a severe mental disorder versus controls post mortem.
+However, the time since death was highly related
 to the time the brain was stored since death, perhaps due to the differential patient sources of the two groups. The time since death was
 strongly related to the outcome we were studying.
 In this case, it is very hard to study the groups as they were so contaminated by this nuisance covariate.
@@ -241,7 +240,7 @@ Nothing we've discussed is intrinsic to having a discrete
 group and continuous X. One, the other, both or neither
 could be discrete. What this reinforces is that
 modeling multivariable relationships is hard.
-You should continue to play around with simulations to see how theinclusion or exclusion of another variable can
+You should continue to play around with simulations to see how the inclusion or exclusion of another variable can
 change apparent relationships.
 
 We should also caution that our discussion only dealt with
@@ -253,4 +252,4 @@ relationships requires quite a bit more thinking.
 `as.data.frame` to convert the object to a dataframe. Fit a linear model of driver deaths
 with `kms` and `PetrolPrice` as predictors. Interpret your results.
 2. Compare the `kms` coefficient with and without the inclusion of the `PetrolPrice` variable in the model. [Watch a video solution.](https://www.youtube.com/watch?v=LTTsm8FfgeI&index=43&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
-3. Compare the `PetrolPrice` coefficient with and without the inclusion fo the `kms` variable in the model.
+3. Compare the `PetrolPrice` coefficient with and without the inclusion of the `kms` variable in the model.

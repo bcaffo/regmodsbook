@@ -29,10 +29,10 @@ to interpret and are less finicky. Complex models often have issues with fitting
 ([To see a counterargument, consider Andrew Gelman's blog.](http://andrewgelman.com/2004/12/10/against_parsimo/).)
 
 Another principle that I find useful for looking at statistical models is to consider them as lenses through
-which to look at your data. (I attribute this quote to great statistician
+which to look at your data. (I attribute this quote to the great statistician
 Scott Zeger.) Under this philosophy, what's the right model - whatever one connects the data to a true, parsimonious statement about what you're
 studying. Unwin and authors have formalized these ideas more into something they call [exploratory model analysis](http://www.sciencedirect.com/science/article/pii/S016794730200292X)
-I like this, as it turns our focus away from trying to get a single, best, true model and instead focuses on.
+I like this, as it turns our focus away from trying to get a single, best, true model and instead focuses on the evaluation and comparison of many models simultaneously.
 This is useful, since there are uncountable ways that a model can be wrong.
 In this lecture, we'll focus on variable inclusion and exclusion.
 
@@ -40,7 +40,7 @@ In this lecture, we'll focus on variable inclusion and exclusion.
 ## The Rumsfeldian triplet
 
 Before we begin, I'd like to give a quote from Donal Rumsfeld, the controversial Secretary of Defense of the US during
-the start of the Afghanistan the second Iraq wars. He gave this quote regarding weapons of mass destruction
+the start of the Afghanistan and second Iraq wars. He gave this quote regarding weapons of mass destruction
 ([read more about it here](https://en.wikipedia.org/wiki/There_are_known_knowns)):
 
 "There are known knowns. These are things we know that we know. There are known unknowns. That is to say, there are things that we know we don't know. But there are also unknown unknowns. There are things we don't know we don't know." - Donald Rumsfeld
@@ -58,11 +58,11 @@ advertising strategies, randomization will help insure that your treatment is ba
 Unknowns with high probability. (Of course, being unobserved, you can never know whether or not the randomization was
 effective.)
 
-For Known Unknowns, those variables we wish we had collected but are aware about, there are several strategies.
+For Known Unknowns, those variables we are aware about and wish we had collected, there are several strategies.
 For example, a proxy variable might be of use. As an example, we had some brain volumetric measurements via MRIs
 and really wished we had done the processing to get intra-cranial volume (head size). The need for this variable
 was because we didn't want to compare brain volumetric measurements and conclude that bigger people with bigger
-heads have more brain mass. This would be a useless conclusion, for example whales have bigger brains than dolphins,
+heads have more brain mass. This would be a useless conclusion; for example, whales have bigger brains than dolphins,
 but that doesn't tell you much about whales or dolphins. More interesting would be if whales who were exposed to toxic chemicals had lower
 brain volume relative to their intra-cranial volume than whales who weren't exposed. In our case, (we were studying humans),
 we used height, gender and other anthropomorphic measurements to get a good guess of intra-cranial volume.
@@ -269,6 +269,7 @@ convenient entity to work with.
 Assuming that the model is linear with additive iid errors,
 we can mathematically describe the impact of omitting necessary variables or including unnecessary ones. These
 two rules follow:
+
   * If we underfit the model, that is omit necessary covariates, the variance estimate is biased.
   * If we correctly *or overfit* the model, including all necessary covariates and possibly some unnecessary ones,
     the variance estimate is unbiased. However, the variance *of the variance* is larger if we include unnecessary variables.
@@ -290,7 +291,7 @@ prediction. In addition, principal components or factor analytic models on covar
 
 
 It should also be noted that careful design can often eliminate the need for complex model searches at the analyses stage. For example,
-randomized, randomized block designs, crossover designs, clinical trials, A/B testing are all examples of designs where randomization, balance and
+randomized design, randomized block designs, crossover designs, clinical trials, and A/B testing are all examples of designs where randomization, balance and
 stratification are used to create data sets that have more direct analyses. However, control over the design is often limited in data science.
 
 I'll give my favorite approach for model selection when I'm trying to get a parsimonious explanatory model. (I would use a different strategy

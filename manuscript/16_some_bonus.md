@@ -5,7 +5,7 @@ This chapter is a bit of an mishmash of interesting things that one can accompli
 linear models.
 
 ## How to fit functions using linear models
-Up to this point, we've only consider fitting lines, planes and polynomials for
+Up to this point, we've only considered fitting lines, planes and polynomials for
 linear models.  Consider a model {$$}Y_i = f(X_i) + \epsilon{/$$}.
 How can we fit such a model using linear models (often called scatterplot smoothing)?
 
@@ -18,9 +18,10 @@ We're going to cover a basic technique called regression splines. Consider the m
 where {$$}(a)_+ = a{/$$} if {$$}a > 0{/$$} and 0 otherwise and {$$}\xi_1 \leq ... \leq \xi_d{/$$}
 are known knot points. Prove to yourself that the mean function:
 
-{$$}
-\beta_0 + \beta_1 X_i + \sum_{k=1}^d (x_i - \xi_k)_+ \gamma_k
-{/$$}
+  {$$}
+  \beta_0 + \beta_1 X_i + \sum_{k=1}^d (x_i - \xi_k)_+ \gamma_k
+  {/$$}
+
 is continuous at the knot points. That is, we could draw this function without lifting up the pen.
 
 Let's try a simulated example. The function is a sine curve with noise. We have

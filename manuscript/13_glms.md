@@ -13,13 +13,14 @@ Recall linear models.  Linear models are the most useful applied statistical tec
 Additive response models don't make much sense if the response is discrete, or strictly positive.
 Additive error models often don't make sense, for example, if the outcome has to be positive.
 Transformations, such as taking a cube root of a count outcome, are often hard to interpret.  
+
 In addition, there's value in modeling the data on the scale that it was collected.
 Particularly interpretable transformations, natural logarithms in specific,
 aren't applicable for negative or zero values.
 
 The generalized linear model is family of models that includes linear models. By extending the family,
 it handles many of the issues with linear models, but at the expense of some complexity and loss of some
-of the mathematical tidiness. A GLM involves three components
+of the mathematical tidiness. A GLM involves three components:
 
   * An *exponential family* model for the response.
   * A systematic component via a linear predictor.
@@ -38,7 +39,7 @@ Define the **linear predictor** to be
 {$$}\eta_i = \sum_{k=1}^p X_{ik} \beta_k{/$$}.
 
 The **link function** as {$$}g{/$$} so that {$$}g(\mu) = \eta{/$$}.
-For linear models {$$}g(\mu) = \mu{/$$} so that {$$}\mu_i = \eta_i{/$$}
+For linear models {$$}g(\mu) = \mu{/$$} so that {$$}\mu_i = \eta_i{/$$}.
   This yields the same likelihood model as our additive error Gaussian linear model
 
 {$$}
@@ -138,7 +139,7 @@ Poisson and binomial models.
 ## Odds and ends
 At this point, let's do some bookkeeping before we work through examples.
 
-* The normal equations have to be solved iteratively. Resulting in
+* The normal equations have to be solved iteratively, resulting in
 {$$}\hat \beta_k{/$$} and, if included, {$$}\hat \phi{/$$}.
 * Predicted linear predictor responses can be obtained as {$$}\hat \eta = \sum_{k=1}^p X_k \hat \beta_k{/$$}
 * Predicted mean responses as {$$}\hat \mu = g^{-1}(\hat \eta){/$$}

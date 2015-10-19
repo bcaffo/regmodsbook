@@ -129,7 +129,7 @@ not installed. Let's look at the marginal (parents disregarding children and
 children disregarding parents) distributions first.
 The parental distribution is all heterosexual couples. The parental average was corrected
 for gender via multiplying female heights by 1.08. Remember, Galton didn't have
-regression to help figure out a betetr way to do this correction!
+regression to help figure out a better way to do this correction!
 
 
 {lang=r,title="Loading and plotting Galton's data.",line-numbers=off}
@@ -152,7 +152,7 @@ of {$$}\mu{/$$} that minimizes
 {$$}\sum_{i=1}^n (Y_i - \mu)^2.{/$$}
 
 This is physical center of mass of the histogram.
-You might have guessed that the answer {$$}\mu = \bar Y{/$$}. This is called
+You might have guessed that the answer is {$$}\mu = \bar Y{/$$}. This is called
 the **least squares** estimate for {$$}\mu{/$$}. It is the point that minimizes
 the sum of the squared distances between the observed data and itself.
 

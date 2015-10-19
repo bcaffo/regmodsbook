@@ -11,7 +11,7 @@ in an area or the number of hits to a web site.
 In some of these cases the counts are clearly
 bounded. However, modeling the counts as unbounded
 is often done when the upper limit is not known
-or very large relative to the number of events.
+or is very large relative to the number of events.
 
 If the upper bound is known, the techniques we're
 discussing can be used to model the proportion or
@@ -70,6 +70,7 @@ If we set {$$}t = 24{/$$} then our Poisson rate
 would be interpreted as web hits per hour.
 
 Let's load the data:
+
 {lang=r, line-numbers=off}
 ~~~
 > download.file("https://dl.dropboxusercontent.com/u/7710864/data/gaData.rda",destfile="./data/gaData.rda",method="curl")
@@ -130,7 +131,7 @@ all data before taking the log, a reasonable solution but
 one that harms the nice interpretation properties of the log.
 Secondly, a square root or cube root
 transformation is often applied (which works just fine on zeros).
-While correcting nicely for skewness, this approach the issue
+While correcting nicely for skewness, this approach creates the issue
 of losing the nice interpretation of logs. Thus for the time being,
 let's assume no zero counts in the discussion.
 
@@ -138,9 +139,9 @@ Consider now the model:
 
 {$$} \log(Y_i) = \beta_0 + \beta_1 x_i + \epsilon_i {/$$}
 
-The quantity {$$}e^{E[\log(Y)]}{/$$} geometric mean of {$$}Y{/$$}.
+The quantity {$$}e^{E[\log(Y)]}{/$$} estimates the geometric mean of {$$}Y{/$$}.
 When you take the natural log of outcomes and fit a regression model, your exponentiated coefficients estimate things about geometric means.
-Thus our {$$}e^{\beta_0}{/$$} is the geometric mean hits on
+Thus our {$$}e^{\beta_0}{/$$} is the geometric mean of hits on
 day 0 while {$$}e^{\beta_1}{/$$} is the relative increase or
 decrease in hits going from one day to the next.
 
@@ -190,7 +191,7 @@ Using the relationship:
 \frac{E[Y_i ~|~ X_i = x_i+1]}{E[Y_i ~|~ X_i = x_i]} = e^{\beta_1}
 {/$$}
 
-we interpret {$$}e^{\beta_1}{\$$} as the expected relative increase in the
+we interpret {$$}e^{\beta_1}{/$$} as the expected relative increase in the
 outcome for a unit change in the regressor. If there's more than one
 regressor in the model, then the coefficients are interpreted in the terms
 of the other regressors being held fixed.
@@ -214,7 +215,7 @@ the variance. Specifically, if {$$}Y_i \sim \mathrm{Poisson}(\mu_i){/$$},
 then {$$}E[Y_i] = \mathrm{Var}(Y_i){/$$}. We can often check whether or
 not this relationship apparently holds. For example, we can plot the
 fitted values (estimates {$$}E[Y_i]{/$$}) by generalized version of residuals
-for Poisson models. Bins of the
+for Poisson models.
 
 {lang=r,line-numbers=off}
 ~~~

@@ -1,6 +1,9 @@
+---
+output: pdf_document
+---
 # Residuals, variation, diagnostics
 
-[Watch this video before beginning)[http://youtu.be/VohfwSJuG4k]
+[Watch this video before beginning](http://youtu.be/VohfwSJuG4k)
 
 ## Residuals
 
@@ -9,7 +12,7 @@ Recall from Chapter 6 that the vertical distances between the observed data poin
 regression line are called residuals. We can generalize this idea to the vertical distances between
 the observed data and the fitted surface in multivariable settings.
 
-To be specific, recall our linear models, which was
+To be specific, recall our linear model, which was
 specified as {$$}Y_i =  \sum_{k=1}^p X_{ik} \beta_j + \epsilon_{i}{/$$}. Throughout this lecture,
 we'll also assume that {$$}\epsilon_i \stackrel{iid}{\sim} N(0, \sigma^2){/$$}, even though this assumption isn't
 necessary for the definition of the residuals.
@@ -75,16 +78,16 @@ impact on our fitted model, since there's lots of X points nearby
 to counteract its effect. This point is said to have
 low leverage and influence. The upper right hand
 point is outside of the range of X values and Y values, but conforms
-nicely to the regression relationship. This point has  It will also have little effect
+nicely to the regression relationship. This point has little effect
 on the fitted model. It has high leverage, but chooses not to extert it,
-and thus has low influence. The lower left hand point is outside of the range
+and thus has low influence. The lower right hand point is outside of the range
 of X values, but not the Y values. However, it does not conform to the
-relationship of the remainder of points at all. This outlier has high leverage and influence.
+relationship of the remainder of the points at all. This outlier has high leverage and influence.
 
 
 From this discussion you can maybe guess at the formal definition of
 two important terms: leverage and influence.
-Leverage discusses how outside of the norm a points X values
+Leverage discusses how outside of the norm a point's X values
 are from the cloud of other X values. A point with high leverage has the
 opportunity to dramatically impact the regression model. Whether or not
 it does so depends on how closely it conforms to the fit.
@@ -136,18 +139,18 @@ a perfect fit would not be expected even if the model held.
 hat values are necessarily between 0 and 1 with larger values indicating
 greater (potential for) leverage.
 
-After leverage, there are quite a few ways to probe for **influence. These
+After leverage, there are quite a few ways to probe for **influence**. These
 are:
 
-  * `dffits` - change in the predicted response when the $i^{th}$ point is deleted in fitting the model.
-  * `dfbetas` - change in individual coefficients when the $i^{th}$ point is deleted in fitting the model.
-  * `cooks.distance` - overall change in the coefficients when the $i^{th}$ point is deleted.
+  * `dffits` - change in the predicted response when the $$i^{th}$$ point is deleted in fitting the model.
+  * `dfbetas` - change in individual coefficients when the $$i^{th}$$ point is deleted in fitting the model.
+  * `cooks.distance` - overall change in the coefficients when the $$i^{th}$$ point is deleted.
 
 In other words, the `dffits` check for influence in the fitted values,
 `dfbetas` check for influence in the coefficients individually and `cooks.distance` checks for influence in the coefficients as a collective.
 
 Finally, there's a residual measure that's also an influence measure.
-Particularly, consider `resid(fit) / (1 - hatvalues(fit))` where `fit` is the linear model fit. This is the so-called PRESS residuals. These
+Particularly, consider `resid(fit) / (1 - hatvalues(fit))` where `fit` is the linear model fit. This is the so-called PRESS residual. These
 are the residual error from leave one out cross validation. That is, the difference in the response and the predicted response at data point {$$}i{/$$}, where it was not included in the model fitting.
 
 ### How do I use all of these things?
@@ -159,6 +162,7 @@ be used across all settings.
 
 A better way to think about these tool is as diagnostics, like a
 physician diagnosing a health issue. These tools probe your data in different ways to diagnose different problems.  Some examples include:
+
   * Patterns in your residual plots generally indicate some poor aspect of model fit.
   * Heteroskedasticity (non constant variance).
   * Missing model terms.
