@@ -40,7 +40,7 @@ Try it out, it's probably the most effective way to learn.
 Regression models are the workhorse of data science. They are the most
 well described, practical and theoretically understood models in statistics.
 A data scientist well versed in regression models will be able to
-solve and incredible array of problems.
+solve an incredible array of problems.
 
 Perhaps the key insight for regression models is that they produce
 highly interpretable model fits. This is unlike machine learning
