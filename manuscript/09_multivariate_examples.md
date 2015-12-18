@@ -133,7 +133,7 @@ and the process of choosing which variables to include or not in the
 next chapter.
 
 ## What if we include a completely unnecessary variable?
-Next chapter we'll discuss working with a collection of
+In the next chapter we'll discuss working with a collection of
 correlated predictors. But you might wonder, what happens
 if you include a predictor that's completely unnecessary.
 Let's try some computer experiments with our fertility data.
