@@ -114,7 +114,7 @@ If {$$}p{/$$} is a probability, the odds are defined as
 they're saying that the odds are 1 and thus {$$}p = 1 / (1 + 1) = 0.5{/$$}.
 Conversely, if someone says that the probability that something occurs
 is 50%, then they mean that {$$}p=0.5{/$$} so that the odds are
-{$$}o = p / (1 - p) = 0.5 / (1 - 0.5) = {/$$}.
+{$$}o = p / (1 - p) = 0.5 / (1 - 0.5) = 1{/$$}.
 
 The odds are famously derived using a standard fair game setting.
 Imagine that you are playing a game where you flip a coin with success probability
@@ -175,7 +175,7 @@ minus infinity to plus infinity. The log of the odds is called the
 logit:
 
 {$$}
-g = \mathrm{logit}(p) = \log(p / 1 - p)
+g = \mathrm{logit}(p) = \log(p / (1 - p))
 {/$$}
 
 We can go backwards from the logit to the probability with the so-called
@@ -212,7 +212,7 @@ Or, equivalently, we could just say
 
 {$$}
 P(Y_i = 1 ~|~ X_i = x_i, \beta_0, \beta_1)
-= p_i = \frac{ \exp{\beta_0 + \beta_1 x_i}}{1 + \exp(\beta_0 + \beta_1 x_i)}
+= p_i = \frac{ \exp{(\beta_0 + \beta_1 x_i)}}{1 + \exp(\beta_0 + \beta_1 x_i)}
 {/$$}
 
 

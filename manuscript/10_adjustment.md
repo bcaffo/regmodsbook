@@ -120,10 +120,10 @@ Further notice, there's no data to directly compare the groups
 at any particular value of X. (There's no vertical overlap
 between the blue and red points.) Thus the adjusted effect
 is entirely based on the model, specifically the assumption
-of linearity. Try to drawing curves on this plot assuming
+of linearity. Try to draw curves on this plot assuming
 non-linear relationships outside of their cloud of points
 for the blue and red groups. You quickly will conclude
-that many relationship are possible that would differ
+that many relationships are possible that would differ
 from this model's conclusions. Worse still, you have no data to
 check the assumptions. Of course, R will churn forward without
 any complaints fitting this model and reporting no significant
@@ -132,7 +132,7 @@ difference between the groups.
 It's worth noting at this point, that our experiments
 just show how the data can arrive at different effects
 when X is included or not. In a real application,
-t may be the case that X should be
+it may be the case that X should be
 included and maybe that it shouldn't be.
 
 For example,
@@ -146,7 +146,7 @@ pressure medication on the outcome.
 On the other hand consider another setting I ran into. A colleague
 was studying chemical brain measurements
 of patients a severe mental disorder versus controls post mortem.
-However, the time the time since death was highly related
+However, the time since death was highly related
 to the time the brain was stored since death, perhaps due to the differential patient sources of the two groups. The time since death was
 strongly related to the outcome we were studying.
 In this case, it is very hard to study the groups as they were so contaminated by this nuisance covariate.

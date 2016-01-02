@@ -15,8 +15,7 @@ or very large relative to the number of events.
 
 If the upper bound is known, the techniques we're
 discussing can be used to model the proportion or
-rate. The
-starting point for most count analysis is the
+rate. The starting point for most count analysis is 
 the Poisson distribution.
 
 
@@ -138,7 +137,7 @@ Consider now the model:
 
 {$$} \log(Y_i) = \beta_0 + \beta_1 x_i + \epsilon_i {/$$}
 
-The quantity {$$}e^{E[\log(Y)]}{/$$} geometric mean of {$$}Y{/$$}.
+The quantity {$$}e^{E[\log(Y)]}{/$$} is the geometric mean of {$$}Y{/$$}.
 When you take the natural log of outcomes and fit a regression model, your exponentiated coefficients estimate things about geometric means.
 Thus our {$$}e^{\beta_0}{/$$} is the geometric mean hits on
 day 0 while {$$}e^{\beta_1}{/$$} is the relative increase or

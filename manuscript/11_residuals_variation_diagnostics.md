@@ -41,7 +41,7 @@ Consider the upper left hand plot of the residuals ({$$}e_i{/$$}) versus
 the fitted values ({$$}\hat Y_i{/$$}). Often, a horiztonal reference line at 0 is drawn
 since (whenever an intercept is included) the residuals must sum to 0 and
 so will lie above and below the zero. Just like in our previous residual
-plots, one is look for any systematic patters or large outlying observations.
+plots, one should look for any systematic patterns or large outlying observations.
 
 Note that this is one of many residual plots that one may be interested in
 performing. For example, one might want to look at plots of residuals by
@@ -75,9 +75,9 @@ impact on our fitted model, since there's lots of X points nearby
 to counteract its effect. This point is said to have
 low leverage and influence. The upper right hand
 point is outside of the range of X values and Y values, but conforms
-nicely to the regression relationship. This point has  It will also have little effect
+nicely to the regression relationship. It will also have little effect
 on the fitted model. It has high leverage, but chooses not to extert it,
-and thus has low influence. The lower left hand point is outside of the range
+and thus has low influence. The lower right hand point is outside of the range
 of X values, but not the Y values. However, it does not conform to the
 relationship of the remainder of points at all. This outlier has high leverage and influence.
 
@@ -136,12 +136,12 @@ a perfect fit would not be expected even if the model held.
 hat values are necessarily between 0 and 1 with larger values indicating
 greater (potential for) leverage.
 
-After leverage, there are quite a few ways to probe for **influence. These
+After leverage, there are quite a few ways to probe for **influence**. These
 are:
 
-  * `dffits` - change in the predicted response when the $i^{th}$ point is deleted in fitting the model.
-  * `dfbetas` - change in individual coefficients when the $i^{th}$ point is deleted in fitting the model.
-  * `cooks.distance` - overall change in the coefficients when the $i^{th}$ point is deleted.
+  * `dffits` - change in the predicted response when the $$i^{th}$$ point is deleted in fitting the model.
+  * `dfbetas` - change in individual coefficients when the $$i^{th}$$ point is deleted in fitting the model.
+  * `cooks.distance` - overall change in the coefficients when the $$i^{th}$$ point is deleted.
 
 In other words, the `dffits` check for influence in the fitted values,
 `dfbetas` check for influence in the coefficients individually and `cooks.distance` checks for influence in the coefficients as a collective.
@@ -295,7 +295,7 @@ fit <- lm(V1 ~ . - 1, data = dat); plot(predict(fit), resid(fit), pch = '.')
 ![Residuals versus fitted values from the Stefanski data.](images/mresid6.png)
 
 There appears to be a pattern. The moral of the story here is that residual plots
-can really hone in on systematic patters in the data that are completely non-apparent
+can really hone in on systematic patterns in the data that are completely non-apparent
 from other plots.
 
 ## Back to the Swiss data

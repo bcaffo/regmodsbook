@@ -240,7 +240,7 @@ easy as just evaluating the fitted line at the price we want to
 ~~~
 
 Therefore, we predict the price to be 335.7, 745.1 and 1005.5 for
-a 0.16, 0.26 and 0.34 carat diamonds. Of course, our prediction models
+a 0.16, 0.26 and 0.34 carat diamond. Of course, our prediction models
 will get more elaborate and R has a generic function, `predict`,
 to put our X values into the model for us. This is generally preferable
 and less The data has to go into

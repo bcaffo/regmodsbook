@@ -40,7 +40,7 @@ Try it out, it's probably the most effective way to learn.
 Regression models are the workhorse of data science. They are the most
 well described, practical and theoretically understood models in statistics.
 A data scientist well versed in regression models will be able to
-solve and incredible array of problems.
+solve an incredible array of problems.
 
 Perhaps the key insight for regression models is that they produce
 highly interpretable model fits. This is unlike machine learning
@@ -129,7 +129,7 @@ not installed. Let's look at the marginal (parents disregarding children and
 children disregarding parents) distributions first.
 The parental distribution is all heterosexual couples. The parental average was corrected
 for gender via multiplying female heights by 1.08. Remember, Galton didn't have
-regression to help figure out a betetr way to do this correction!
+regression to help figure out a better way to do this correction!
 
 
 {lang=r,title="Loading and plotting Galton's data.",line-numbers=off}
@@ -227,7 +227,7 @@ these results can be extended.
 [Watch this video before beginning](https://www.youtube.com/watch?v=b34mXkyCH0I&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC&index=4)
 
 Looking at either the parents or children on their own isn't interesting.
-We're interested in how the relate to each other. Let's plot the parent
+We're interested in how the two relate to each other. Let's plot the parent
 and child heights.
 
 {lang=r,line-numbers=off}
@@ -248,7 +248,7 @@ to make the size and color of the points be the frequency.
 A line requires two parameters to be specified, the intercept and the slope.
 Let's first focus on the slope. We want to find the slope of the line that
 best fits the data. However, we have to pick a good intercept. Let's subtract
-the mean from bot the parent and child heights so that their subsequent
+the mean from both the parent and child heights so that their subsequent
 means are 0.
 Now let's find the line that goes through the origin (has intercept 0) by
 picking the best slope.
