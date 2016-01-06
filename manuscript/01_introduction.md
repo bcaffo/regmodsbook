@@ -248,7 +248,7 @@ to make the size and color of the points be the frequency.
 A line requires two parameters to be specified, the intercept and the slope.
 Let's first focus on the slope. We want to find the slope of the line that
 best fits the data. However, we have to pick a good intercept. Let's subtract
-the mean from bot the parent and child heights so that their subsequent
+the mean from both the parent and child heights so that their subsequent
 means are 0.
 Now let's find the line that goes through the origin (has intercept 0) by
 picking the best slope.
