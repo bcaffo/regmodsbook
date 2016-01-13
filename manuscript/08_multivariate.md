@@ -179,7 +179,7 @@ Now let's subtract these two equations:
 
 {$$}
 E[Y | X_1 = x_1 + 1, \ldots, X_p = x_p]  - E[Y | X_1 = x_1, \ldots, X_p = x_p]
-= (x_1 + 1) \beta_1 + \sum_{k=2}^p x_{k} \beta_k + \sum_{k=1}^p x_{k} \beta_k = \beta_1
+= (x_1 + 1) \beta_1 + \sum_{k=2}^p x_{k} \beta_k - \sum_{k=1}^p x_{k} \beta_k = \beta_1
 {/$$}
 
 Thus, the interpretation of a multivariate regression coefficient is the expected change in the response per unit change in the regressor, holding all of the other regressors fixed.
