@@ -30,7 +30,7 @@ by adding terms linearly into the model.
 {$$}
 Y_i =  \beta_1 X_{1i} + \beta_2 X_{2i} + \ldots +
 \beta_{p} X_{pi} + \epsilon_{i}
-= \sum_{k=1}^p X_{ik} \beta_j + \epsilon_{i}
+= \sum_{k=1}^p X_{ik} \beta_k + \epsilon_{i}
 {/$$}
 
 Here {$$}X_{1i}=1{/$$} typically, so that an intercept is included.
@@ -38,7 +38,7 @@ Least squares (and hence ML estimates under iid Gaussianity
 of the errors) minimizes:
 
 {$$}
-\sum_{i=1}^n \left(Y_i - \sum_{k=1}^p X_{ki} \beta_j\right)^2
+\sum_{i=1}^n \left(Y_i - \sum_{k=1}^p X_{ki} \beta_k\right)^2
 {/$$}
 
 Note, the important linearity is linearity in the coefficients.
