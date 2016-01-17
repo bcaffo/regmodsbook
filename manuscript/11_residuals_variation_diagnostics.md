@@ -158,13 +158,14 @@ be used across all settings.
 
 A better way to think about these tool is as diagnostics, like a
 physician diagnosing a health issue. These tools probe your data in different ways to diagnose different problems.  Some examples include:
+
   * Patterns in your residual plots generally indicate some poor aspect of model fit.
   * Heteroskedasticity (non constant variance).
   * Missing model terms.
   * Temporal patterns (plot residuals versus collection order).
-* Residual QQ plots investigate normality of the errors.
-* Leverage measures (hat values) can be useful for diagnosing data entry errors and points that have a high potential for influence.
-* Influence measures get to the bottom line, 'how does deleting or including this point impact a particular aspect of the model'.
+  * Residual QQ plots investigate normality of the errors.
+  * Leverage measures (hat values) can be useful for diagnosing data entry errors and points that have a high potential for influence.
+  * Influence measures get to the bottom line, 'how does deleting or including this point impact a particular aspect of the model'.
 
 Let's do some experiments to see how these measure hold up.
 
