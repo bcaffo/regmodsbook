@@ -169,7 +169,7 @@ physician diagnosing a health issue. These tools probe your data in different wa
 
 Let's do some experiments to see how these measure hold up.
 
-![IMage for first simulation.](images/mresid3.png)
+![Image for first simulation.](images/mresid3.png)
 
 ## Simulation examples
 
