@@ -74,7 +74,7 @@ impact on our fitted model, since there's lots of X points nearby
 to counteract its effect. This point is said to have
 low leverage and influence. The upper right hand
 point is outside of the range of X values and Y values, but conforms
-nicely to the regression relationship. This point has  It will also have little effect
+nicely to the regression relationship. It will also have little effect
 on the fitted model. It has high leverage, but chooses not to extert it,
 and thus has low influence. The lower left hand point is outside of the range
 of X values, but not the Y values. However, it does not conform to the
