@@ -138,9 +138,9 @@ greater (potential for) leverage.
 After leverage, there are quite a few ways to probe for **influence**. These
 are:
 
-  * `dffits` - change in the predicted response when the $i^{th}$ point is deleted in fitting the model.
-  * `dfbetas` - change in individual coefficients when the $i^{th}$ point is deleted in fitting the model.
-  * `cooks.distance` - overall change in the coefficients when the $i^{th}$ point is deleted.
+  * `dffits` - change in the predicted response when the {$$}i^{th}{/$$} point is deleted in fitting the model.
+  * `dfbetas` - change in individual coefficients when the {$$}i^{th}{/$$} point is deleted in fitting the model.
+  * `cooks.distance` - overall change in the coefficients when the {$$}i^{th}{/$$} point is deleted.
 
 In other words, the `dffits` check for influence in the fitted values,
 `dfbetas` check for influence in the coefficients individually and `cooks.distance` checks for influence in the coefficients as a collective.
