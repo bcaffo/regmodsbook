@@ -1,7 +1,6 @@
 # Residuals, variation, diagnostics
 
-[Watch this video before beginning)[http://youtu.be/VohfwSJuG4k]
-
+[Watch this video before beginning](http://youtu.be/VohfwSJuG4k])
 ## Residuals
 
 
