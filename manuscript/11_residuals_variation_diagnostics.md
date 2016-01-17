@@ -135,7 +135,7 @@ a perfect fit would not be expected even if the model held.
 hat values are necessarily between 0 and 1 with larger values indicating
 greater (potential for) leverage.
 
-After leverage, there are quite a few ways to probe for **influence. These
+After leverage, there are quite a few ways to probe for **influence**. These
 are:
 
   * `dffits` - change in the predicted response when the $i^{th}$ point is deleted in fitting the model.
