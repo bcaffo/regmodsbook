@@ -1,14 +1,9 @@
 ---
 output:
   pdf_document:
-    keep_tex: yes
     toc: yes
     includes:
       in_header: title.tex
-html_document:
-    keep_md: yes
-    toc: yes
-    toc_depth: 2
 ---
 
 
