@@ -231,7 +231,7 @@ Let's write this as:
 {/$$}
 
 where {$$}O(Y_i = 1 ~|~ X_i = x_i){/$$} refers to the odds.
-Interpreting {$$}\beta_0{\$$} is straightforward, it's the
+Interpreting {$$}\beta_0{/$$} is straightforward, it's the
 log of the odds of the Ravens winning for a 0 point game. Just
 like in regular regression, for this to have meaning, a 0
 X value has to have meaning. In this case, there's a structural
@@ -286,7 +286,7 @@ the logistic curves vary in their curvature.
 x = seq(-10, 10, length = 1000)
 beta0 = 0; beta1s = seq(.25, 1.5, by = .1)
 plot(c(-10, 10), c(0, 1), type = "n", xlab = "X", ylab = "Probability", frame = FALSE)
-sapply(beta1s, function(beta1) {
+sapply(bEta1s, function(beta1) {
     y = 1 / (1 + exp( -1 * ( beta0 + beta1 * x ) ))
     lines(x, y, type = "l", lwd = 3)
 }

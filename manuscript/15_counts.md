@@ -190,7 +190,7 @@ Using the relationship:
 \frac{E[Y_i ~|~ X_i = x_i+1]}{E[Y_i ~|~ X_i = x_i]} = e^{\beta_1}
 {/$$}
 
-we interpret {$$}e^{\beta_1}{\$$} as the expected relative increase in the
+we interpret {$$}e^{\beta_1}{/$$} as the expected relative increase in the
 outcome for a unit change in the regressor. If there's more than one
 regressor in the model, then the coefficients are interpreted in the terms
 of the other regressors being held fixed.
