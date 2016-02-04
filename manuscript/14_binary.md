@@ -286,7 +286,7 @@ the logistic curves vary in their curvature.
 x = seq(-10, 10, length = 1000)
 beta0 = 0; beta1s = seq(.25, 1.5, by = .1)
 plot(c(-10, 10), c(0, 1), type = "n", xlab = "X", ylab = "Probability", frame = FALSE)
-sapply(bEta1s, function(beta1) {
+sapply(beta1s, function(beta1) {
     y = 1 / (1 + exp( -1 * ( beta0 + beta1 * x ) ))
     lines(x, y, type = "l", lwd = 3)
 }
