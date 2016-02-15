@@ -264,7 +264,7 @@ g
 5. Refer to question 1. Form a prediction interval for the son's height at the average father's height. [Watch a video solution.](https://www.youtube.com/watch?v=-rx-71QsUnY&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=36)
 6. Load the mtcars dataset. Fit a linear regression with miles per gallon as the outcome and horsepower as the predictor. Test whether or not the horsepower power coefficient is statistically different from zero. Interpret your test.
 7. Refer to question 6. Form a confidence interval for the slope coefficient.
-8. Refer to quesiton 6. Form a confidence interval for the intercept (center the HP variable first).
+8. Refer to question 6. Form a confidence interval for the intercept (center the HP variable first).
 9. Refer to question 6. Form a mean value interval for the expected MPG for the average HP.
 10. Refer to question 6. Form a prediction interval for the expected MPG for the average HP.
 11. Refer to question 6. Create a plot that has the fitted regression line plus curves at the expected value and prediction intervals.

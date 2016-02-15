@@ -52,13 +52,13 @@ Infant.Mortality   1.0770    0.38172   2.822 7.336e-03
 Agriculture is expressed in percentages (0 - 100), representing the percentage
 of the male population involved in agriculture.  
 The regression slope estimate for this variable is `-0.1721`. We interpret
-this coefficients as follows:
+this coefficient as follows:
 
 Our models estimates an expected 0.17 decrease in standardized fertility for every 1% increase in percentage of males involved in agriculture in holding the remaining variables constant.
 
 Note that the the t-test for {$$}H_0: \beta_{Agri} = 0{/$$} versus
 {$$}H_a: \beta_{Agri} \neq 0{/$$} is  significant since `0.0187` is less
-that typical benchmarks (0.05, for exaple). Note that, by default, R is
+that typical benchmarks (0.05, for example). Note that, by default, R is
 reporting the P-value for the two sided test. If you want the one sided test,
 calculate it directly using the T-statistic and the degrees of freedom.
 (You can figure it out from the two sided P-value, but it's easy to get tripped
@@ -268,7 +268,7 @@ sprayF        2.1667      1.601  1.3532 1.806e-01
 ~~~
 
 Therefore, 0.8333 is the estimated mean comparing Spray B to Spray A (as B - A),
--12.4167 compares Spray C to Spray A (as C - A) and so on. The inferencial statistics: standard
+-12.4167 compares Spray C to Spray A (as C - A) and so on. The inferential statistics: standard
 errors, t value and P-value all correspond to those comparisons. The intercept, 14.5, is the
 mean for Spray A. So, its inferential statistics are testing whether or not the mean for
 Spray A is zero. As is often the case, this test isn't terribly informative and often yields
@@ -335,7 +335,7 @@ sprayF   16.667      1.132  14.721 1.573e-22
 
 So, for example, 14.5 is the mean for Spray A (as we already knew),
 15.33 is the mean for Spray B (14.5 + 0.8333 from our previous model formulation),
-2.083 is the mean for Spray C (14.5 - 12.4167 from our previous model formluation) and so on.
+2.083 is the mean for Spray C (14.5 - 12.4167 from our previous model formulation) and so on.
 This is a nice trick if you want your model formulated in the terms of the group means,
 rather than the group comparisons relative to the reference group.
 
@@ -540,7 +540,7 @@ factor(CatholicBin)1              2.85770   10.62644  0.2689 7.893e-01
 Agriculture:factor(CatholicBin)1  0.08914    0.17611  0.5061 6.153e-01
 ~~~
 
-Thus, 2.8577 is the estimated change in the intercept of the linear relationship between Agriculure and
+Thus, 2.8577 is the estimated change in the intercept of the linear relationship between Agriculture and
 Fertility going from non-Catholic majority to
 Catholic majority to Catholic majority provinces. The interaction term 0.9891 is the estimate change in
 the slope. The estimated intercept in non-Catholic provinces is 62.04993 while the estimated intercept in

@@ -241,7 +241,7 @@ Nothing we've discussed is intrinsic to having a discrete
 group and continuous X. One, the other, both or neither
 could be discrete. What this reinforces is that
 modeling multivariable relationships is hard.
-You should continue to play around with simulations to see how theinclusion or exclusion of another variable can
+You should continue to play around with simulations to see how the inclusion or exclusion of another variable can
 change apparent relationships.
 
 We should also caution that our discussion only dealt with

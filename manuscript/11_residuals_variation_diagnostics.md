@@ -38,7 +38,7 @@ fit <- lm(Fertility ~ . , data = swiss); plot(fit)
 ![The result of the method `plot` on the `swiss` dataset.](images/mresid1.png)
 
 Consider the upper left hand plot of the residuals ({$$}e_i{/$$}) versus
-the fitted values ({$$}\hat Y_i{/$$}). Often, a horiztonal reference line at 0 is drawn
+the fitted values ({$$}\hat Y_i{/$$}). Often, a horizontal reference line at 0 is drawn
 since (whenever an intercept is included) the residuals must sum to 0 and
 so will lie above and below the zero. Just like in our previous residual
 plots, one is look for any systematic patters or large outlying observations.
@@ -76,7 +76,7 @@ to counteract its effect. This point is said to have
 low leverage and influence. The upper right hand
 point is outside of the range of X values and Y values, but conforms
 nicely to the regression relationship. This point has  It will also have little effect
-on the fitted model. It has high leverage, but chooses not to extert it,
+on the fitted model. It has high leverage, but chooses not to exert it,
 and thus has low influence. The lower left hand point is outside of the range
 of X values, but not the Y values. However, it does not conform to the
 relationship of the remainder of points at all. This outlier has high leverage and influence.

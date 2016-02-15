@@ -47,7 +47,7 @@ highly interpretable model fits. This is unlike machine learning
 algorithms, which often sacrifice interpretability for
 improved prediction performance or automation. These are, of course,
 valuable attributes in their own rights. However, the benefit of
-simplicity, parsimony and intrepretability offered by regression models
+simplicity, parsimony and interpretability offered by regression models
 (and their close generalizations) should make them a first tool of choice for any practical
 problem.
 

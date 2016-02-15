@@ -42,7 +42,7 @@ the least squares solution for minimizing
 {/$$}
 
 
-## The emprical standard deviation and variance
+## The empirical standard deviation and variance
 
 The variance and standard deviation are measures of how spread out are data is.
 Under sampling assumptions, they estimate variability in the population.
@@ -79,7 +79,7 @@ by getting rid of any shifting or scaling effects.
 
 
 ## The empirical covariance
-This class is largely considering how varaibles **covary**. This is estimated
+This class is largely considering how variables **covary**. This is estimated
 by the empirical covariance.
 Consider now when we have pairs of data, {$$}(X_i, Y_i){/$$}.
 Their empirical covariance is defined as:
@@ -102,7 +102,7 @@ Cor(X, Y) = \frac{Cov(X, Y)}{S_x S_y}
 
 where {$$}S_x{/$$} and {$$}S_y{/$$} are the estimates of standard deviations
 for the {$$}X{/$$} observations and {$$}Y{/$$} observations, respectively. The correlation is simply the covariance of
-the separately normalized X and Y data. Because the the
+the separately normalized X and Y data. Because the
 data have been normalized, the correlation is a unit free
 quantity and thus has more of a hope of being interpretable
 across settings.

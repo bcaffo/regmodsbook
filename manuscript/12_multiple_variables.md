@@ -39,7 +39,7 @@ In this lecture, we'll focus on variable inclusion and exclusion.
 
 ## The Rumsfeldian triplet
 
-Before we begin, I'd like to give a quote from Donal Rumsfeld, the controversial Secretary of Defense of the US during
+Before we begin, I'd like to give a quote from Donald Rumsfeld, the controversial Secretary of Defense of the US during
 the start of the Afghanistan the second Iraq wars. He gave this quote regarding weapons of mass destruction
 ([read more about it here](https://en.wikipedia.org/wiki/There_are_known_knowns)):
 

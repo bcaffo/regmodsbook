@@ -169,7 +169,7 @@ to estimate an extra parameter (the slope).
 
 Most of this is typically opaque to the user, since we just grab the correct
 residual variance output from `lm`. But, to solidify the concepts, let's
-go through the diamond example to make sure that we can hard code the estiamtes
+go through the diamond example to make sure that we can hard code the estimates
 on our own. (And from then on we'll just use `lm`.)
 
 ### Diamond example
