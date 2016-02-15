@@ -129,7 +129,7 @@ not installed. Let's look at the marginal (parents disregarding children and
 children disregarding parents) distributions first.
 The parental distribution is all heterosexual couples. The parental average was corrected
 for gender via multiplying female heights by 1.08. Remember, Galton didn't have
-regression to help figure out a betetr way to do this correction!
+regression to help figure out a better way to do this correction!
 
 
 {lang=r,title="Loading and plotting Galton's data.",line-numbers=off}
@@ -269,11 +269,14 @@ at each observed {$$}X_i{/$$} point (parental height) and the
 Our goal is exactly to use the origin as a pivot point and pick the
 line that minimizes the sum of the squared vertical distances
 of the points to the line. Use R studio's  manipulate function to experiment
-Subtract the means so that the origin is the mean of the parent
+subtract the means so that the origin is the mean of the parent
 and children heights.
 
 {title="Code for plotting the data.", lang=r, line-numbers=off}
 ~~~
+library(manipulate)
+library(UsingR)
+data(galton)
 y <- galton$child - mean(galton$child)
 x <- galton$parent - mean(galton$parent)
 freqData <- as.data.frame(table(x, y))
@@ -281,7 +284,7 @@ names(freqData) <- c("child", "parent", "freq")
 freqData$child <- as.numeric(as.character(freqData$child))
 freqData$parent <- as.numeric(as.character(freqData$parent))
 myPlot <- function(beta){
-    g <- ggplot(filter(freqData, freq > 0), aes(x = parent, y = child))
+    g <- ggplot(dplyr::filter(freqData, freq > 0), aes(x = parent, y = child))
     g <- g  + scale_size(range = c(2, 20), guide = "none" )
     g <- g + geom_point(colour="grey50", aes(size = freq+20, show_guide = FALSE))
     g <- g + geom_point(aes(colour=freq, size = freq))
