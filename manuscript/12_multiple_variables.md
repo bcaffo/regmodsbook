@@ -228,8 +228,8 @@ we can perfectly estimate the *relative* variance inflation caused by adding a r
 > data(swiss);
 > fit1 <- lm(Fertility ~ Agriculture, data = swiss)
 > a <- summary(fit1)$cov.unscaled[2,2]
->fit2 <- update(fit, Fertility ~ Agriculture + Examination)
-> fit3 <- update(fit, Fertility ~ Agriculture + Examination + Education)
+>fit2 <- update(fit1, Fertility ~ Agriculture + Examination)
+> fit3 <- update(fit1, Fertility ~ Agriculture + Examination + Education)
 > c(summary(fit2)$cov.unscaled[2,2],
     summary(fit3)$cov.unscaled[2,2]) / a
 [1] 1.892 2.089
@@ -312,8 +312,8 @@ it's fairly uncontroversial to use nested likelihood ratio tests for model selec
 {lang=r,line-numbers=off}
 ~~~
 > fit1 <- lm(Fertility ~ Agriculture, data = swiss)
-> fit3 <- update(fit, Fertility ~ Agriculture + Examination + Education)
-> fit5 <- update(fit, Fertility ~ Agriculture + Examination + Education + Catholic + Infant.Mortality)
+> fit3 <- update(fit1, Fertility ~ Agriculture + Examination + Education)
+> fit5 <- update(fit1, Fertility ~ Agriculture + Examination + Education + Catholic + Infant.Mortality)
 > anova(fit1, fit3, fit5)
 
 Analysis of Variance Table
