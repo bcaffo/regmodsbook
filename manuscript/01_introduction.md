@@ -72,7 +72,7 @@ Galton's prediction models versus those using modern high throughput genomic
 technology (spoiler alert, Galton wins).
 
 Some questions from Galton's data come to mind. How would one fit a model that relates
-parent and child heights? How would one predict a childs height based on their
+parent and child heights? How would one predict a child's height based on their
 parents? How would we quantify regression to the mean? In this class, we'll
 answer all of these questions plus many more.
 
@@ -102,10 +102,10 @@ Regression models are incredibly handy statistical tools. One can use
 them to answer all sorts of questions.
 Consider three of the most common tasks for regression models:
 
-1. **Prediction** Eg: to use the parent's heights to predict children's heights.
-2. **Modeling** Eg: to try to find a parsimonious, easily described mean
+1. **Prediction** e.g.: to use the parent's heights to predict children's heights.
+2. **Modeling** e.g.: to try to find a parsimonious, easily described mean
     relationship between parental and child heights.
-3. **Covariation** Eg: to investigate the variation in child heights that appears
+3. **Covariation** e.g.: to investigate the variation in child heights that appears
   unrelated to parental heights (residual variation) and to quantify what impact genotype information has beyond parental height in explaining child height.
 
 An important aspect, especially in questions 2 and 3 is assessing
@@ -129,7 +129,7 @@ not installed. Let's look at the marginal (parents disregarding children and
 children disregarding parents) distributions first.
 The parental distribution is all heterosexual couples. The parental average was corrected
 for gender via multiplying female heights by 1.08. Remember, Galton didn't have
-regression to help figure out a betetr way to do this correction!
+regression to help figure out a better way to do this correction!
 
 
 {lang=r,title="Loading and plotting Galton's data.",line-numbers=off}
@@ -170,7 +170,7 @@ with that for this class.
 
 ### Experiment
 Let's
-use rStudio's manipulate to see what value of
+use RStudio's manipulate to see what value of
 {$$}\mu{/$$} minimizes the sum of the squared deviations. The code below
 allows you to create a slider to investigate estimates and their
 mean squared error.
@@ -248,7 +248,7 @@ to make the size and color of the points be the frequency.
 A line requires two parameters to be specified, the intercept and the slope.
 Let's first focus on the slope. We want to find the slope of the line that
 best fits the data. However, we have to pick a good intercept. Let's subtract
-the mean from bot the parent and child heights so that their subsequent
+the mean from both the parent and child heights so that their subsequent
 means are 0.
 Now let's find the line that goes through the origin (has intercept 0) by
 picking the best slope.
@@ -268,7 +268,7 @@ at each observed {$$}X_i{/$$} point (parental height) and the
 
 Our goal is exactly to use the origin as a pivot point and pick the
 line that minimizes the sum of the squared vertical distances
-of the points to the line. Use R studio's  manipulate function to experiment
+of the points to the line. Use RStudio's manipulate function to experiment. 
 Subtract the means so that the origin is the mean of the parent
 and children heights.
 
@@ -314,7 +314,7 @@ I(parent - mean(parent))
 Let's plot the best fitting line. In the subsequent chapter we will learn all
 about creating, interpreting and performing inference on such mode fits. (Note
 that I shifted the origin back to the means of the original data.) The
-results suggest that to every every 1 inch increase in the parents height,
+results suggest that for every 1 inch increase in the parents height,
 we estimate a 0.646 inch increase in the child's height.
 
 ![Data with the best fitting line.](images/galton3.png)
