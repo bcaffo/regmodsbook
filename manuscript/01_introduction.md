@@ -248,7 +248,7 @@ to make the size and color of the points be the frequency.
 A line requires two parameters to be specified, the intercept and the slope.
 Let's first focus on the slope. We want to find the slope of the line that
 best fits the data. However, we have to pick a good intercept. Let's subtract
-the mean from bot the parent and child heights so that their subsequent
+the mean from both the parent and child heights so that their subsequent
 means are 0.
 Now let's find the line that goes through the origin (has intercept 0) by
 picking the best slope.
@@ -281,7 +281,7 @@ names(freqData) <- c("child", "parent", "freq")
 freqData$child <- as.numeric(as.character(freqData$child))
 freqData$parent <- as.numeric(as.character(freqData$parent))
 myPlot <- function(beta){
-    g <- ggplot(filter(freqData, freq > 0), aes(x = parent, y = child))
+    g <- ggplot(filter(freqData, freqData$freq > 0), aes(x = parent, y = child))
     g <- g  + scale_size(range = c(2, 20), guide = "none" )
     g <- g + geom_point(colour="grey50", aes(size = freq+20, show_guide = FALSE))
     g <- g + geom_point(aes(colour=freq, size = freq))
