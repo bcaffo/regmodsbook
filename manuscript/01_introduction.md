@@ -274,6 +274,7 @@ and children heights.
 
 {title="Code for plotting the data.", lang=r, line-numbers=off}
 ~~~
+library(dplyr)
 y <- galton$child - mean(galton$child)
 x <- galton$parent - mean(galton$parent)
 freqData <- as.data.frame(table(x, y))
@@ -281,7 +282,7 @@ names(freqData) <- c("child", "parent", "freq")
 freqData$child <- as.numeric(as.character(freqData$child))
 freqData$parent <- as.numeric(as.character(freqData$parent))
 myPlot <- function(beta){
-    g <- ggplot(filter(freqData, freqData$freq > 0), aes(x = parent, y = child))
+    g <- ggplot(filter(freqData, freq > 0), aes(x = parent, y = child))
     g <- g  + scale_size(range = c(2, 20), guide = "none" )
     g <- g + geom_point(colour="grey50", aes(size = freq+20, show_guide = FALSE))
     g <- g + geom_point(aes(colour=freq, size = freq))
