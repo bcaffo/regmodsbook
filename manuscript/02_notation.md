@@ -50,7 +50,6 @@ We define the empirical variance asL
 
 {$$}
 S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar X)^2
-= \frac{1}{n-1} \left( \sum_{i=1}^n X_i^2 - n \bar X ^ 2 \right)
 {/$$}
 
 The empirical standard deviation is defined as
