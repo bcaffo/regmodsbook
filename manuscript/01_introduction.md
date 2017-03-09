@@ -129,7 +129,7 @@ not installed. Let's look at the marginal (parents disregarding children and
 children disregarding parents) distributions first.
 The parental distribution is all heterosexual couples. The parental average was corrected
 for gender via multiplying female heights by 1.08. Remember, Galton didn't have
-regression to help figure out a betetr way to do this correction!
+regression to help figure out a better way to do this correction!
 
 
 {lang=r,title="Loading and plotting Galton's data.",line-numbers=off}
