@@ -62,7 +62,7 @@ and
 
 {$$}\sigma_{\hat \beta_0}^2 = Var(\hat \beta_0)  = \left(\frac{1}{n} + \frac{\bar X^2}{\sum_{i=1}^n (X_i - \bar X)^2 }\right)\sigma^2{/$$}
 
-In practice, {$$}\sigma{/$$} is replaced by its residual variance estimate covered
+In practice, {$$}\sigma^2{/$$} is replaced by its residual variance estimate covered
 in the last chapter.  
 
 Given how often this came up in inference,
