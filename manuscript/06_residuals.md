@@ -272,7 +272,7 @@ The code is quite simple: `data(anscombe);example(anscombe)`.
 ## Exercises
 1. Fit a linear regression model to the `father.son` dataset with
 the father as the predictor and the son as the outcome. Plot the
-son's height (horizontal axis) versus the residuals (vertical axis).
+father's height (horizontal axis) versus the residuals (vertical axis).
 [Watch a video solution.](https://www.youtube.com/watch?v=WnFuqlS3vvc&index=26&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
 2. Refer to question 1. Directly estimate the residual variance and
 compare this estimate to the output of `lm`. [Watch a video solution.](https://www.youtube.com/watch?v=M5scUi6JTCI&index=27&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
