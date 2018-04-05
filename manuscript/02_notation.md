@@ -79,7 +79,7 @@ by getting rid of any shifting or scaling effects.
 
 
 ## The empirical covariance
-This class is largely considering how varaibles **covary**. This is estimated
+This class is largely considering how variables **covary**. This is estimated
 by the empirical covariance.
 Consider now when we have pairs of data, {$$}(X_i, Y_i){/$$}.
 Their empirical covariance is defined as:
