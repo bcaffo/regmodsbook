@@ -2,47 +2,56 @@
 
 [Watch this video before beginning.](https://youtu.be/xEwM1nzQckY)
 
-Generalized linear models (GLMs) were a great advance in statistical modeling. The
-original manuscript with the GLM framework was from [Nelder and Wedderburn in 1972](http://www.jstor.org/stable/2344614).
-in the Journal of the Royal Statistical Society. The McCullagh and Nelder book[^f1] is the famous
-standard treatise on the subject.
+Generalized linear models (GLMs) were a great advance in statistical
+modeling. The original manuscript with the GLM framework was from
+[Nelder and Wedderburn in 1972](http://www.jstor.org/stable/2344614).
+in the Journal of the Royal Statistical Society. The McCullagh and
+Nelder book[^f1] is the famous standard treatise on the subject.
 
 [^f1]: McCullagh, Peter, and John A. Nelder. Generalized linear models. Vol. 37. CRC press, 1989.
 
-Recall linear models.  Linear models are the most useful applied statistical technique. However, they are not without their limitations.
-Additive response models don't make much sense if the response is discrete, or strictly positive.
-Additive error models often don't make sense, for example, if the outcome has to be positive.
-Transformations, such as taking a cube root of a count outcome, are often hard to interpret.  
-In addition, there's value in modeling the data on the scale that it was collected.
-Particularly interpretable transformations, natural logarithms in specific,
-aren't applicable for negative or zero values.
+Recall linear models.  Linear models are the most useful applied
+statistical technique. However, they are not without their
+limitations.  Additive response models don't make much sense if the
+response is discrete, or strictly positive.  Additive error models
+often don't make sense, for example, if the outcome has to be
+positive.  Transformations, such as taking a cube root of a count
+outcome, are often hard to interpret.
 
-The generalized linear model is family of models that includes linear models. By extending the family,
-it handles many of the issues with linear models, but at the expense of some complexity and loss of some
-of the mathematical tidiness. A GLM involves three components
+In addition, there's value in modeling the data on the scale that it
+was collected.  Particularly interpretable transformations, natural
+logarithms in specific, aren't applicable for negative or zero values.
+
+The generalized linear model is family of models that includes linear
+models. By extending the family, it handles many of the issues with
+linear models, but at the expense of some complexity and loss of some
+of the mathematical tidiness. A GLM involves three components:
 
   * An *exponential family* model for the response.
   * A systematic component via a linear predictor.
   * A link function that connects the means of the response to the linear predictor.
 
 
-The three most famous cases of GLMs are: linear models, binomial and binary regression and Poisson regression.
-We'll go through the GLM model specification and likelihood for all three. For linear models, we've developed them
-throughout the book. The next two chapters will be devoted to binomial and Poisson regression. We'll only focus on
-the most popular and useful link functions.
+The three most famous cases of GLMs are: linear models, binomial and
+binary regression and Poisson regression.  We'll go through the GLM
+model specification and likelihood for all three. For linear models,
+we've developed them throughout the book. The next two chapters will
+be devoted to binomial and Poisson regression. We'll only focus on the
+most popular and useful link functions.
 
 ## Example, linear models
-Let's go through an example. Assume that our response is {$$}Y_i \sim N(\mu_i, \sigma^2){/$$}. The Gaussian distribution is an exponential family distribution.
-Define the **linear predictor** to be
+Let's go through an example. Assume that our response is {$$}Y_i \sim
+N(\mu_i, \sigma^2){/$$}. The Gaussian distribution is an exponential
+family distribution.  Define the **linear predictor** to be
 
-{$$}\eta_i = \sum_{k=1}^p X_{ik} \beta_k{/$$}.
+{$$}\eta_i = \sum_{k=1}^p X_{ki} \beta_k{/$$}.
 
 The **link function** as {$$}g{/$$} so that {$$}g(\mu) = \eta{/$$}.
-For linear models {$$}g(\mu) = \mu{/$$} so that {$$}\mu_i = \eta_i{/$$}
-  This yields the same likelihood model as our additive error Gaussian linear model
+For linear models {$$}g(\mu) = \mu{/$$} so that {$$}\mu_i = \eta_i{/$$}.
+This yields the same likelihood model as our additive error Gaussian linear model
 
 {$$}
-Y_i = \sum_{k=1}^p X_{ik} \beta_k + \epsilon_{i}
+Y_i = \sum_{k=1}^p X_{ki} \beta_k + \epsilon_{i}
 {/$$}
 
 where {$$}\epsilon_i \stackrel{iid}{\sim} N(0, \sigma^2){/$$}. So, we've specified our
@@ -55,7 +64,7 @@ Let's try an example where the GLM is more necessary.
 Assume that our outcome is a 0, 1 variable. Let's model {$$}Y_i \sim Bernoulli(\mu_i){/$$}
 so that {$$}E[Y_i] = \mu_i{/$$} where {$$}0\leq \mu_i \leq 1{/$$}.
 
-* Linear predictor: {$$}\eta_i = \sum_{k=1}^p X_{ik} \beta_k{/$$}
+* Linear predictor: {$$}\eta_i = \sum_{k=1}^p X_{ki} \beta_k{/$$}
 * Link function {$$}g(\mu) = \eta = \log\left( \frac{\mu}{1 - \mu}\right){/$$}
 
 In this case, {$$}g{/$$} is the (natural) log odds, referred to as the **logit**.
@@ -87,7 +96,7 @@ Let's consider a problem with count data.
 Assume that :
 
 * {$$}Y_i \sim Poisson(\mu_i){/$$} so that {$$}E[Y_i] = \mu_i{/$$} where {$$}0\leq \mu_i{/$$}.
-* Linear predictor {$$}\eta_i = \sum_{k=1}^p X_{ik} \beta_k{/$$}.
+* Linear predictor {$$}\eta_i = \sum_{k=1}^p X_{ki} \beta_k{/$$}.
 * Link function {$$}g(\mu) = \eta = \log(\mu){/$$}
 
 Recall that {$$}e^x{/$$} is the inverse of {$$}\log(x){/$$} so that we have:
@@ -138,7 +147,7 @@ Poisson and binomial models.
 ## Odds and ends
 At this point, let's do some bookkeeping before we work through examples.
 
-* The normal equations have to be solved iteratively. Resulting in
+* The normal equations have to be solved iteratively, resulting in
 {$$}\hat \beta_k{/$$} and, if included, {$$}\hat \phi{/$$}.
 * Predicted linear predictor responses can be obtained as {$$}\hat \eta = \sum_{k=1}^p X_k \hat \beta_k{/$$}
 * Predicted mean responses as {$$}\hat \mu = g^{-1}(\hat \eta){/$$}
