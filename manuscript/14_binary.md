@@ -25,9 +25,7 @@ goal is to score more points than your opponent.) It should be clear
 that there would be a positive relationship between the number of
 points scored and the probability of winning that particular game.
 
-[^f2]: Baltimore is the home of Johns Hopkins University where your author works. I got this data set
-from Jeff Leek, the instructor of three of the Data Science Specialization
-courses.
+[^f2]: I got this data set from Jeff Leek.
 
 Let's load the data and use `head` to look at the first few rows.
 
@@ -51,8 +49,7 @@ A linear regression model would look something like this:
 
 {$$} Y_i = \beta_0 + \beta_1 X_i + e_i {/$$}
 
-Where,
-{$$}Y_i{/$$} is a binary indicator of whether or
+Where {$$}Y_i{/$$} is a binary indicator of whether or
 not the Ravens won game {$$}i{/$$}(1 for a win, 0 for a loss).
 {$$}X_i{/$$} is the number of points that they scored for that game.
 and {$$}\epsilon_i{/$$} is the residual error term.
@@ -61,7 +58,7 @@ Under this model then {$$}\beta_0{/$$} is the expected value of
 {$$}Y_i{/$$} given a 0 point game. For a 0/1 variable, the expected
 value is the probability, so the intercept is the probability that
 the Ravens win with 0 points scored. Then {$$}\beta_1{/$$} is the
-increase in probability of a win for each addiational point.
+increase in probability of a win for each additional point.
 
 At this point in the book, I hope that fitting and interpreting
 this model would be second nature.
@@ -75,11 +72,11 @@ this model would be second nature.
 ravensData$ravenScore   0.0159   0.009059   1.755  0.09625
 ~~~
 
-There's numerous problems with this model. First, if the Ravens
+There are numerous problems with this model. First, if the Ravens
 score more than 63 points in a game, we estimate a 0.0159 *
 63, which is greater than 1, increase in the probability of them winning. This is
 an impossibility, since a probability can't be greater than 1.
-63 is an unusual, but not impossible, score in American football, but
+Sixty three is an unusual, but not impossible, score in American football, but
 the principle applies broadly: modeling binary data with linear models
 results in models that fail the basic assumption of the data.
 
@@ -114,7 +111,7 @@ If {$$}p{/$$} is a probability, the odds are defined as
 they're saying that the odds are 1 and thus {$$}p = 1 / (1 + 1) = 0.5{/$$}.
 Conversely, if someone says that the probability that something occurs
 is 50%, then they mean that {$$}p=0.5{/$$} so that the odds are
-{$$}o = p / (1 - p) = 0.5 / (1 - 0.5) = {/$$}.
+{$$}o = p / (1 - p) = 0.5 / (1 - 0.5) = 1{/$$}.
 
 The odds are famously derived using a standard fair game setting.
 Imagine that you are playing a game where you flip a coin with success probability
@@ -231,13 +228,13 @@ Let's write this as:
 {/$$}
 
 where {$$}O(Y_i = 1 ~|~ X_i = x_i){/$$} refers to the odds.
-Interpreting {$$}\beta_0{\$$} is straightforward, it's the
+Interpreting {$$}\beta_0{/$$} is straightforward, it's the
 log of the odds of the Ravens winning for a 0 point game. Just
 like in regular regression, for this to have meaning, a 0
 X value has to have meaning. In this case, there's a structural
 consideration that's being ignored in that the Ravens *can't*
-win if they score 0 points (they can only tie or, much more likely,
-  lose). This is an unfortunate assumption of our model.
+win if they score 0 points (they can only tie or lose). 
+This is an unfortunate assumption of our model.
 
 For interpreting the {$$}\beta_1{/$$} coefficient, consider
 the following:
@@ -277,7 +274,7 @@ in the regressor.
 
 Let's visualize what the logistic regression model is  
 fitting.  Consider setting {$$}\beta_0{/$$} to 0 and
-varying {$$}\beta_1{/$$}. For X being a regressor
+varying {$$}\beta_1{/$$} for X being a regressor
 equally spaced between -10 and 10. Notice that
 the logistic curves vary in their curvature.
 
