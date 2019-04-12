@@ -5,7 +5,7 @@ This chapter is a bit of an mishmash of interesting things that one can accompli
 linear models.
 
 ## How to fit functions using linear models
-Up to this point, we've only consider fitting lines, planes and polynomials for
+Up to this point, we've only considered fitting lines, planes and polynomials for
 linear models.  Consider a model {$$}Y_i = f(X_i) + \epsilon{/$$}.
 How can we fit such a model using linear models (often called scatterplot smoothing)?
 
