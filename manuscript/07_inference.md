@@ -14,7 +14,7 @@ where {$$}\epsilon \sim N(0, \sigma^2){/$$}. Let's consider some
 ways for doing inference for our regression parameters.
 For this development, we assume that the true model is known.
 We also assume that you've seen confidence intervals and hypothesis tests
-before. If not, consider taking the Statistical Inference course and book
+before. If not, consider taking the Statistical Inference course and reading the accompanying book
 before approaching this material.
 
 Remember our estimates:
@@ -49,7 +49,7 @@ In the case of regression with iid Gaussian sampling assumptions on the errors,
 our inferences will follow very similarly to what you saw in your inference class.
 
 We won't cover asymptotics for regression analysis, but suffice it to say that under assumptions
-on the ways in which the {$$}X{/$$} values are collected, the iid sampling model, and mean model,
+on the ways in which the {$$}X{/$$} values are collected, the iid sampling model and mean model,
 the normal results hold to create intervals and confidence intervals
 
 ## Results for the regression parameters
@@ -126,7 +126,7 @@ formatting to get it to look like the output from `lm`.
 x             3721.0      81.79   45.50 6.751e-40
 ~~~
 
-So the first column are the actual estimates. The second is the standard
+The first column is the actual estimates. The second is the standard
 errors, the third is the t value (the first divided by the second) and the
 final is the t probability of getting an unsigned statistic that large under
 the null hypothesis (the P-value for the two sided test).
@@ -264,7 +264,7 @@ g
 5. Refer to question 1. Form a prediction interval for the son's height at the average father's height. [Watch a video solution.](https://www.youtube.com/watch?v=-rx-71QsUnY&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=36)
 6. Load the mtcars dataset. Fit a linear regression with miles per gallon as the outcome and horsepower as the predictor. Test whether or not the horsepower power coefficient is statistically different from zero. Interpret your test.
 7. Refer to question 6. Form a confidence interval for the slope coefficient.
-8. Refer to quesiton 6. Form a confidence interval for the intercept (center the HP variable first).
+8. Refer to question 6. Form a confidence interval for the intercept (center the HP variable first).
 9. Refer to question 6. Form a mean value interval for the expected MPG for the average HP.
 10. Refer to question 6. Form a prediction interval for the expected MPG for the average HP.
 11. Refer to question 6. Create a plot that has the fitted regression line plus curves at the expected value and prediction intervals.
