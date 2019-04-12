@@ -208,7 +208,7 @@ For the prediction interval at {$$}x_0{/$$} the standard error is
 
 {$$}\hat \sigma\sqrt{1 + \frac{1}{n} + \frac{(x_0 - \bar X)^2}{\sum_{i=1}^n (X_i - \bar X)^2}}{/$$}
 
-Notice that the prediction interval standard error is a little large than error for a line.
+Notice that the prediction interval standard error is a little larger than the  error for a line.
 Think of it this way. If we want to predict a Y value at a particular X value,
 and we knew the actual true slope and intercept, there would still be error. However,
 if we only wanted to predict the value at the line at that X value, there would be
