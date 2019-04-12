@@ -1,7 +1,7 @@
 # Multiple variables and model selection
 [Watch this video before beginning.](https://youtu.be/zfhNo8uNBho?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
 
-This chapter represents a challenging question: "How do we chose what
+This chapter represents a challenging question: "How do we choose what
 to variables to include in a regression model?". Sadly, no single easy
 answer exists and the most reasonable answer would be "It depends.".
 These concepts bleed into ideas of machine learning, which is largely
@@ -150,7 +150,7 @@ is increased. This reminds us of a couple of things. First, irrelevant variables
 explain residual variation by chance. And, when evaluating fit, we have to take
 into account the number of regressors included. The adjusted {$$}R^2{/$$} is better
 for these purposes than {$$}R^2{/$$} since it accounts for the number of variables
-included in the model. In R, you can get the adjusted {$$}R^2{/$$} very easily with
+included in the model. In R, you can get the adjusted {$$}R^2{/$$} very easily
 by grabbing `summary(fitted_model)$adj.r.squared` instead of `summary(fitted_model)$r.squared`.
 
 

@@ -172,7 +172,7 @@ minus infinity to plus infinity. The log of the odds is called the
 logit:
 
 {$$}
-g = \mathrm{logit}(p) = \log(p / 1 - p)
+g = \mathrm{logit}(p) = \log(p / (1 - p))
 {/$$}
 
 We can go backwards from the logit to the probability with the so-called

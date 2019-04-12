@@ -74,8 +74,8 @@ variable. The result is that the estimate for {$$}\beta_1{/$$} is:
 {$$}\hat \beta_1 = \frac{\sum_{i=1}^n e_{i, Y | X_2} e_{i, X_1 | X_2}}{\sum_{i=1}^n e_{i, X_1 | X_2}^2},{/$$}
 
 
-where, {$$}e_{i, Y|X_2}{/$$} is the residual having fit {$$}X_2{/$$} on {$$}Y{/$$}
-and {$$}e_{i, X_1|X_2}{/$$} is the residual having fit {$$}X_2{/$$} on {$$}Y{/$$}.
+where, {$$}e_{i, Y|X_2}{/$$} is the residual having fit {$$}Y{/$$} on {$$}X_2{/$$}
+and {$$}e_{i, X_1|X_2}{/$$} is the residual having fit {$$}X_1{/$$} on {$$}X_2{/$$}.
 That is, the regression estimate for {$$}\beta_1{/$$} is the regression
 through the origin estimate having regressed {$$}X_2{/$$} out of both
 the response and the predictor. Similarly, the regression estimate for

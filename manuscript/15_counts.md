@@ -15,8 +15,7 @@ or is very large relative to the number of events.
 
 If the upper bound is known, the techniques we're
 discussing can be used to model the proportion or
-rate. The
-starting point for most count analysis is the
+rate. The starting point for most count analysis is the
 the Poisson distribution.
 
 

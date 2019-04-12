@@ -22,7 +22,7 @@ In addition, there's value in modeling the data on the scale that it
 was collected.  Particularly interpretable transformations, natural
 logarithms in specific, aren't applicable for negative or zero values.
 
-The generalized linear model is family of models that includes linear
+The generalized linear model is a family of models that includes linear
 models. By extending the family, it handles many of the issues with
 linear models, but at the expense of some complexity and loss of some
 of the mathematical tidiness. A GLM involves three components:
@@ -78,7 +78,7 @@ Note then we can invert the logit function as:
 Some people like to call this the expit function. The logit is useful as it
 converts probabilities which lie in [0,1] into the whole real line, a more
 natural space for the linear part of the model to live.  Notice further,
-we're not transforming the outcome (Y). Instead, we'll modeling our Y
+we're not transforming the outcome (Y). Instead, we're modeling our Y
 as if it were a collection of coin flips and applying the transformation
 to the probability of a head.
 

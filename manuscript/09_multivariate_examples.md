@@ -52,7 +52,7 @@ Infant.Mortality   1.0770    0.38172   2.822 7.336e-03
 Agriculture is expressed in percentages (0 - 100), representing the percentage
 of the male population involved in agriculture.  
 The regression slope estimate for this variable is `-0.1721`. We interpret
-this coefficients as follows:
+this coefficient as follows:
 
 Our model estimates an expected 0.17 decrease in standardized
  fertility for every 1% increase in percentage of males involved in
@@ -60,7 +60,7 @@ Our model estimates an expected 0.17 decrease in standardized
 
 Note that the the t-test for {$$}H_0: \beta_{Agri} = 0{/$$} versus
 {$$}H_a: \beta_{Agri} \neq 0{/$$} is  significant since `0.0187` is less
-that typical benchmarks (0.05, for exaple). Note that, by default, R is
+that typical benchmarks (0.05, for example). Note that, by default, R is
 reporting the P-value for the two sided test. If you want the one sided test,
 calculate it directly using the T-statistic and the degrees of freedom.
 (You can figure it out from the two sided P-value, but it's easy to get tripped
@@ -342,7 +342,7 @@ So, for example, 14.5 is the mean for Spray A (as we already knew),
 This is a nice trick if you want your model formulated in the terms of the group means,
 rather than the group comparisons relative to the reference group.
 
-Also, if there are no other covariates, the estimated coefficients for this mode are
+Also, if there are no other covariates, the estimated coefficients for this model are
 exactly the empirical means of the groups. We can use dplyr to check this really
 easily and grab the mean for each group.
 

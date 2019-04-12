@@ -121,7 +121,7 @@ is entirely based on the model, specifically the assumption
 of linearity. Try to draw curves on this plot assuming
 non-linear relationships outside of their cloud of points
 for the blue and red groups. You quickly will conclude
-that many relationship are possible that would differ
+that many relationships are possible that would differ
 from this model's conclusions. Worse still, you have no data to
 check the assumptions. Of course, R will churn forward without
 any complaints fitting this model and reporting no significant

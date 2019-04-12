@@ -41,7 +41,7 @@ Consider the upper left hand plot of the residuals ({$$}e_i{/$$}) versus
 the fitted values ({$$}\hat Y_i{/$$}). Often, a horizontal reference line at 0 is drawn
 since (whenever an intercept is included) the residuals must sum to 0 and
 so will lie above and below the zero. Just like in our previous residual
-plots, one is look for any systematic patters or large outlying observations.
+plots, one should look for any systematic patterns or large outlying observations.
 
 Note that this is one of many residual plots that one may be interested in
 performing. For example, one might want to look at plots of residuals by
@@ -297,7 +297,7 @@ fit <- lm(V1 ~ . - 1, data = dat); plot(predict(fit), resid(fit), pch = '.')
 ![Residuals versus fitted values from the Stefanski data.](images/mresid6.png)
 
 There appears to be a pattern. The moral of the story here is that residual plots
-can really hone in on systematic patters in the data that are completely non-apparent
+can really hone in on systematic patterns in the data that are completely non-apparent
 from other plots.
 
 ## Back to the Swiss data
