@@ -146,7 +146,7 @@ pressure medication on the outcome.
 On the other hand consider another setting I ran into. A colleague
 was studying chemical brain measurements
 of patients a severe mental disorder versus controls post mortem.
-However, the time the time since death was highly related
+However, the time since death was highly related
 to the time the brain was stored since death, perhaps due to the differential patient sources of the two groups. The time since death was
 strongly related to the outcome we were studying.
 In this case, it is very hard to study the groups as they were so contaminated by this nuisance covariate.
@@ -241,7 +241,7 @@ Nothing we've discussed is intrinsic to having a discrete
 group and continuous X. One, the other, both or neither
 could be discrete. What this reinforces is that
 modeling multivariable relationships is hard.
-You should continue to play around with simulations to see how theinclusion or exclusion of another variable can
+You should continue to play around with simulations to see how the inclusion or exclusion of another variable can
 change apparent relationships.
 
 We should also caution that our discussion only dealt with
@@ -253,4 +253,4 @@ relationships requires quite a bit more thinking.
 `as.data.frame` to convert the object to a dataframe. Fit a linear model of driver deaths
 with `kms` and `PetrolPrice` as predictors. Interpret your results.
 2. Compare the `kms` coefficient with and without the inclusion of the `PetrolPrice` variable in the model. [Watch a video solution.](https://www.youtube.com/watch?v=LTTsm8FfgeI&index=43&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0)
-3. Compare the `PetrolPrice` coefficient with and without the inclusion fo the `kms` variable in the model.
+3. Compare the `PetrolPrice` coefficient with and without the inclusion of the `kms` variable in the model.

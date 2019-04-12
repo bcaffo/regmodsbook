@@ -10,13 +10,13 @@ regression line are called residuals. We can generalize this idea to the vertica
 the observed data and the fitted surface in multivariable settings.
 
 To be specific, recall our linear models, which was
-specified as {$$}Y_i =  \sum_{k=1}^p X_{ik} \beta_j + \epsilon_{i}{/$$}. Throughout this lecture,
+specified as {$$}Y_i =  \sum_{k=1}^p X_{ki} \beta_j + \epsilon_{i}{/$$}. Throughout this lecture,
 we'll also assume that {$$}\epsilon_i \stackrel{iid}{\sim} N(0, \sigma^2){/$$}, even though this assumption isn't
 necessary for the definition of the residuals.
 
 We define the residuals as:
 
-{$$}e_i = Y_i -  \hat Y_i =  Y_i - \sum_{k=1}^p X_{ik} \hat \beta_j. {/$$}
+{$$}e_i = Y_i -  \hat Y_i =  Y_i - \sum_{k=1}^p X_{ki} \hat \beta_j. {/$$}
 
 This definition is identical ({$$}Y_i - \hat Y_i{/$$}) to our definition in the linear regression case.
 The residuals are the vertical distances between the observed data points and the fitted regression surface.
@@ -38,7 +38,7 @@ fit <- lm(Fertility ~ . , data = swiss); plot(fit)
 ![The result of the method `plot` on the `swiss` dataset.](images/mresid1.png)
 
 Consider the upper left hand plot of the residuals ({$$}e_i{/$$}) versus
-the fitted values ({$$}\hat Y_i{/$$}). Often, a horiztonal reference line at 0 is drawn
+the fitted values ({$$}\hat Y_i{/$$}). Often, a horizontal reference line at 0 is drawn
 since (whenever an intercept is included) the residuals must sum to 0 and
 so will lie above and below the zero. Just like in our previous residual
 plots, one is look for any systematic patters or large outlying observations.
@@ -76,7 +76,7 @@ to counteract its effect. This point is said to have
 low leverage and influence. The upper right hand
 point is outside of the range of X values and Y values, but conforms
 nicely to the regression relationship. This point has  It will also have little effect
-on the fitted model. It has high leverage, but chooses not to extert it,
+on the fitted model. It has high leverage, but chooses not to exert it,
 and thus has low influence. The lower left hand point is outside of the range
 of X values, but not the Y values. However, it does not conform to the
 relationship of the remainder of points at all. This outlier has high leverage and influence.
@@ -136,7 +136,7 @@ a perfect fit would not be expected even if the model held.
 hat values are necessarily between 0 and 1 with larger values indicating
 greater (potential for) leverage.
 
-After leverage, there are quite a few ways to probe for **influence. These
+After leverage, there are quite a few ways to probe for **influence**. These
 are:
 
   * `dffits` - change in the predicted response when the $i^{th}$ point is deleted in fitting the model.
@@ -169,7 +169,7 @@ physician diagnosing a health issue. These tools probe your data in different wa
 
 Let's do some experiments to see how these measure hold up.
 
-![IMage for first simulation.](images/mresid3.png)
+![Image for first simulation.](images/mresid3.png)
 
 ## Simulation examples
 
@@ -248,7 +248,7 @@ first 10 observations.
 
 As we would expect, the `dfbeta` value for the first point is well with
 the range of the other points. The leverage is much larger than the others.
-In this case, the point has high leverage, but choses not to exert it as influence.
+In this case, the point has high leverage, but chooses not to exert it as influence.
 
 Play around with more simulation examples to get a feeling for what these
 measures do. This will help more than anything in understanding their
@@ -309,3 +309,6 @@ from other plots.
 with `kms`, `PetrolPrice` and `law` as predictors.
 2. Refer to question 1. Directly estimate the residual variation via the function `resid`. Compare with R's residual variance estimate. [Watch a video solution.](https://www.youtube.com/watch?v=T8nPIeH1rwU&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=44)
 3. Refer to question 1. Perform an analysis of diagnostic measures including, dffits, dfbetas, influence and hat diagonals. [Watch a video solution.](https://www.youtube.com/watch?v=XEqlmqFTVOI&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=45)
+
+ LocalWords:  shouldn prepend lang rnorm cex pch bg Stefanski TAS scatterplot
+ LocalWords:  dat lm V1 coef V2 989e V3 500e V4 301e V5 778e resid swiss
