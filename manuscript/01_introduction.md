@@ -83,7 +83,7 @@ Roger Peng and Rafael Irizarry. It is one of the most widely read statistics
 blogs, written by three of the top statisticians in academics. Rafa wrote
 a (somewhat tongue in cheek) [post regarding ball hogging](http://simplystatistics.org/2013/01/28/data-supports-claim-that-if-kobe-stops-ball-hogging-the-lakers-will-win-more/) among NBA basketball
 players. (By the way, your author has played basketball with Rafael, who
-  is quite good by the way, but certainly doesn't pass up shots; glass
+  is quite good, but certainly doesn't pass up shots; glass
   houses and whatnot.)
 
 Here's some key sentences:
@@ -268,7 +268,7 @@ at each observed {$$}X_i{/$$} point (parental height) and the
 
 Our goal is exactly to use the origin as a pivot point and pick the
 line that minimizes the sum of the squared vertical distances
-of the points to the line. Use R studio's  manipulate function to experiment
+of the points to the line. Use R studio's  manipulate function to experiment. 
 Subtract the means so that the origin is the mean of the parent
 and children heights.
 
@@ -325,6 +325,6 @@ of `mu` minimizes `sum((x - mu)^2)`? [Watch a video solution.](https://www.youtu
 2. Reconsider the previous question. Suppose that weights were given,
 `w = c(2, 2, 1, 1)` so that we wanted to minimize `sum(w * (x - mu) ^ 2)` for `mu`.
 What value would we obtain? [Watch a video solution.](https://www.youtube.com/watch?v=DS-Wl2dRxCA&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=2)
-3. Take the Galton and obtain the regression through the origin slope estimate
+3. Take the Galton dataset and obtain the regression through the origin slope estimate
 where the centered parental height is the outcome and the child's height is
 the predictor. [Watch a video solution.](https://www.youtube.com/watch?v=IGVRkmrOrww&list=PLpl-gQkQivXji7JK1OP1qS7zalwUBPrX0&index=3)
