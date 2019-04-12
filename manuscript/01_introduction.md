@@ -23,7 +23,7 @@ The entirety of the book is on GitHub [here](https://github.com/bcaffo/regmodsbo
 Please submit pull requests if you find errata! In addition the course notes can be found
 also on GitHub [here](https://github.com/bcaffo/courses/tree/master/07_RegressionModels).
 While most code is in the book, *all* of the code for every figure and analysis in the
-book is in the R markdown files files (.Rmd) for the respective lectures.
+book is in the R markdown files (`.Rmd`) for the respective lectures.
 
 Finally, we should mention `swirl` (statistics with interactive R programming).
 `swirl` is an intelligent tutoring system developed by Nick Carchedi, with contributions
@@ -47,7 +47,7 @@ highly interpretable model fits. This is unlike machine learning
 algorithms, which often sacrifice interpretability for
 improved prediction performance or automation. These are, of course,
 valuable attributes in their own rights. However, the benefit of
-simplicity, parsimony and intrepretability offered by regression models
+simplicity, parsimony and interpretability offered by regression models
 (and their close generalizations) should make them a first tool of choice for any practical
 problem.
 
@@ -72,7 +72,7 @@ Galton's prediction models versus those using modern high throughput genomic
 technology (spoiler alert, Galton wins).
 
 Some questions from Galton's data come to mind. How would one fit a model that relates
-parent and child heights? How would one predict a childs height based on their
+parent and child heights? How would one predict a child's height based on their
 parents? How would we quantify regression to the mean? In this class, we'll
 answer all of these questions plus many more.
 
@@ -119,17 +119,17 @@ necessary.
 ## Exploratory analysis of Galton's Data
 [Watch this video before beginning](https://www.youtube.com/watch?v=1akVPR0LDsg&index=2&list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC)
 
-Let's look at the data first. This data was created by Francis Galton in 1885.
+Let's look at the data first. This data was created by [Francis Galton](https://en.wikipedia.org/wiki/Francis_Galton) in 1885.
 Galton was a statistician who invented the term and concepts
-of regression and correlation, founded the journal Biometrika, and
-was the cousin of Charles Darwin.
+of regression and correlation, founded the journal [Biometrika](http://biomet.oxfordjournals.org/), and
+was the cousin of [Charles Darwin](https://en.wikipedia.org/wiki/Charles_Darwin).
 
 You may need to run `install.packages("UsingR")` if the `UsingR` library is
 not installed. Let's look at the marginal (parents disregarding children and
 children disregarding parents) distributions first.
 The parental distribution is all heterosexual couples. The parental average was corrected
 for gender via multiplying female heights by 1.08. Remember, Galton didn't have
-regression to help figure out a betetr way to do this correction!
+regression to help figure out a better way to do this correction!
 
 
 {lang=r,title="Loading and plotting Galton's data.",line-numbers=off}
@@ -314,7 +314,7 @@ I(parent - mean(parent))
 Let's plot the best fitting line. In the subsequent chapter we will learn all
 about creating, interpreting and performing inference on such mode fits. (Note
 that I shifted the origin back to the means of the original data.) The
-results suggest that to every every 1 inch increase in the parents height,
+results suggest that to every 1 inch increase in the parents' height,
 we estimate a 0.646 inch increase in the child's height.
 
 ![Data with the best fitting line.](images/galton3.png)
