@@ -54,7 +54,9 @@ of the male population involved in agriculture.
 The regression slope estimate for this variable is `-0.1721`. We interpret
 this coefficients as follows:
 
-Our models estimates an expected 0.17 decrease in standardized fertility for every 1% increase in percentage of males involved in agriculture in holding the remaining variables constant.
+Our model estimates an expected 0.17 decrease in standardized
+ fertility for every 1% increase in percentage of males involved in
+ agriculture, holding the remaining variables constant.
 
 Note that the the t-test for {$$}H_0: \beta_{Agri} = 0{/$$} versus
 {$$}H_a: \beta_{Agri} \neq 0{/$$} is  significant since `0.0187` is less
@@ -88,7 +90,7 @@ Notably, we generate X1 as a linear function of X2. In this simulation, X1 has a
 adjusted effect on Y while X2 has a positive adjusted effect (adjusted referring to the effect
 including both variables). However, X1 is related to X2. Notice our unadjusted effect of
 X1 is of the opposite sign (and way off), while the adjusted one is about right. What's happening?
-Our unadjusted model is picking up the effect X2 as as it's represented in X1. Play around
+Our unadjusted model is picking up the effect X2 as it's represented in X1. Play around
 with the generating coefficients to see how you can make the estimated relationships very
 different than the generating ones. More than anything, this illustrates that multivariate
 modeling is hard stuff.
@@ -140,7 +142,7 @@ Let's try some computer experiments with our fertility data.
 In the code below,
 z adds no new linear information, since it's a linear
 combination of variables already included. R just drops
-terms that are linear combinations of other terms.
+terms that are linear combination of other terms.
 
 {lang=r,line-numbers=off}
 ~~~
@@ -189,13 +191,14 @@ a variable as treated versus not in a clinical trial. Or, in a more
 data science context, consider an A/B test comparing two ad campaigns
 where Y is the click through rate.
 
-Refer back to our model. For people in the group {$$}E[Y_i] = \beta_0 + \beta_1{/$$}
-and for people not in the group {$$}E[Y_i] = \beta_0{/$$}.
-The least squares fits work out to be
-{$$}\hat \beta_0 + \hat \beta_1{/$$} is the mean for those in the group and {$$}\hat \beta_0{/$$}
-is the mean for those not in the group.
-The variable {$$}\beta_1{/$$} is interpreted as the increase or decrease in the mean comparing those in the group to those not.
-The T-test for that coefficient is exactly the two group T test with a common variance.
+Refer back to our model. For people in the group, {$$}E[Y_i] = \beta_0
++ \beta_1{/$$}, and for people not in the group, {$$}E[Y_i] =
+\beta_0{/$$}.  The least squares fits work out to be {$$}\hat \beta_0
++ \hat \beta_1{/$$} as the mean for those in the group and {$$}\hat
+\beta_0{/$$} as the mean for those not in the group.  The variable
+{$$}\beta_1{/$$} is interpreted as the increase or decrease in the
+mean comparing those in the group to those not.  The T-test for that
+coefficient is exactly the two group T test with a common variance.
 
 Finally, note including a binary variable that is 1 for those not in the group would be redundant,
 it would create three parameters to describe two means. Moreover, we know from the last section that
@@ -211,20 +214,20 @@ consider a variable for US political party affiliation: Republican, Democrat, In
 {$$}Y_i = \beta_0 + X_{i1} \beta_1 + X_{i2} \beta_2 + \epsilon_i.{/$$}
 
 Here the variable {$$}X_{i1}{/$$} is 1 for Republicans and 0 otherwise,
-the variab1e {$$}X_{i2}{/$$} is 1 for Democrats and 0 otherwise. As before, we don't
+the variable {$$}X_{i2}{/$$} is 1 for Democrats and 0 otherwise. As before, we don't
 need an {$$}X_{i3}{/$$} for Independent/Other, since it would be redundant.
 
 So now consider the implications of more model. If person
 {$$}i{/$$} is Republican then {$$}E[Y_i] = \beta_0 +\beta_1{/$$}. On the other hand,
 If person {$$}i{/$$} is Democrat then {$$}E[Y_i] = \beta_0 + \beta_2{/$$}.
-Finally, If $i$ is Independent/Other {$$}E[Y_i] = \beta_0{/$$}.
+Finally, if {$$}i{/$$} is Independent/Other {$$}E[Y_i] = \beta_0{/$$}.
 
 So, we can interpret our coefficients as follows.
 {$$}\beta_1{/$$} compares the mean for Republicans to that of Independents/Others.
 {$$}\beta_2{/$$} compares the mean for Democrats to that of Independents/Others.
 {$$}\beta_1 - \beta_2{/$$} compares the mean for Republicans to that of Democrats.
 Notice the coefficients are all comparisons to the category that we left out, Independents/Others.
-If one category is an obvious reference category, chose that one to leave our.
+If one category is an obvious reference category, chose that one to leave out.
 In R, if our variable is a factor variable, it will create the dummy variables for us and pick one of the
 levels to be the reference level. Let's go through an example to see.
 
@@ -247,7 +250,7 @@ g = g + xlab("Type of spray") + ylab("Insect count")
 g
 ~~~
 
-Here's the plot. There's probably better ways to model this data, but let's use a
+Here's the plot. There are probably better ways to model this data, but let's use a
 linear model just to illustrate factor variables.
 
 ![Insect spray dataset](images/insectSprays.png)
@@ -268,7 +271,7 @@ sprayF        2.1667      1.601  1.3532 1.806e-01
 ~~~
 
 Therefore, 0.8333 is the estimated mean comparing Spray B to Spray A (as B - A),
--12.4167 compares Spray C to Spray A (as C - A) and so on. The inferencial statistics: standard
+-12.4167 compares Spray C to Spray A (as C - A) and so on. The inferential statistics: standard
 errors, t value and P-value all correspond to those comparisons. The intercept, 14.5, is the
 mean for Spray A. So, its inferential statistics are testing whether or not the mean for
 Spray A is zero. As is often the case, this test isn't terribly informative and often yields
@@ -317,7 +320,7 @@ I(1 * (spray == "F"))   2.1667      1.601  1.3532 1.806e-01
 ~~~
 
 However, if we drop the intercept, then the Spray A term is
-no longer redundant. The each coefficient is the mean for
+no longer redundant. Then each coefficient is the mean for
 that Spray.
 
 {lang=r,line-numbers=off}
@@ -335,11 +338,11 @@ sprayF   16.667      1.132  14.721 1.573e-22
 
 So, for example, 14.5 is the mean for Spray A (as we already knew),
 15.33 is the mean for Spray B (14.5 + 0.8333 from our previous model formulation),
-2.083 is the mean for Spray C (14.5 - 12.4167 from our previous model formluation) and so on.
+2.083 is the mean for Spray C (14.5 - 12.4167 from our previous model formulation) and so on.
 This is a nice trick if you want your model formulated in the terms of the group means,
 rather than the group comparisons relative to the reference group.
 
-Also, if there's no other covariates, the estimated coefficients for this mode are
+Also, if there are no other covariates, the estimated coefficients for this mode are
 exactly the empirical means of the groups. We can use dplyr to check this really
 easily and grab the mean for each group.
 
@@ -420,7 +423,6 @@ rows.
 
 {lang=r,line-numbers=off}
 ~~~
-> spray2 <- relevel(InsectSprays$spray, "C")
 > library(datasets); data(swiss)
 > head(swiss)
 
@@ -440,7 +442,6 @@ at majority Catholic or not:
 
 {lang=r,line-numbers=off}
 ~~~
-> spray2 <- relevel(InsectSprays$spray, "C")
 > library(dplyr)
 > swiss = mutate(swiss, CatholicBin = 1 * (Catholic > 50))
 ~~~
@@ -540,9 +541,9 @@ factor(CatholicBin)1              2.85770   10.62644  0.2689 7.893e-01
 Agriculture:factor(CatholicBin)1  0.08914    0.17611  0.5061 6.153e-01
 ~~~
 
-Thus, 2.8577 is the estimated change in the intercept of the linear relationship between Agriculure and
+Thus, 2.8577 is the estimated change in the intercept of the linear relationship between Agriculture and
 Fertility going from non-Catholic majority to
-Catholic majority to Catholic majority provinces. The interaction term 0.9891 is the estimate change in
+Catholic majority to Catholic majority provinces. The interaction term, 0.9891, is the estimate change in
 the slope. The estimated intercept in non-Catholic provinces is 62.04993 while the estimated intercept in
 Catholic provinces is 62.04993 + 2.85770. The estimated slope in non-Catholic majority provinces is 0.09612
 while it is 0.09612 + 0.08914 for Catholic majority provinces. If the factor has more than two levels, all
