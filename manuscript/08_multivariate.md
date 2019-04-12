@@ -9,7 +9,7 @@ used and successful methods in statistics.
 
 ### Multivariable regression analyses: adjustment
 If I were to present evidence of a relationship between
-breath mint useage (mints per day, X) and pulmonary function
+breath mint usage (mints per day, X) and pulmonary function
 (measured in FEV), you would be skeptical.
 Likely, you would say, 'smokers tend to use more breath mints than non smokers, smoking is related to a loss in pulmonary function. That's probably the culprit.'
 If asked what would convince you, you would likely say, 'If non-smoking breath mint users had lower lung function than non-smoking non-breath mint users and, similarly, if smoking breath mint users had lower lung function than smoking non-breath mint users, I'd be more inclined to believe you'.
@@ -30,18 +30,18 @@ by adding terms linearly into the model.
 {$$}
 Y_i =  \beta_1 X_{1i} + \beta_2 X_{2i} + \ldots +
 \beta_{p} X_{pi} + \epsilon_{i}
-= \sum_{k=1}^p X_{ik} \beta_j + \epsilon_{i}
+= \sum_{k=1}^p X_{ki} \beta_k + \epsilon_{i}
 {/$$}
 
 Here {$$}X_{1i}=1{/$$} typically, so that an intercept is included.
-Least squares (and hence ML estimates under iid Gaussianity
+Least squares (and hence maximum likelihood estimates under iid Gaussianity
 of the errors) minimizes:
 
 {$$}
-\sum_{i=1}^n \left(Y_i - \sum_{k=1}^p X_{ki} \beta_j\right)^2
+\sum_{i=1}^n \left(Y_i - \sum_{k=1}^p X_{ki} \beta_k\right)^2
 {/$$}
 
-Note, the important linearity is linearity in the coefficients.
+Note, the linearity referred to in these models is linearity in the coefficients.
 Thus
 
 {$$}
@@ -139,7 +139,7 @@ regression works.
 
 ### Linear model with three variables
 
-{line-numers=off,lang=r}
+{line-numbers=off,lang=r}
 ~~~
 > n = 100; x = rnorm(n); x2 = rnorm(n); x3 = rnorm(n)
 ## Generate the data
@@ -185,7 +185,7 @@ E[Y | X_1 = x_1 + 1, \ldots, X_p = x_p]  - E[Y | X_1 = x_1, \ldots, X_p = x_p]
 Thus, the interpretation of a multivariate regression coefficient is the expected change in the response per unit change in the regressor, holding all of the other regressors fixed.
 The latter part of the phrase is important, by holding the other regressors
 constant, we are investigating an adjusted effect, just like we described in the
-smoking and breath mint useage example at the beginning of the chapter.
+smoking and breath mint usage example at the beginning of the chapter.
 
 In the next chapter, we'll do examples and go over context-specific
 interpretations.
@@ -194,12 +194,12 @@ interpretations.
 All of our simple linear regression quantities can be extended to linear models.
 Here we list them out in one place. Our statistical model is:
 
-{$$}Y_i = \sum_{k=1}^p X_{ik} \beta_{k} + \epsilon_{i}{/$$}
+{$$}Y_i = \sum_{k=1}^p X_{ki} \beta_{k} + \epsilon_{i}{/$$}
 
 where {$$}\epsilon_i \sim N(0, \sigma^2){/$$}.
 Our fitted responses are:
 
-{$$}\hat Y_i = \sum_{k=1}^p X_{ik} \hat \beta_{k}.{/$$}
+{$$}\hat Y_i = \sum_{k=1}^p X_{ki} \hat \beta_{k}.{/$$}
 
 We can define our residuals exactly as in linear regression:
 
@@ -245,3 +245,4 @@ obtained in question 1.
 Take the residual for `kms` having regressed out `PetrolPrice` and an intercept. Fit a regression
 through the origin of the two residuals and show that it is the same as your coefficient
 obtained in question 1.
+
