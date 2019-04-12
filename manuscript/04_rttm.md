@@ -28,11 +28,11 @@ what should we multiply tall parent's heights by to predict their children's
 height?
 
 ## Regression to the mean
-Let's investigate this with Galton's father and son data. (In this case )
+Let's investigate this with Galton's father and son data.
 Suppose that we normalize {$$}X{/$$} (child's height) and {$$}Y{/$$}
 (father's height) so that they both have mean 0 and variance 1.
 Then, recall, our regression line passes through {$$}(0, 0){/$$} (the mean of the X and Y).
-If the slope of the regression line is {$$}Cor(Y,X){/$$}, regardless of which variable is the outcome (recall, both standard deviations are 1).
+The slope of the regression line is {$$}Cor(Y,X){/$$}, regardless of which variable is the outcome (recall, both standard deviations are 1).
 Notice if {$$}X{/$$} is the outcome and you create a plot where {$$}X{/$$}
 is the horizontal axis, the slope of the least squares line that you plot is
 {$$}1/Cor(Y, X){/$$}. Let's plot the normalized

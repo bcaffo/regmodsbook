@@ -229,7 +229,7 @@ to multiply our data by 10.
        -259.6         372.1
 ~~~
 
-Now, let's predicting the price of a diamond. This should be as
+Now, let's predict the price of a diamond. This should be as
 easy as just evaluating the fitted line at the price we want to
 
 {lang=r,line-numbers=off}
@@ -242,8 +242,7 @@ easy as just evaluating the fitted line at the price we want to
 Therefore, we predict the price to be 335.7, 745.1 and 1005.5 for
 a 0.16, 0.26 and 0.34 carat diamonds. Of course, our prediction models
 will get more elaborate and R has a generic function, `predict`,
-to put our X values into the model for us. This is generally preferable
-and less The data has to go into
+to put our X values into the model for us. The data has to go into
 the model as a data frame with the same named X variables.
 
 {lang=r,line-numbers=off}

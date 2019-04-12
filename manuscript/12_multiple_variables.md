@@ -269,8 +269,8 @@ convenient entity to work with.
 Assuming that the model is linear with additive iid errors,
 we can mathematically describe the impact of omitting necessary variables or including unnecessary ones. These
 two rules follow:
-  * If we underfit the model, that is omit necessary covariates, the variance estimate is biased.
-  * If we correctly *or overfit* the model, including all necessary covariates and possibly some unnecessary ones,
+  * If we *underfit* the model, that is omit necessary covariates, the variance estimate is biased.
+  * If we correctly, *or overfit*, the model, including all necessary covariates and possibly some unnecessary ones,
     the variance estimate is unbiased. However, the variance *of the variance* is larger if we include unnecessary variables.
 
 These make sense. If we've omitted important variables, we're attributing residual variation that is really systematic

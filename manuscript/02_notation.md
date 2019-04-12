@@ -44,7 +44,7 @@ the least squares solution for minimizing
 
 ## The empirical standard deviation and variance
 
-The variance and standard deviation are measures of how spread out are data is.
+The variance and standard deviation are measures of how spread out our data is.
 Under sampling assumptions, they estimate variability in the population.
 We define the empirical variance as:
 

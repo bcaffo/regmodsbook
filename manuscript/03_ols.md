@@ -90,7 +90,7 @@ Let's double check our calculations using R
 ~~~
 
 We can see that the result of `lm` is identical to hard coding the fit ourselves.
-Let's Reversing the outcome/predictor relationship.
+Let's reverse the outcome/predictor relationship.
 
 {line-numbers=off,lang=r}
 ~~~
