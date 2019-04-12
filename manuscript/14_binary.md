@@ -212,7 +212,7 @@ Or, equivalently, we could just say
 
 {$$}
 P(Y_i = 1 ~|~ X_i = x_i, \beta_0, \beta_1)
-= p_i = \frac{ \exp{\beta_0 + \beta_1 x_i}}{1 + \exp(\beta_0 + \beta_1 x_i)}
+= p_i = \frac{ \exp(\beta_0 + \beta_1 x_i)}{1 + \exp(\beta_0 + \beta_1 x_i)}
 {/$$}
 
 
