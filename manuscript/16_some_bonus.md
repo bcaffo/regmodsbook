@@ -11,9 +11,9 @@ How can we fit such a model using linear models (often called scatterplot smooth
 
 We're going to cover a basic technique called regression splines. Consider the model
 
-  {$$}
-  Y_i = \beta_0 + \beta_1 X_i + \sum_{k=1}^d (x_i - \xi_k)_+ \gamma_k + \epsilon_{i}
-  {/$$}
+{$$}
+Y_i = \beta_0 + \beta_1 X_i + \sum_{k=1}^d (x_i - \xi_k)_+ \gamma_k + \epsilon_{i}
+{/$$}
 
 where {$$}(a)_+ = a{/$$} if {$$}a > 0{/$$} and 0 otherwise and {$$}\xi_1 \leq ... \leq \xi_d{/$$}
 are known knot points. Prove to yourself that the mean function:
