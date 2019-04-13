@@ -10,7 +10,7 @@ The videos associated with this book
 [can be watched in full here](https://www.youtube.com/playlist?list=PLpl-gQkQivXjqHAJd2t-J_One_fYE55tC),
 though the relevant links to specific videos are placed at the appropriate
 locations throughout.
-
+ 
 
 Before beginning, we assume that you have a working knowledge
 of the R programming language. If not, there is a wonderful Coursera class
@@ -102,10 +102,10 @@ Regression models are incredibly handy statistical tools. One can use
 them to answer all sorts of questions.
 Consider three of the most common tasks for regression models:
 
-1. **Prediction** Eg: to use the parent's heights to predict children's heights.
-2. **Modeling** Eg: to try to find a parsimonious, easily described mean
+1. **Prediction** e.g.: to use the parent's heights to predict children's heights.
+2. **Modeling** e.g.: to try to find a parsimonious, easily described mean
     relationship between parental and child heights.
-3. **Covariation** Eg: to investigate the variation in child heights that appears
+3. **Covariation** e.g.: to investigate the variation in child heights that appears
   unrelated to parental heights (residual variation) and to quantify what impact genotype information has beyond parental height in explaining child height.
 
 An important aspect, especially in questions 2 and 3 is assessing
@@ -170,7 +170,7 @@ with that for this class.
 
 ### Experiment
 Let's
-use rStudio's manipulate to see what value of
+use RStudio's manipulate to see what value of
 {$$}\mu{/$$} minimizes the sum of the squared deviations. The code below
 allows you to create a slider to investigate estimates and their
 mean squared error.
@@ -268,7 +268,7 @@ at each observed {$$}X_i{/$$} point (parental height) and the
 
 Our goal is exactly to use the origin as a pivot point and pick the
 line that minimizes the sum of the squared vertical distances
-of the points to the line. Use R studio's  manipulate function to experiment. 
+of the points to the line. Use RStudio's  manipulate function to experiment. 
 Subtract the means so that the origin is the mean of the parent
 and children heights.
 
@@ -314,7 +314,7 @@ I(parent - mean(parent))
 Let's plot the best fitting line. In the subsequent chapter we will learn all
 about creating, interpreting and performing inference on such mode fits. (Note
 that I shifted the origin back to the means of the original data.) The
-results suggest that to every 1 inch increase in the parents' height,
+results suggest that for every 1 inch increase in the parents' height,
 we estimate a 0.646 inch increase in the child's height.
 
 ![Data with the best fitting line.](images/galton3.png)
