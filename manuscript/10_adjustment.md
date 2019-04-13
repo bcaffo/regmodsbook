@@ -1,4 +1,4 @@
-B0;256;0c# Adjustment
+# Adjustment
 
 [Watch this video before beginning.](https://youtu.be/SFPM9IuP2m8)
 
