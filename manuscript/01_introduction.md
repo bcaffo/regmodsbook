@@ -274,6 +274,7 @@ and children heights.
 
 {title="Code for plotting the data.", lang=r, line-numbers=off}
 ~~~
+library(dplyr)
 y <- galton$child - mean(galton$child)
 x <- galton$parent - mean(galton$parent)
 freqData <- as.data.frame(table(x, y))
