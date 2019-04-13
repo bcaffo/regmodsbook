@@ -191,11 +191,11 @@ a variable as treated versus not in a clinical trial. Or, in a more
 data science context, consider an A/B test comparing two ad campaigns
 where Y is the click through rate.
 
-Refer back to our model. For people in the group, {$$}E[Y_i] = \beta_0
-+ \beta_1{/$$}, and for people not in the group, {$$}E[Y_i] =
-\beta_0{/$$}.  The least squares fits work out to be {$$}\hat \beta_0
-+ \hat \beta_1{/$$} as the mean for those in the group and {$$}\hat
-\beta_0{/$$} as the mean for those not in the group.  The variable
+Refer back to our model. For people in the group,
+{$$}E[Y_i] = \beta_0 + \beta_1{/$$}, and for people not in the group,
+{$$}E[Y_i] = \beta_0{/$$}.  The least squares fits work out to be
+{$$}\hat \beta_0 + \hat \beta_1{/$$} as the mean for those in the group and
+{$$}\hat \beta_0{/$$} as the mean for those not in the group.  The variable
 {$$}\beta_1{/$$} is interpreted as the increase or decrease in the
 mean comparing those in the group to those not.  The T-test for that
 coefficient is exactly the two group T test with a common variance.
