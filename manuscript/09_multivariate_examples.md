@@ -543,7 +543,7 @@ Agriculture:factor(CatholicBin)1  0.08914    0.17611  0.5061 6.153e-01
 
 Thus, 2.8577 is the estimated change in the intercept of the linear relationship between Agriculture and
 Fertility going from non-Catholic majority to
-Catholic majority to Catholic majority provinces. The interaction term, 0.9891, is the estimate change in
+Catholic majority to Catholic majority provinces. The interaction term, 0.08914, is the estimate change in
 the slope. The estimated intercept in non-Catholic provinces is 62.04993 while the estimated intercept in
 Catholic provinces is 62.04993 + 2.85770. The estimated slope in non-Catholic majority provinces is 0.09612
 while it is 0.09612 + 0.08914 for Catholic majority provinces. If the factor has more than two levels, all
