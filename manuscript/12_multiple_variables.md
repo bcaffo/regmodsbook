@@ -111,7 +111,7 @@ on estimation. It might explain some residual variation, thus it could have an i
 As previously mentioned, this lack of impact of uncorrelated variables is why we randomize treatments;
 randomization attempts to disassociate our treatment indicator with variables that we don't have to put in the model. Formal
 theories of inference can be designed around the use of randomization.  However,
-in a practical sense, if there's too many unobserved confounding variables, even randomization won't help you, since
+in a practical sense, if there are too many unobserved confounding variables, even randomization won't help you, since
 with high probability one will stay correlated with the treatment.
 
 In most cases we won't have randomization. So, to avoid bias, why don't we throw everything into the regression model?
